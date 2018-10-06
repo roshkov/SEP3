@@ -1,6 +1,0 @@
-SN74HCT : 02N  NOR 5 * 4
-	  08N AND 9 * 4
-	  04N NOT 9 * 6
-	  032 OR 5 * 4
-	  00N NAND 5 * 4
-74HCT86N : XOR 5 * 4
