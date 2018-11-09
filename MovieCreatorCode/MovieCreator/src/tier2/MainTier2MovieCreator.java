@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import Common.Tier3MovieCreatorControllerInterface;
 import Tier3.controller.Tier3MovieCreatorController;
 import tier2.controller.Tier2MovieCreatorController;
+import tier2.controller.Tier2MovieCreatorServer;
 import tier2.model.Tier2MovieCreatorModel;
 import tier2.view.Console;
 import tier2.view.Tier2MovieCreatorView;

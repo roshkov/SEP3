@@ -1,11 +1,10 @@
-package tier2;
+package tier2.controller;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-import tier2.controller.Tier2MovieCreatorController;
 import tier2.view.Tier2MovieCreatorView;
 
 public class Tier2MovieCreatorThreadHandler  implements Runnable {
