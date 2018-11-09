@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Common;
+package common;
 
 /**
  * @author Claudiu
