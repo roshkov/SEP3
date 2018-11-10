@@ -1,9 +1,5 @@
 package tier3.view;
 
-public class Tier3MovieCreatorView {
-
-	public void show(String string) {
-		System.out.println(string);
-	}
-
+public interface Tier3MovieCreatorView {
+	public void show(String text);
 }

@@ -4,20 +4,23 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import tier3.database.DatabaseAdapter;
 import tier3.view.Tier3MovieCreatorView;
 
 public class Tier3MovieCreatorController implements Runnable {
 	private ServerSocket welcomeSocket;
 	private Tier3MovieCreatorView view;
-	public Tier3MovieCreatorController(Tier3MovieCreatorView view)
-	{
+	private DatabaseAdapter database;
+
+	public Tier3MovieCreatorController(Tier3MovieCreatorView view, int port) {
 		this.view = view;
-		startServer(1097);
+		startServer(port);
+		//Remove hardcoding
+		database = new DatabaseAdapter("org.postgresql.Driver",
+				"jdbc:postgresql://localhost:5432/Zinema", "postgres", "2308");
 	}
-	
-	
-	public void startServer(int port)
-	{
+
+	public void startServer(int port) {
 		try {
 			view.show("Starting tier3 server");
 			welcomeSocket = new ServerSocket(port);
@@ -26,25 +29,22 @@ public class Tier3MovieCreatorController implements Runnable {
 			e.printStackTrace();
 		}
 	}
+
 	@Override
 	public void run() {
-		while (true)
-	      {
-	         view.show("Waiting for a client...");
-	         try
-	         {
-	            Socket socket = welcomeSocket.accept();
-	            Tier3MovieCreatorThreadHandler c;
-	            c = new Tier3MovieCreatorThreadHandler(socket, view);
-	            Thread t = new Thread(c);
-	            t.start();
-	            view.show("Client connected");
-	         }
-	         catch (IOException e)
-	         {
-	            view.show("Error in server. Message: " + e.getMessage());
-	         }
-	      }
+		while (true) {
+			view.show("Waiting for a client...");
+			try {
+				Socket socket = welcomeSocket.accept();
+				Tier3MovieCreatorThreadHandler c;
+				c = new Tier3MovieCreatorThreadHandler(socket, view, database);
+				Thread t = new Thread(c);
+				t.start();
+				view.show("Client connected");
+			} catch (IOException e) {
+				view.show("Error in server. Message: " + e.getMessage());
+			}
+		}
 	}
 
 }

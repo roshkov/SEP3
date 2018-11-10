@@ -7,33 +7,52 @@ import java.net.Socket;
 
 import com.google.gson.Gson;
 
+import tier3.database.DatabaseAdapter;
 import tier3.view.Tier3MovieCreatorView;
 import common.Package;
 
-public class Tier3MovieCreatorThreadHandler  implements Runnable {
+public class Tier3MovieCreatorThreadHandler implements Runnable {
 
-	private Socket clientSocket;
 	private DataInputStream inputStream;
 	private DataOutputStream outputStream;
 	private Tier3MovieCreatorView view;
 	private String ip;
-	
-	public Tier3MovieCreatorThreadHandler(Socket clientSocket,Tier3MovieCreatorView view) throws IOException {
+	private DatabaseAdapter database;
+
+	public Tier3MovieCreatorThreadHandler(Socket clientSocket, Tier3MovieCreatorView view, DatabaseAdapter database)
+			throws IOException {
 		super();
-		this.clientSocket = clientSocket;
+		startDatabase(database);
+		startView(view);
+		communicateClient(clientSocket);
+	}
+
+	public void communicateClient(Socket clientSocket) {
+		try {
+			// Read from stream : String tmp = inputStream.readUTF();
+			inputStream = new DataInputStream(clientSocket.getInputStream());
+			// Write into stream : outputStream.writeUTF(new String("text to send"));
+			outputStream = new DataOutputStream(clientSocket.getOutputStream());
+
+			this.ip = clientSocket.getInetAddress().getHostAddress();
+			view.show(ip + " connected");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void startView(Tier3MovieCreatorView view) {
 		this.view = view;
-		// Read from stream : String tmp = inputStream.readUTF();
-		inputStream = new DataInputStream(clientSocket.getInputStream());
+	}
 
-		// Write into stream : outputStream.writeUTF(new String("text to send"));
-		outputStream = new DataOutputStream(clientSocket.getOutputStream());
-
-		this.ip = clientSocket.getInetAddress().getHostAddress();
-		view.show(ip + " connected");
+	public void startDatabase(DatabaseAdapter database) {
+		this.database = database;
 	}
 
 	/**
-	 * This method waits for a request Package from the client then sends a reply Package back to him
+	 * This method waits for a request Package from the client then sends a reply
+	 * Package back to him
 	 * 
 	 * @see operation
 	 * @see Package
@@ -43,24 +62,23 @@ public class Tier3MovieCreatorThreadHandler  implements Runnable {
 		boolean continueCommuticating = true;
 		try {
 			while (continueCommuticating) {
-
+				Gson gson = new Gson();
 				String line = inputStream.readUTF();
 				view.show(ip + "> " + line);
 
 				// convert from JSon
-				Gson gson = new Gson();
 				Package request = gson.fromJson(line, Package.class);
-				view.show("package: " + request.getText());
+				view.show("package: " + request.getHeader());
 
 				Package reply = operation(request);
 
 				// convert to JSon
-				// gson = new Gson();
 				String json = gson.toJson(reply);
 				outputStream.writeUTF(json);
 				view.show("Server to " + ip + "> " + reply);
-				if (reply.getText().equalsIgnoreCase("EXIT")) {
+				if (reply.getHeader().equalsIgnoreCase("EXIT")) {
 					continueCommuticating = false;
+					close();
 				}
 			}
 			view.show("Closing connection to client: " + ip);
@@ -75,27 +93,24 @@ public class Tier3MovieCreatorThreadHandler  implements Runnable {
 	}
 
 	/**
-	 * Method that takes the request Package then uses the model to create a reply Package depending on the request 
+	 * Method that takes the request Package then uses the model to create a reply
+	 * Package depending on the request
+	 * 
 	 * @param request The Package received from the client
 	 * @return a Package containing what the client requested
 	 * @see Package
 	 */
-	
+
 //Are we using packages or something else? What about the package class itself?
 	private Package operation(Package request) {
-		switch (request.getText()) {
+		switch (request.getHeader()) {
 		case Package.GET:
-			return new Package("GOOD FORMAT");
-			/*String list = controller.getMovies();
-			if (list.length() <= 0)
-				return new Package("NO MOVIES", list);
-			return new Package(Package.GET, list);
-
-		case Package.CREATE:
-			title, yearCreation, releaseDate, price, nameStudio, nameDirector, description, nameMainActor
-			controller.createMovie(request.getTitle(), request.getYearCreation(), request.getPrice(), request.getNameStudio(), request.getNameDirector(), request.getDescription(), request.getNameMainActor());
-			return new Package("MOVIE CREATED");*/
-			
+			String result = database.getMovies();
+			return new Package("GET", result);
+			//after you add you get a list of all movies back
+		case Package.ADD:
+			if(database.saveMovie(request.getMovie()))
+			return new Package ("ADD", database.getMovies());
 		default:
 			return new Package("WRONG FORMAT");
 

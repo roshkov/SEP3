@@ -38,7 +38,7 @@ public class Tier2MovieCreatorController implements Runnable {
 	            c = new Tier2MovieCreatorThreadHandler(socket, view);
 	            Thread t = new Thread(c);
 	            t.start();
-	            
+	            view.show("Client connected");
 	         }
 	         catch (IOException e)
 	         {
