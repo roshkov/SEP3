@@ -1,46 +1,50 @@
-package Tier3.controller;
+package tier3.controller;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 
-import Common.Movie;
-import Common.Tier3MovieCreatorControllerInterface;
-import Tier3.database.DatabaseAdapter;
-import Tier3.database.TargetDatabase;
-import Tier3.view.Tier3MovieCreatorView;
+import tier3.database.DatabaseAdapter;
+import tier3.view.Tier3MovieCreatorView;
 
-
-public class Tier3MovieCreatorController extends UnicastRemoteObject implements Tier3MovieCreatorControllerInterface {
-	
-	private static final long serialVersionUID = 1L;
-	private TargetDatabase database;
+public class Tier3MovieCreatorController implements Runnable {
+	private ServerSocket welcomeSocket;
 	private Tier3MovieCreatorView view;
-	
-	//Method to start the controller and the database
-	public Tier3MovieCreatorController() throws RemoteException{
-		database = new DatabaseAdapter("org.postgresql.Driver", "jdbc:postgresql://localhost:5432/Zinema", "postgres",
-				"2308");
-	}
-	
-	//Method to set the created view
-	public void setView(Tier3MovieCreatorView view)
-	{
+	private DatabaseAdapter database;
+
+	public Tier3MovieCreatorController(Tier3MovieCreatorView view, int port) {
 		this.view = view;
-		view.show("The Database has been started");
-	}
-	
-	//Method to save a movie to the database
-	@Override
-	public void saveMovie(Movie movie) throws RemoteException {
-		database.saveMovie(movie);
-		view.show("The movie " + movie.getTitle() + " has been added");
+		startServer(port);
+		//Remove hardcoding
+		database = new DatabaseAdapter("org.postgresql.Driver",
+				"jdbc:postgresql://localhost:5432/Zinema", "postgres", "2308");
 	}
 
-	//Method to get an array of movies from the database
+	public void startServer(int port) {
+		try {
+			view.show("Starting tier3 server");
+			welcomeSocket = new ServerSocket(port);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	@Override
-	public Movie[] getMovies() throws RemoteException {
-		view.show("Getting all movies... ");
-		return database.getMovies();
+	public void run() {
+		while (true) {
+			view.show("Waiting for a client...");
+			try {
+				Socket socket = welcomeSocket.accept();
+				Tier3MovieCreatorThreadHandler c;
+				c = new Tier3MovieCreatorThreadHandler(socket, view, database);
+				Thread t = new Thread(c);
+				t.start();
+				view.show("Client connected");
+			} catch (IOException e) {
+				view.show("Error in server. Message: " + e.getMessage());
+			}
+		}
 	}
 
 }

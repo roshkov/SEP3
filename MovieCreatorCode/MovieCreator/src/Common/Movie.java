@@ -1,14 +1,14 @@
 /**
  * 
  */
-package Common;
+package common;
 
 /**
  * @author Claudiu
  *
  */
 public class Movie {
-private String Title;
+private String title;
 private String yearCreation;
 private String releaseDate;
 private double price;
@@ -19,7 +19,7 @@ private String nameMainActor;
 public Movie(String title, String yearCreation, String releaseDate, double price, String nameStudio,
 		String nameDirector, String description, String nameMainActor) {
 	super();
-	Title = title;
+	this.title = title;
 	this.yearCreation = yearCreation;
 	this.releaseDate = releaseDate;
 	this.price = price;
@@ -29,10 +29,10 @@ public Movie(String title, String yearCreation, String releaseDate, double price
 	this.nameMainActor = nameMainActor;
 }
 public String getTitle() {
-	return Title;
+	return title;
 }
 public void setTitle(String title) {
-	Title = title;
+	title = title;
 }
 public String getYearCreation() {
 	return yearCreation;
@@ -78,7 +78,7 @@ public void setNameMainActor(String nameMainActor) {
 }
 @Override
 public String toString() {
-	return "Movie [Title=" + Title + ", yearCreation=" + yearCreation + ", releaseDate=" + releaseDate + ", price="
+	return "Movie [Title=" + title + ", yearCreation=" + yearCreation + ", releaseDate=" + releaseDate + ", price="
 			+ price + ", nameStudio=" + nameStudio + ", nameDirector=" + nameDirector + ", description=" + description
 			+ ", nameMainActor=" + nameMainActor + "]";
 }

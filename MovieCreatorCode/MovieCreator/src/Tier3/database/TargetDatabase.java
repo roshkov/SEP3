@@ -1,16 +1,16 @@
 /**
  * 
  */
-package Tier3.database;
+package tier3.database;
 
 
-import Common.Movie;
+import common.Movie;
 
 /**
  * @author Claudiu
  *
  */
 public interface TargetDatabase {
-	public void saveMovie(Movie movie);
-	public Movie[] getMovies(); 
+	public boolean saveMovie(Movie movie);
+	public String getMovies(); 
 }

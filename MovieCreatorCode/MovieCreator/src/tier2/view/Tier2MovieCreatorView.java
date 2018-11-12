@@ -1,11 +1,8 @@
 package tier2.view;
 
-import tier2.controller.Tier2MovieCreatorController;
+public class Tier2MovieCreatorView {
+	public void show(String string) {
+		System.out.println(string);
+	}
 
-public interface Tier2MovieCreatorView {
-	String get(String string);
-
-	void show(String text);
-
-	void startView(Tier2MovieCreatorController controller);
 }

@@ -1,9 +1,9 @@
-package Tier3.database;
+package tier3.database;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import Common.Movie;
+import common.Movie;
 import utility.persistence.MyDatabase;
 
 /**
@@ -12,6 +12,7 @@ import utility.persistence.MyDatabase;
  */
 public class DatabaseAdapter implements TargetDatabase {
 	private MyDatabase database;
+
 	public DatabaseAdapter(String driver, String url, String user, String pw) {
 		try {
 			database = new MyDatabase(driver, url, user, pw);
@@ -23,9 +24,10 @@ public class DatabaseAdapter implements TargetDatabase {
 			e.printStackTrace();
 		}
 	}
+
 	// Method to save a movie in the database
 	@Override
-	public void saveMovie(Movie movie) {
+	public boolean saveMovie(Movie movie) {
 		String title = movie.getTitle();
 		String yearCreation = movie.getYearCreation();
 		String releaseDate = movie.getReleaseDate();
@@ -35,19 +37,24 @@ public class DatabaseAdapter implements TargetDatabase {
 		String description = movie.getDescription();
 		String nameMainActor = movie.getNameMainActor();
 
-		String statement = "INSERT INTO \"Movie\" VALUES ('" + title + "', '" + yearCreation + "', '" + releaseDate + "', "
-				+ price + ", '" + nameStudio + "', '" + nameDirector + "', '" + description + "', '" + nameMainActor + "');";
+		String statement = "INSERT INTO \"Movie\" VALUES ('" + title + "', '" + yearCreation + "', '" + releaseDate
+				+ "', " + price + ", '" + nameStudio + "', '" + nameDirector + "', '" + description + "', '"
+				+ nameMainActor + "');";
 
 		try {
 			database.update(statement, null);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
+
 	// Method to get an array of the movies stored in the database
 	@Override
-	public Movie[] getMovies() {
+	public String getMovies() {
 		String statement = "SELECT * FROM \"Movie\";";
+		String result = "";
 		ArrayList<Object[]> results = null;
 		try {
 			results = database.query(statement, null);
@@ -60,13 +67,16 @@ public class DatabaseAdapter implements TargetDatabase {
 			String title = row[0].toString();
 			String yearCreation = row[1].toString();
 			String releaseDate = row[2].toString();
-			double price = Double.parseDouble(row[3].toString());
+			// used to be a double
+			String price = row[3].toString();
 			String nameStudio = row[4].toString();
 			String nameDirector = row[5].toString();
 			String description = row[6].toString();
 			String nameMainActor = row[7].toString();
-			Movies[i] = new Movie(title, yearCreation, releaseDate, price, nameStudio, nameDirector, description, nameMainActor);
+			result = result + "Title: " + title + " Year Of creation: " + yearCreation + " Release Date: " + releaseDate
+					+ " Price: " + price + " Name of the Studio: " + nameStudio + " Name of the Director: "
+					+ nameDirector + " Description: " + description + " Name of Main Actor: " + nameMainActor + "\n";
 		}
-		return Movies;
+		return result;
 	}
 }
