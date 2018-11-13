@@ -7,9 +7,15 @@ import java.net.Socket;
 
 import com.google.gson.Gson;
 
+<<<<<<< HEAD:MovieCreatorCode/MovieCreator/src/Tier3/controller/Tier3MovieCreatorThreadHandler.java
 import Tier3.database.DatabaseAdapter;
 import Tier3.view.Tier3MovieCreatorView;
 import common.Package;
+=======
+import common.Package;
+import tier3.database.DatabaseAdapter;
+import tier3.view.Tier3MovieCreatorView;
+>>>>>>> 5192057ad19cae52e3ffb400cbc5747ce07ae1ce:MovieCreatorCode/MovieCreator/src/tier3/controller/Tier3MovieCreatorThreadHandler.java
 
 public class Tier3MovieCreatorThreadHandler implements Runnable {
 

@@ -38,7 +38,7 @@ public String getTitle() {
 	return title;
 }
 public void setTitle(String title) {
-	title = title;
+	this.title = title;
 }
 public String getYearCreation() {
 	return yearCreation;

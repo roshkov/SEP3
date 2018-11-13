@@ -4,7 +4,12 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MyDatabase"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/gson"/>
 	<classpathentry kind="src" path="src"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="D:/Downloads/code_shit/JARs/gson-2.8.2.jar"/>
 	<classpathentry kind="lib" path="D:/Downloads/code_shit/JARs/MyDatabase.jar"/>
+=======
+	<classpathentry kind="lib" path="E:/Downloads/gson-2.6.2.jar"/>
+	<classpathentry kind="lib" path="E:/Facultate/SeM 3/SeP/My stuff/MyDatabase.jar"/>
+>>>>>>> 5192057ad19cae52e3ffb400cbc5747ce07ae1ce
 	<classpathentry kind="output" path="bin"/>
 </classpath>
