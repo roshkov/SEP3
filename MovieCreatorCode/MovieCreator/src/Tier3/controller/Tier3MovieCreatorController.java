@@ -1,11 +1,11 @@
-package tier3.controller;
+package Tier3.controller;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import tier3.database.DatabaseAdapter;
-import tier3.view.Tier3MovieCreatorView;
+import Tier3.database.DatabaseAdapter;
+import Tier3.view.Tier3MovieCreatorView;
 
 public class Tier3MovieCreatorController implements Runnable {
 	private ServerSocket welcomeSocket;
@@ -17,7 +17,7 @@ public class Tier3MovieCreatorController implements Runnable {
 		startServer(port);
 		//Remove hardcoding
 		database = new DatabaseAdapter("org.postgresql.Driver",
-				"jdbc:postgresql://localhost:5432/Zinema", "postgres", "2308");
+				"jdbc:postgresql://localhost:5432/Zinema", "postgres", "postgres");
 	}
 
 	public void startServer(int port) {

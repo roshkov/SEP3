@@ -16,6 +16,12 @@ private String nameStudio;
 private String nameDirector;
 private String description;
 private String nameMainActor;
+
+public Movie(String title)
+{
+	this.title=title;
+}
+
 public Movie(String title, String yearCreation, String releaseDate, double price, String nameStudio,
 		String nameDirector, String description, String nameMainActor) {
 	super();
