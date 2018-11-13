@@ -1,10 +1,10 @@
 /**
  * 
  */
-package tier3.database;
+package Tier3.database;
 
 
-import common.Movie;
+import Common.Movie;
 
 /**
  * @author Claudiu

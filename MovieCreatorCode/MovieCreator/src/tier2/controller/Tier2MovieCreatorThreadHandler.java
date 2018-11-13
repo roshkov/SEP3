@@ -8,25 +8,24 @@ import java.net.UnknownHostException;
 
 import com.google.gson.Gson;
 
+import Common.Package;
 import tier2.view.Tier2MovieCreatorView;
-import common.Movie;
-import common.Package;
 
 public class Tier2MovieCreatorThreadHandler implements Runnable {
 
 	private Socket clientSocket;
-	private Socket serverSocket;
 	private DataInputStream inputStream;
 	private DataOutputStream outputStream;
+	private Socket serverSocket;
 	private Tier2MovieCreatorView view;
 	private String ip;
 
-	public Tier2MovieCreatorThreadHandler(Socket clientSocket, Tier2MovieCreatorView view) throws IOException {
+	public Tier2MovieCreatorThreadHandler(Socket clientSocket, Tier2MovieCreatorView view, Socket serverSocket) throws IOException {
 		super();
 		// Connecting to client socket
 		this.clientSocket = clientSocket;
-		// Connecting to server socket, remove hard coding
-		serverSocket = new Socket("localhost", 1097);
+		//Set server socket
+		this.serverSocket = serverSocket;
 		// Read from client stream
 		inputStream = new DataInputStream(clientSocket.getInputStream());
 
@@ -109,10 +108,10 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 		view.show(ip + " connected");
 		switch (request.getHeader()) {
 		case Package.GET:
-			// Read from server stream
+			// Read from database server stream
 			inputStream = new DataInputStream(serverSocket.getInputStream());
 
-			// Write into server stream
+			// Write into database server stream
 			outputStream = new DataOutputStream(serverSocket.getOutputStream());
 			// sending request to tier 3 server
 			

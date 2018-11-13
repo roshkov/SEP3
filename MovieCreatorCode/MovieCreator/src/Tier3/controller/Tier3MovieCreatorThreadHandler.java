@@ -1,4 +1,4 @@
-package tier3.controller;
+package Tier3.controller;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -7,9 +7,9 @@ import java.net.Socket;
 
 import com.google.gson.Gson;
 
-import tier3.database.DatabaseAdapter;
-import tier3.view.Tier3MovieCreatorView;
-import common.Package;
+import Common.Package;
+import Tier3.database.DatabaseAdapter;
+import Tier3.view.Tier3MovieCreatorView;
 
 public class Tier3MovieCreatorThreadHandler implements Runnable {
 

@@ -3,13 +3,12 @@ package tier1.controller;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 import com.google.gson.Gson;
 
-import common.Movie;
-import common.Package;
+import Common.Movie;
+import Common.Package;
 import tier1.view.Tier1MovieCreatorView;
 
 public class Tier1MovieCreatorController implements Runnable {

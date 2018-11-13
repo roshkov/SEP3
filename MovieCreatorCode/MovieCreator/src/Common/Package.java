@@ -1,4 +1,4 @@
-package common;
+package Common;
 
 public class Package {
 	public static final String GET = "GET";
