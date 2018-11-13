@@ -20,12 +20,12 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 	private Tier2MovieCreatorView view;
 	private String ip;
 
-	public Tier2MovieCreatorThreadHandler(Socket clientSocket, Tier2MovieCreatorView view, Socket serverSocket) throws IOException {
+	public Tier2MovieCreatorThreadHandler(Socket clientSocket, Tier2MovieCreatorView view)
+			throws IOException {
 		super();
 		// Connecting to client socket
 		this.clientSocket = clientSocket;
-		//Set server socket
-		this.serverSocket = serverSocket;
+		
 		// Read from client stream
 		inputStream = new DataInputStream(clientSocket.getInputStream());
 
@@ -88,15 +88,17 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 	 * Method that takes the request Package then uses the model to create a reply
 	 * Package depending on the request
 	 * 
-	 * @param request The Package received from the client
+	 * @param request
+	 *            The Package received from the client
 	 * @return a Package containing what the client requested
 	 * @throws IOException
 	 * @throws UnknownHostException
 	 * @see Package
 	 */
 
-//Are we using packages or something else? What about the package class itself?
+	// Are we using packages or something else? What about the package class itself?
 	private Package operation(Package request) throws UnknownHostException, IOException {
+
 		DataInputStream inputStream;
 		DataOutputStream outputStream;
 		Gson gson = new Gson();
@@ -106,6 +108,15 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 		Package requestToServer;
 		this.ip = clientSocket.getInetAddress().getHostAddress();
 		view.show(ip + " connected");
+
+		try {
+			view.show("Connecting to tier3 server");
+			serverSocket = new Socket("localhost", 1097);
+		} catch (IOException e) {
+			view.show("Database offline, couldn't connect to server");
+			e.printStackTrace();
+		}
+
 		switch (request.getHeader()) {
 		case Package.GET:
 			// Read from database server stream
@@ -114,7 +125,7 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 			// Write into database server stream
 			outputStream = new DataOutputStream(serverSocket.getOutputStream());
 			// sending request to tier 3 server
-			
+
 			json = gson.toJson(request);
 			outputStream.writeUTF(json);
 
@@ -129,7 +140,9 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 			// Close the streams when you are done
 			inputStream.close();
 			outputStream.close();
+			
 			return replyFromServer;
+
 		case Package.ADD:
 			// Read from server stream
 			inputStream = new DataInputStream(serverSocket.getInputStream());
@@ -154,6 +167,7 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 			inputStream.close();
 			outputStream.close();
 			return replyFromServer;
+
 		default:
 			return new Package("WRONG FORMAT");
 

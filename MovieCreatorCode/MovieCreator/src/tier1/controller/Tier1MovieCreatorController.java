@@ -21,11 +21,11 @@ public class Tier1MovieCreatorController {
 	private DataOutputStream outputStream;
 	private Gson gson;
 
-//constructor	
+	// constructor
 	public Tier1MovieCreatorController(Tier1MovieCreatorView view) {
 		try {
 			this.view = view;
-			view.show("Starting tier1 client. Boobies!");
+			view.show("Starting tier1 client");
 			serverSocket = new Socket("localhost", 1098);
 
 			// Read from stream : String tmp = inputStream.readUTF();
@@ -36,11 +36,10 @@ public class Tier1MovieCreatorController {
 			Gson gson = new Gson();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
-
 
 	public void execute(int choice) {
 		// Choices done for testing
@@ -57,7 +56,7 @@ public class Tier1MovieCreatorController {
 			String title = view.get("Title: ");
 			String yearCreation = view.get("Creation year: ");
 			String releaseDate = view.get("Release Date [DD/MM/YYYY] :");
-			// ToDo: Implement a class to check date format
+			// TODO Implement a class to check date format
 			double price = Double.parseDouble(view.get("Price: "));
 			while (price < 0) {
 				view.get("Wrong price format try again! /nPrice: ");
@@ -83,7 +82,7 @@ public class Tier1MovieCreatorController {
 				Package request = gson.fromJson(answer, Package.class);
 				view.show("package: " + request.getBody());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			break;
@@ -104,13 +103,13 @@ public class Tier1MovieCreatorController {
 				view.show("package: " + request.getBody());
 
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
-
 			break;
+			
 		default:
-			view.show("what the hell?");
+			view.show("INVALID INPUT");
 			break;
 		}
 

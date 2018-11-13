@@ -10,7 +10,5 @@ public class Tier3MovieCreator {
 		Tier3MovieCreatorView view = new Console();
 		//Remove Hardcoding
 		Tier3MovieCreatorController controller = new Tier3MovieCreatorController(view, 1097);
-		Thread thread = new Thread(controller);
-		thread.start();
 	}
 }
