@@ -1,9 +1,9 @@
-package Tier3.database;
+package tier3.database;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import Common.Movie;
+import common.Movie;
 import utility.persistence.MyDatabase;
 
 /**

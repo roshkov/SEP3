@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 
 import com.google.gson.Gson;
 
-import Common.Package;
+import common.Package;
 import tier2.view.Tier2MovieCreatorView;
 
 public class Tier2MovieCreatorThreadHandler implements Runnable {

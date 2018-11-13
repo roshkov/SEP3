@@ -7,8 +7,8 @@ import java.net.Socket;
 
 import com.google.gson.Gson;
 
-import Common.Movie;
-import Common.Package;
+import common.Movie;
+import common.Package;
 import tier1.view.Tier1MovieCreatorView;
 
 public class Tier1MovieCreatorController implements Runnable {
