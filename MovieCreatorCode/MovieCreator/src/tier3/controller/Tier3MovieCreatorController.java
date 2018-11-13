@@ -1,11 +1,11 @@
-package Tier3.controller;
+package tier3.controller;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import Tier3.database.DatabaseAdapter;
-import Tier3.view.Tier3MovieCreatorView;
+import tier3.database.DatabaseAdapter;
+import tier3.view.Tier3MovieCreatorView;
 
 public class Tier3MovieCreatorController implements Runnable {
 	private ServerSocket welcomeSocket;

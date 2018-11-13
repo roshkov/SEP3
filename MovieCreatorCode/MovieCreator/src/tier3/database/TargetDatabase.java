@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Tier3.database;
+package tier3.database;
 
 
 import common.Movie;

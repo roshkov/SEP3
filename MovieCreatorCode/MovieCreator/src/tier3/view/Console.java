@@ -1,4 +1,4 @@
-package Tier3.view;
+package tier3.view;
 
 public class Console implements Tier3MovieCreatorView{
 

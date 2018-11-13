@@ -1,8 +1,8 @@
-package Tier3;
+package tier3;
 
-import Tier3.controller.Tier3MovieCreatorController;
-import Tier3.view.Console;
-import Tier3.view.Tier3MovieCreatorView;
+import tier3.controller.Tier3MovieCreatorController;
+import tier3.view.Console;
+import tier3.view.Tier3MovieCreatorView;
 
 public class Tier3MovieCreator {
 

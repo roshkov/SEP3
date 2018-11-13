@@ -1,4 +1,4 @@
-package Tier3.database;
+package tier3.database;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
