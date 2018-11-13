@@ -1,6 +1,10 @@
 package tier3.database;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import common.Movie;
@@ -11,18 +15,18 @@ import utility.persistence.MyDatabase;
  *
  */
 public class DatabaseAdapter implements TargetDatabase {
-	private MyDatabase database;
+	Connection conn;
 
-	public DatabaseAdapter(String driver, String url, String user, String pw) {
+	public DatabaseAdapter(String url, String user, String pw) {
 		try {
-			database = new MyDatabase(driver, url, user, pw);
-			/*
-			 * DatabaseAdapter database = new DatabaseAdapter("org.postgresql.Driver",
-			 * "jdbc:postgresql://localhost:5432/Zinema", "postgres", "2308");
-			 */
-		} catch (ClassNotFoundException e) {
+			//Class.forName checks if the jar is put
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			conn = DriverManager.getConnection(url, user, pw);
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	// Method to save a movie in the database
@@ -37,12 +41,14 @@ public class DatabaseAdapter implements TargetDatabase {
 		String description = movie.getDescription();
 		String nameMainActor = movie.getNameMainActor();
 
-		String statement = "INSERT INTO \"Movie\" VALUES ('" + title + "', '" + yearCreation + "', '" + releaseDate
-				+ "', " + price + ", '" + nameStudio + "', '" + nameDirector + "', '" + description + "', '"
-				+ nameMainActor + "');";
+		String queryString = "INSERT INTO Movie (title,yearCreation,releaseDate,price,nameStudio,nameDirector,description,nameMainActor) VALUES ('"
+				+ title + "', '" + yearCreation + "', '" + releaseDate + "', " + price + ", '" + nameStudio + "', '"
+				+ nameDirector + "', '" + description + "', '" + nameMainActor + "');";
 
 		try {
-			database.update(statement, null);
+			Statement statement = conn.createStatement();
+			//executeQuery throws error because there is no set result returned. It's not a query
+			statement.execute(queryString);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -53,30 +59,26 @@ public class DatabaseAdapter implements TargetDatabase {
 	// Method to get an array of the movies stored in the database
 	@Override
 	public String getMovies() {
-		String statement = "SELECT * FROM \"Movie\";";
 		String result = "";
-		ArrayList<Object[]> results = null;
+		Statement statement;
 		try {
-			results = database.query(statement, null);
+			statement = conn.createStatement();
+			String queryString = "SELECT * FROM Movie";
+			ResultSet rs = statement.executeQuery(queryString);
+			while (rs.next()) {
+				result = result + "Title: " + rs.getString("title") + " Year Of creation: "
+						+ rs.getString("yearCreation") + " Release Date: " + rs.getString("releaseDate") + " Price: "
+						+ rs.getString("price") + " Name of the Studio: " + rs.getString("nameStudio")
+						+ " Name of the Director: " + rs.getString("nameDirector") + " Description: "
+						+ rs.getString("description") + " Name of Main Actor: " + rs.getString("nameMainActor")
+						+ " Rented: " + rs.getBoolean("rented") + "\n";
+			}
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Movie[] Movies = new Movie[results.size()];
-		for (int i = 0; i < results.size(); i++) {
-			Object[] row = results.get(i);
-			String title = row[0].toString();
-			String yearCreation = row[1].toString();
-			String releaseDate = row[2].toString();
-			// used to be a double
-			String price = row[3].toString();
-			String nameStudio = row[4].toString();
-			String nameDirector = row[5].toString();
-			String description = row[6].toString();
-			String nameMainActor = row[7].toString();
-			result = result + "Title: " + title + " Year Of creation: " + yearCreation + " Release Date: " + releaseDate
-					+ " Price: " + price + " Name of the Studio: " + nameStudio + " Name of the Director: "
-					+ nameDirector + " Description: " + description + " Name of Main Actor: " + nameMainActor + "\n";
-		}
+
 		return result;
 	}
+
 }

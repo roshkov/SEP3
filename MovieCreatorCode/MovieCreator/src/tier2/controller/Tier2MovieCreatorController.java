@@ -16,8 +16,6 @@ public class Tier2MovieCreatorController implements Runnable {
 	private ServerSocket welcomeSocket;
 	private Tier2MovieCreatorView view;
 	private Socket serverSocket;
-	private DataInputStream inputStream;
-	private DataOutputStream outputStream;
 	public Tier2MovieCreatorController(Tier2MovieCreatorView view) throws UnknownHostException
 	{
 		this.view = view;
@@ -25,6 +23,7 @@ public class Tier2MovieCreatorController implements Runnable {
 		
 		// Connecting to database server socket, remove hard coding, took it from thread handler so server can connect to db 
 		// without having a t1 client first
+		
 		try {
 			view.show("Connecting to tier3 server");
 			serverSocket = new Socket("localhost", 1097);
@@ -32,7 +31,6 @@ public class Tier2MovieCreatorController implements Runnable {
 			view.show("Database offline, couldn't connect to server");
 			e.printStackTrace();
 		}
-		
 		
 	}
 	
@@ -73,43 +71,5 @@ public class Tier2MovieCreatorController implements Runnable {
 	      }
 	}
 	
-	public void execute(int choice)
-	{
-		//Choices done for testing
-		switch (choice)
-		{
-		case 0:
-			System.exit(1);
-			break;
-		case 1:
-			try {
-				// Read from stream : String tmp = inputStream.readUTF();
-				inputStream = new DataInputStream(serverSocket.getInputStream());
-				// Write into stream : outputStream.writeUTF(new String("text to send"));
-				outputStream = new DataOutputStream(serverSocket.getOutputStream());
-				Gson gson = new Gson();
-				Package GET = new Package("GET");
-				// send to tier 2 server
-				String json = gson.toJson(GET);
-				outputStream.writeUTF(json);
-
-				// receive from tier 2 server
-				String answer = inputStream.readUTF();
-				Package request = gson.fromJson(answer, Package.class);
-				view.show("package: " + request.getBody());
-				// remove the next 3 lines when the controller is fully implemented so it can
-				// run as long as the user wants
-				inputStream.close();
-				outputStream.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-		default:
-			view.show("Wake up meow meow, nah he deed");
-			break;
-		}
-	}
 
 }

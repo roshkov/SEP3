@@ -1,4 +1,4 @@
-CREATE TABLE public."Member"
+CREATE TABLE public."Movie"
 (
     title varchar(30) NOT NULL,
     yearCreation varchar(14) NOT NULL,
@@ -8,5 +8,6 @@ nameStudio varchar(20) NOT NULL,
 nameDirector varchar(20) NOT NULL,
 description varchar(50) NOT NULL,
 nameMainActor varchar(20) NOT NULL,
+rented bit NOT NULL,
     PRIMARY KEY (title)
 )

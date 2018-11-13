@@ -16,6 +16,7 @@ private String nameStudio;
 private String nameDirector;
 private String description;
 private String nameMainActor;
+private boolean rented;
 
 public Movie(String title)
 {
@@ -33,6 +34,7 @@ public Movie(String title, String yearCreation, String releaseDate, double price
 	this.nameDirector = nameDirector;
 	this.description = description;
 	this.nameMainActor = nameMainActor;
+	this.rented = false;
 }
 public String getTitle() {
 	return title;
@@ -87,6 +89,14 @@ public String toString() {
 	return "Movie [Title=" + title + ", yearCreation=" + yearCreation + ", releaseDate=" + releaseDate + ", price="
 			+ price + ", nameStudio=" + nameStudio + ", nameDirector=" + nameDirector + ", description=" + description
 			+ ", nameMainActor=" + nameMainActor + "]";
+}
+
+public boolean getRented() {
+	return rented;
+}
+
+public void setRented(boolean rented) {
+	this.rented = rented;
 }
 
 }

@@ -16,8 +16,8 @@ public class Tier3MovieCreatorController implements Runnable {
 		this.view = view;
 		startServer(port);
 		//Remove hardcoding
-		database = new DatabaseAdapter("org.postgresql.Driver",
-				"jdbc:postgresql://localhost:5432/Zinema", "postgres", "postgres");
+		//database = new DatabaseAdapter("org.postgresql.Driver","jdbc:postgresql://localhost:5432/Zinema", "postgres", "2308");
+		database = new DatabaseAdapter("jdbc:sqlserver://localhost:1433;databaseName=master", "sa", "root");
 	}
 
 	public void startServer(int port) {

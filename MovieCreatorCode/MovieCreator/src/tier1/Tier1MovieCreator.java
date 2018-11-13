@@ -12,11 +12,11 @@ public class Tier1MovieCreator {
 
 	
 	public static void main(String[] args) 
-	{
-		Tier1MovieCreatorView view = new Tier1MovieCreatorConsole();					//view
-		Tier1MovieCreatorController controller = new Tier1MovieCreatorController(view); //controller
-		//Thread thread = new Thread(controller);
-		//thread.start();
-		view.startView(controller);   //starts thread in it
+	{	//view
+		Tier1MovieCreatorView view = new Tier1MovieCreatorConsole();					
+		//controller
+		Tier1MovieCreatorController controller = new Tier1MovieCreatorController(view); 
+		//starts thread in it
+		view.startView(controller);   
 	}
 }
