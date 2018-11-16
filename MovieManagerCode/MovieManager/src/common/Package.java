@@ -16,8 +16,8 @@ public class Package {
 		this.header = header;
 		this.body = body;
 	}
-	public Package(String header, int id)
-	{
+
+	public Package(String header, int id) {
 		this.header = header;
 		this.id = id;
 	}
@@ -37,12 +37,12 @@ public class Package {
 	public String getHeader() {
 		return header;
 	}
-	public void setId(int id)
-	{
+
+	public void setId(int id) {
 		this.id = id;
 	}
-	public int getId()
-	{
+
+	public int getId() {
 		return id;
 	}
 }
