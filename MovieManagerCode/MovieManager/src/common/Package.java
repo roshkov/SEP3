@@ -1,11 +1,21 @@
 package common;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Package {
 	public static final String GET = "GET";
 	public static final String RENT = "RENT";
 	public static final String EXIT = "EXIT";
+	
+	@SerializedName("Header")
+	@Expose
 	private String header;
+	@SerializedName("Body")
+	@Expose
 	private String body;
+	@SerializedName("Id")
+	@Expose
 	private int id;
 
 	public Package(String header) {
