@@ -16,6 +16,7 @@ import tier1.view.Tier1MovieCreatorView;
 import java.util.Date;
 
 public class Tier1MovieCreatorController {
+	
 	private Socket serverSocket;
 	private Tier1MovieCreatorView view;
 	private DataInputStream inputStream;
@@ -44,8 +45,8 @@ public class Tier1MovieCreatorController {
 
 	public void execute(int choice) {
 		// Choices done for testing
-		GsonBuilder gsonBuilder = new GsonBuilder();  
-		gsonBuilder.serializeNulls();  
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.serializeNulls();
 		Gson gson = gsonBuilder.create();
 
 		switch (choice) {
@@ -110,7 +111,7 @@ public class Tier1MovieCreatorController {
 				e.printStackTrace();
 			}
 			break;
-			
+
 		default:
 			view.show("INVALID INPUT");
 			break;

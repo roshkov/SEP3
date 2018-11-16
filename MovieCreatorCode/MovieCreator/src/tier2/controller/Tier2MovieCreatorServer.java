@@ -33,8 +33,8 @@ public class Tier2MovieCreatorServer implements Runnable {
 	         catch (IOException e)
 	         {
 	        	 controller.getView().show("Error in server. Message: " + e.getMessage());
-	         }
-	      }
+			}
+		}
 	}
 
 }

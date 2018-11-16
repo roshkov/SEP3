@@ -23,12 +23,11 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 	private Tier2MovieCreatorView view;
 	private String ip;
 
-	public Tier2MovieCreatorThreadHandler(Socket clientSocket, Tier2MovieCreatorView view)
-			throws IOException {
+	public Tier2MovieCreatorThreadHandler(Socket clientSocket, Tier2MovieCreatorView view) throws IOException {
 		super();
 		// Connecting to client socket
 		this.clientSocket = clientSocket;
-		
+
 		// Read from client stream
 		inputStream = new DataInputStream(clientSocket.getInputStream());
 
@@ -99,23 +98,19 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 	 * @throws UnknownHostException
 	 * @see Package
 	 */
-
-	// Are we using packages or something else? What about the package class itself?
 	private Package operation(Package request) throws UnknownHostException, IOException {
 
 		DataInputStream inputStream;
 		DataOutputStream outputStream;
 		BufferedReader in;
-		GsonBuilder gsonBuilder = new GsonBuilder();  
-		gsonBuilder.serializeNulls();  
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.serializeNulls();
 		Gson gson = gsonBuilder.create();
 		String json = "";
 		String line = "";
 		Package replyFromServer;
 		Package requestToServer;
-		this.ip = clientSocket.getInetAddress().getHostAddress();
-		view.show(ip + " connected");
-
+		
 		try {
 			view.show("Connecting to tier3 server");
 			serverSocket = new Socket("localhost", 1097);
@@ -140,7 +135,7 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 			// Makes sure the message is read in UTF8
 			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream(), "UTF8"));
 			line = in.readLine();
-			//line = inputStream.readUTF();
+			// line = inputStream.readUTF();
 			view.show(ip + "> " + line);
 
 			// convert from JSon
@@ -150,7 +145,7 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 			// Close the streams when you are done
 			inputStream.close();
 			outputStream.close();
-			
+
 			return replyFromServer;
 
 		case Package.ADD:
@@ -171,9 +166,9 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 			view.show(ip + "> " + line);
 
 			// convert from JSon
-
 			replyFromServer = gson.fromJson(line, Package.class);
 			view.show("package: " + replyFromServer.getBody());
+			
 			// Close the streams when you are done
 			inputStream.close();
 			outputStream.close();
