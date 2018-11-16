@@ -3,19 +3,40 @@
  */
 package common;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * @author Claudiu
  *
  */
 public class Movie {
+	@SerializedName("Title")
+	@Expose
 	private String title;
+	@SerializedName("YearCreation")
+	@Expose
 	private String yearCreation;
+	@SerializedName("ReleaseDate")
+	@Expose
 	private String releaseDate;
+	@SerializedName("Price")
+	@Expose
 	private double price;
+	@SerializedName("NameStudio")
+	@Expose
 	private String nameStudio;
+	@SerializedName("NameDirector")
+	@Expose
 	private String nameDirector;
+	@SerializedName("Description")
+	@Expose
 	private String description;
+	@SerializedName("NameMainActor")
+	@Expose
 	private String nameMainActor;
+	@SerializedName("Rented")
+	@Expose
 	private boolean rented;
 
 	public Movie(String title) {
