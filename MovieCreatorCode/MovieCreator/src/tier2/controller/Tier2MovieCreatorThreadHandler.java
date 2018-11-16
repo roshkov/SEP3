@@ -1,12 +1,15 @@
 package tier2.controller;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import common.Package;
 import tier2.view.Tier2MovieCreatorView;
@@ -57,6 +60,7 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 				// convert from JSon
 				// getting request from client
 				Gson gson = new Gson();
+				gson.serializeNulls();
 				System.out.println(line);
 				Package request = gson.fromJson(line, Package.class);
 				view.show("package: " + request.getHeader());
@@ -101,7 +105,10 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 
 		DataInputStream inputStream;
 		DataOutputStream outputStream;
-		Gson gson = new Gson();
+		BufferedReader in;
+		GsonBuilder gsonBuilder = new GsonBuilder();  
+		gsonBuilder.serializeNulls();  
+		Gson gson = gsonBuilder.create();
 		String json = "";
 		String line = "";
 		Package replyFromServer;
@@ -130,7 +137,10 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 			outputStream.writeUTF(json);
 
 			// getting reply from tier 3 server
-			line = inputStream.readUTF();
+			// Makes sure the message is read in UTF8
+			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream(), "UTF8"));
+			line = in.readLine();
+			//line = inputStream.readUTF();
 			view.show(ip + "> " + line);
 
 			// convert from JSon
@@ -150,13 +160,14 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 			// Write into server stream
 			outputStream = new DataOutputStream(serverSocket.getOutputStream());
 			// sending request to tier 3 server
-			gson = new Gson();
 			requestToServer = new Package("ADD", request.getMovie());
 			json = gson.toJson(requestToServer);
 			outputStream.writeUTF(json);
 
 			// getting reply from tier 3 server
-			line = inputStream.readUTF();
+			// Makes sure the message is read in UTF8
+			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream(), "UTF8"));
+			line = in.readLine();
 			view.show(ip + "> " + line);
 
 			// convert from JSon

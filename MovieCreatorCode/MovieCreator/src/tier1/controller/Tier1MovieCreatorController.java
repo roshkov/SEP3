@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import common.Movie;
 import common.Package;
@@ -43,7 +44,9 @@ public class Tier1MovieCreatorController {
 
 	public void execute(int choice) {
 		// Choices done for testing
-		gson = new Gson();
+		GsonBuilder gsonBuilder = new GsonBuilder();  
+		gsonBuilder.serializeNulls();  
+		Gson gson = gsonBuilder.create();
 
 		switch (choice) {
 		case 0:

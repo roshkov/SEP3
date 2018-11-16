@@ -1,12 +1,19 @@
 package common;
-
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 public class Package {
 	public static final String GET = "GET";
 	public static final String ADD = "ADD";
 	public static final String EXIT = "EXIT";
-	private String header;
-	private String body;
-	private Movie movie;
+	@SerializedName("Header")
+	@Expose
+	private String header = null;
+	@SerializedName("Body")
+	@Expose
+	private String body = null;
+	@SerializedName("Movie")
+	@Expose
+	private Movie movie = null;
 
 	public Package(String header) {
 		this.header = header;
