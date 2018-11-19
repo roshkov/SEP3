@@ -1,0 +1,27 @@
+package tier2;
+
+import java.net.UnknownHostException;
+
+import tier2.controller.Tier2MovieManagerController;
+import tier2.view.Console;
+import tier2.view.Tier2MovieManagerView;
+
+
+
+
+
+public class Tier2MovieManager {
+
+	
+	public static void main(String[] args) 
+	{	//view
+		Tier2MovieManagerView view = new Console();					
+		//controller
+		try {
+			Tier2MovieManagerController controller = new Tier2MovieManagerController(view);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+}

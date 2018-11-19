@@ -76,7 +76,7 @@ namespace Tier3ServerDatabase.common {
         public override String ToString() {
 	    return "Movie Title=" + title + ", yearCreation=" + yearCreation + ", releaseDate=" + releaseDate + ", price="
 			+ price + ", nameStudio=" + nameStudio + ", nameDirector=" + nameDirector + ", description=" + description
-			+ ", nameMainActor=" + nameMainActor + " \n ";
+			+ ", nameMainActor=" + nameMainActor + ", Rented=" + rented + " \n ";
     }
     }
 }

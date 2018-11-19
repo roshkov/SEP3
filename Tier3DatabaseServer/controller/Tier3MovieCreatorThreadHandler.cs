@@ -37,14 +37,14 @@ namespace Tier3ServerDatabase.controller {
 
                 //Get the proper reply
                 Package reply = Operation (request);
-                
+
                 view.Show ("Reply: " + reply.Body);
                 //Convert the package to json
                 string json = JsonConvert.SerializeObject (reply);
 
                 view.Show (json);
                 // Convert it to bytes
-                byte[] msg = Encoding.UTF8.GetBytes(json, 0, json.Length);
+                byte[] msg = Encoding.UTF8.GetBytes (json, 0, json.Length);
 
                 //Sending the data
                 handler.Send (msg);
@@ -65,12 +65,17 @@ namespace Tier3ServerDatabase.controller {
                 switch (request.Header) {
                     // get a list of current movies
                     case "GET":
-                        return new Package ("GET", database.getStringMovies ());
+                        return new Package ("GET", database.GetStringMovies ());
 
-                    //First we add the movie then we get a list of the current movies back
+                        //First we add the movie then we get a list of the current movies back
                     case "ADD":
-                        if (database.addMovie (request.Movie)) {
-                            return new Package ("ADD", database.getStringMovies ());
+                        if (database.AddMovie (request.Movie)) {
+                            return new Package ("ADD", database.GetStringMovies ());
+                        }
+                        break;
+                    case "RENT":
+                        if (database.RentMovie (request.Id)) {
+                            return new Package ("RENT", database.GetRentedStringMovies ());
                         }
                         break;
                     default:

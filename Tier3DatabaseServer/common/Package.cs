@@ -7,10 +7,12 @@ namespace Tier3ServerDatabase.common {
         private string header;
         private string body;
         private Movie movie;
+        private int id;
 
         public string Header { get => header; set => header = value; }
         public string Body { get => body; set => body = value; }
         public Movie Movie { get => movie; set => movie = value; }
+        public int Id { get => id; set => id = value; }
 
         public Package (string header) {
             Header = header;
@@ -28,10 +30,11 @@ namespace Tier3ServerDatabase.common {
         //The constructor the json needs to default to
         //Doesn't deserialize without this
         [JsonConstructor]
-        public Package (string header, string body, Movie movie) {
+        public Package (string header, string body, Movie movie, int id) {
             Header = header;
             Body = body;
             Movie = movie;
+            Id = id;
         }
     }
 }
