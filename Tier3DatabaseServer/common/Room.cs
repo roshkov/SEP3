@@ -24,5 +24,9 @@ namespace Tier3ServerDatabase.common {
             Size = size;
             Description = description;
         }
+
+         public override String ToString() {
+	    return "Room Id=" + Id  + ", Size=" + Size + ", Description=" + Description +  " \n ";
+    }
     }
 }
