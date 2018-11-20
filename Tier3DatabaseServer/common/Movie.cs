@@ -74,7 +74,7 @@ namespace Tier3ServerDatabase.common {
         public bool Rented { get => rented; set => rented = value; }
 
         public override String ToString() {
-	    return "Movie Title=" + title + ", yearCreation=" + yearCreation + ", releaseDate=" + releaseDate + ", price="
+	    return "Movie Id=" + Id  + ", Title=" + title + ", yearCreation=" + yearCreation + ", releaseDate=" + releaseDate + ", price="
 			+ price + ", nameStudio=" + nameStudio + ", nameDirector=" + nameDirector + ", description=" + description
 			+ ", nameMainActor=" + nameMainActor + ", Rented=" + rented + " \n ";
     }
