@@ -63,7 +63,7 @@ namespace Tier3ServerDatabase.common {
         [DataType(DataType.Text)]
         public string NameDirector { get => nameDirector; set => nameDirector = value; }
         [StringLength (40,MinimumLength=2,
-        ErrorMessage="Description Should be minimum 2 characters and a maximum of 20 characters")]
+        ErrorMessage="Description Should be minimum 2 characters and a maximum of 40 characters")]
         [DataType(DataType.Text)]
         public string Description { get => description; set => description = value; }
         [StringLength (20,MinimumLength=2,
