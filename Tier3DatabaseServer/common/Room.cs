@@ -8,6 +8,7 @@ namespace Tier3ServerDatabase.common {
         private int size;
         private string description;
         [Key]
+        [JsonIgnore]
         [Required (ErrorMessage="Id {0} is required")]
         public int Id { get => id; set => id = value; }
         [Required (ErrorMessage="Size {0} is required")]
@@ -18,9 +19,8 @@ namespace Tier3ServerDatabase.common {
         public string Description { get => description; set => description = value; }
 
         [JsonConstructor]
-        public Room(int id, int size, string description)
+        public Room(int size, string description)
         {
-            Id = id;
             Size = size;
             Description = description;
         }

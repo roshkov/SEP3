@@ -91,7 +91,7 @@ namespace Tier3DatabaseServer.Migrations
 
                     b.Property<string>("Time")
                         .IsRequired()
-                        .HasMaxLength(4);
+                        .HasMaxLength(10);
 
                     b.HasKey("Id");
 

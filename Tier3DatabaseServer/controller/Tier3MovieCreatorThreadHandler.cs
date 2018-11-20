@@ -78,6 +78,22 @@ namespace Tier3ServerDatabase.controller {
                             return new Package ("RENT", database.GetRentedStringMovies ());
                         }
                         break;
+                    case "ADDROOM":
+                        if (database.AddRoom (request.Room)) {
+                            return new Package ("ADDROOM", database.GetStringRooms ());
+                        }
+                        break;
+                    case "GETROOMS":
+                        return new Package ("GETROOMS", database.GetStringRooms ());
+                    case "REMOVEROOM":
+                        database.RemoveRoom (request.Body);
+                        return new Package ("REMOVEROOM", database.GetStringRooms ());
+                    case "SENDSCHEDULE":
+                        if(database.addSchedule(request.Schedule))
+                        return new Package("GETSCHEDULE", database.GetStringSchedule());
+                        break;
+                    case "GETSCHEDULE":
+                        return new Package("GETSCHEDULE", database.GetStringSchedule());
                     default:
                         return wrong;
                 }
