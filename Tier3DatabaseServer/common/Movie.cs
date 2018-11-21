@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
@@ -14,6 +15,7 @@ namespace Tier3ServerDatabase.common {
         private string description;
         private string nameMainActor;
         private bool rented;
+        private ICollection<ScheduledMovie> scheduled;
 
         public Movie (string title) {
             this.Title = title;
@@ -72,6 +74,8 @@ namespace Tier3ServerDatabase.common {
         public string NameMainActor { get => nameMainActor; set => nameMainActor = value; }
         [Column(TypeName = "bit")]
         public bool Rented { get => rented; set => rented = value; }
+        [JsonIgnore]
+        public ICollection<ScheduledMovie> Scheduled { get => scheduled; set => scheduled = value; }
 
         public override String ToString() {
 	    return "Movie Id=" + Id  + ", Title=" + title + ", yearCreation=" + yearCreation + ", releaseDate=" + releaseDate + ", price="
