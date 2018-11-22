@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
@@ -7,6 +8,7 @@ namespace Tier3ServerDatabase.common {
         private int id;
         private int size;
         private string description;
+        private ICollection<ScheduledMovie> scheduled;
         [Key]
         [JsonIgnore]
         [Required (ErrorMessage="Id {0} is required")]
@@ -17,6 +19,8 @@ namespace Tier3ServerDatabase.common {
         ErrorMessage="Description Should be minimum 2 characters and a maximum of 40 characters")]
         [DataType(DataType.Text)]
         public string Description { get => description; set => description = value; }
+        [JsonIgnore]
+        public ICollection<ScheduledMovie> Scheduled { get => scheduled; set => scheduled = value; }
 
         [JsonConstructor]
         public Room(int size, string description)

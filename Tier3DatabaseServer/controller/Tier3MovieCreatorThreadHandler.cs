@@ -94,6 +94,10 @@ namespace Tier3ServerDatabase.controller {
                         break;
                     case "GETSCHEDULE":
                         return new Package("GETSCHEDULE", database.GetStringSchedule());
+                    case "ARRAYMOVIES":
+                        return new Package("ARRAYMOVIES", JsonConvert.SerializeObject(database.GetRentedMovies()));
+                    case "ARRAYROOMS":
+                        return new Package("ARRAYMOVIES", JsonConvert.SerializeObject(database.GetRooms()));
                     default:
                         return wrong;
                 }
