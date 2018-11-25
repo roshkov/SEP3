@@ -243,7 +243,7 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 			// Write into database server stream
 			outputStream = new DataOutputStream(serverSocket.getOutputStream());
 			
-			Package requestT3 = new Package("SENDSCHEDULE", schedule);
+			Package requestT3 = new Package("SENDSCHEDULE", schedule.getList());
 			
 			// sending request to tier 3 server
 			json = gson.toJson(requestT3);

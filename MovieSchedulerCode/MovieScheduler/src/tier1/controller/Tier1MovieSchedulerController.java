@@ -70,7 +70,7 @@ public class Tier1MovieSchedulerController {
 				e.printStackTrace();
 			}
 			Room room = null;
-			int roomId = Integer.parseInt(view.get("Select room by entering it's id: "));
+			String roomId = view.get("Select room by entering it's id: ");
 			//After selecting id, send package with it to t2
 			Package GETROOM = new Package("GETROOM", roomId);
 			String json7 = gson.toJson(GETROOM);
@@ -79,7 +79,7 @@ public class Tier1MovieSchedulerController {
 				outputStream.writeUTF(json7);
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
-				view.show("package: " + request.getBody());
+				view.show("package: " + request.getRoom().toString());
 				room = request.getRoom();
 			} catch (IOException e) {
 				
@@ -105,7 +105,7 @@ public class Tier1MovieSchedulerController {
 				e.printStackTrace();
 			}
 			Movie movie = null;
-			int movieId = Integer.parseInt(view.get("Select movie by entering it's id: "));
+			String movieId = view.get("Select movie by entering it's id: ");
 			//After selecting id, send package with it to t2
 			Package GETMOVIE = new Package("GETMOVIE", movieId);
 			String json8 = gson.toJson(GETMOVIE);
@@ -114,13 +114,12 @@ public class Tier1MovieSchedulerController {
 				outputStream.writeUTF(json8);
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
-				view.show("package: " + request.getBody());
+				view.show("package: " + request.getMovie().toString());
 				movie = request.getMovie();
 			} catch (IOException e) {
 				
 				e.printStackTrace();
 			}
-			
 			ScheduledMovie scheduledMovie = new ScheduledMovie(time, day, movie, room);
 			Package SCHEDULEDMOVIE = new Package("SCHEDULEDMOVIE", scheduledMovie);
 			String json2 = gson.toJson(SCHEDULEDMOVIE);
@@ -181,11 +180,10 @@ public class Tier1MovieSchedulerController {
 
 		case 2: //case 2 should create a room and send it to t2
 			view.show("Creating room...\n");
-			int id = Integer.parseInt(view.get("Id: "));
 			int size = Integer.parseInt(view.get("Size (number of seats): "));
 			String description = view.get("Description: ");
 			
-			Room room1 = new Room(id, size, description);
+			Room room1 = new Room(size, description);
 
 			view.show("Room created! \n");
 
@@ -226,7 +224,7 @@ public class Tier1MovieSchedulerController {
 			
 		case 4: //delete room - send id to t2 of specific room
 			view.show("Deleting room...\n");
-			int id1 = Integer.parseInt(view.get("Id: "));
+			String id1 = view.get("Id: ");
 			Package REMOVEROOM = new Package("REMOVEROOM", id1);
 			
 			//send to tier 2 server

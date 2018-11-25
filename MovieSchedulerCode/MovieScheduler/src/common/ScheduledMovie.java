@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class ScheduledMovie {
 	@SerializedName("Seats")
 	@Expose
-	private boolean[] seats;
+	private Seat[] seats;
 	@SerializedName("Time")
 	@Expose
 	private String time;
@@ -26,6 +26,10 @@ public class ScheduledMovie {
 		this.day = day;
 		this.movie = movie;
 		this.room = room;
-		this.seats = new boolean[room.getSize()];
+		this.seats = new Seat[room.getSize()];
+		for(int i = 0; i < room.getSize(); i++)
+		{
+			seats[i] = new Seat(false);
+		}
 	}
 }

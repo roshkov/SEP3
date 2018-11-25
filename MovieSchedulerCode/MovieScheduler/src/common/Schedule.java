@@ -25,4 +25,8 @@ public class Schedule {
 	{
 		return list.toString();
 	}
+
+	public ArrayList<ScheduledMovie> getList() {
+		return list;
+	}
 }

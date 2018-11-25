@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Tier3ServerDatabase.common;
-
+using EFCore.BulkExtensions;
 namespace Tier3ServerDatabase.database {
 
     public class DatabaseAdapter : DbContext {

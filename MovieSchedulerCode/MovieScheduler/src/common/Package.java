@@ -13,7 +13,6 @@ public class Package {
 	public static final String GETMOVIES = "GETMOVIES";
 	public static final String SENDSCHEDULE = "SENDSCHEDULE";
 	public static final String GETSCHEDULE = "GETSCHEDULE";
-	public static final String ARRAYOBJECTS = "ARRAYOBJECTS";
 	public static final String GETROOM = "GETROOM";
 	public static final String GETMOVIE = "GETMOVIE";
 	public static final String CANCELSCHEDULE = "CANCELSCHEDULE";
@@ -24,18 +23,15 @@ public class Package {
 	@SerializedName("Body")
 	@Expose
 	private String body;
-	@SerializedName("Id")
-	@Expose
-	private int id;
 	@SerializedName("Room")
 	@Expose
 	private Room room;
 	@SerializedName("Movie")
 	@Expose
 	private Movie movie;
-	@SerializedName("List")
+	@SerializedName("ScheduleList")
 	@Expose
-	private ArrayList<Object> List;
+	private ArrayList<ScheduledMovie> List;
 	@SerializedName("ScheduledMovie")
 	@Expose
 	private ScheduledMovie scheduledMovie;
@@ -53,12 +49,6 @@ public class Package {
 		this.header = header;
 		this.body = body;
 	}
-
-	public Package(String header, int id) {
-		this.header = header;
-		this.id = id;
-	}
-	
 	public Package(String header, Room room) {
 		this.header = header;
 		this.room = room;
@@ -80,7 +70,7 @@ public class Package {
 		this.schedule = schedule;
 	}
 	
-	public Package(String header, ArrayList<Object> List) {
+	public Package(String header, ArrayList<ScheduledMovie> List) {
 		this.header = header;
 		this.List = List;
 	}
@@ -99,14 +89,6 @@ public class Package {
 
 	public String getHeader() {
 		return header;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getId() {
-		return id;
 	}
 	
 	public Movie getMovie() {

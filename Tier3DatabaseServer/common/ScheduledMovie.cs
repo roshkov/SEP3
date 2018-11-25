@@ -35,7 +35,8 @@ namespace Tier3ServerDatabase.common {
         public Movie Movie { get => movie; set => movie = value; }
 
         [JsonConstructor]
-        public ScheduledMovie (string day, string time, Movie movie, Room room, ICollection<Seat> Seats) {
+        public ScheduledMovie (string day, string time, Movie movie, Room room, ICollection<Seat> seats) {
+            Day = day;
             Time = time;
             Seats = seats;
             Movie = movie;
@@ -45,12 +46,16 @@ namespace Tier3ServerDatabase.common {
         public ScheduledMovie () {
             
         }
-        public override String ToString () {
-            return "Movie Id=" + Id + ", Day=" + Day + ", Time=" + Time + ", MovieId=" + Movie.Id + ", RoomId=" +
-                Room.Id + NrOfBookedSeats () + " \n ";
+        public override string ToString () {
+            System.Console.WriteLine(Movie.Id);
+            System.Console.WriteLine(Room.Id);
+            System.Console.WriteLine(Id);
+            System.Console.WriteLine(NrOfBookedSeats());
+            return "Day=" + Day + ", Time=" + Time + ", MovieId=" + Movie.Id + ", RoomId=" +
+                Room.Id + NrOfBookedSeats ();
         }
         //Method to check how many seats are booked
-        public String NrOfBookedSeats () {
+        public string NrOfBookedSeats () {
             return " Number of Booked Seats=" + Seats.Count (b => b.Booked);
         }
 

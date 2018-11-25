@@ -23,7 +23,7 @@ namespace Tier3ServerDatabase.controller {
         public void HandleCommunication () {
             try {
                 //The size of the buffer to read from the Client
-                byte[] bytes = new Byte[4096];
+                byte[] bytes = new Byte[8192];
                 int bytesRec = handler.Receive (bytes);
                 //Receive the Message from the Client
                 //The first 2 bytes are skipped because Java uses a special format of UTF 8
@@ -64,40 +64,47 @@ namespace Tier3ServerDatabase.controller {
             try {
                 switch (request.Header) {
                     // get a list of current movies
-                    case "GET":
-                        return new Package ("GET", database.GetStringMovies ());
-
+                    case "GETMOVIES":
+                        return new Package ("GETMOVIES", database.GetStringMovies ());
+                        //get a certain Movie
+                    case "GETMOVIE":
+                        return new Package ("GETMOVIE", database.GetMovie (request.Body));
                         //First we add the movie then we get a list of the current movies back
                     case "ADD":
                         if (database.AddMovie (request.Movie)) {
                             return new Package ("ADD", database.GetStringMovies ());
                         }
                         break;
+                        //Set the rented status to true
                     case "RENT":
                         if (database.RentMovie (request.Id)) {
                             return new Package ("RENT", database.GetRentedStringMovies ());
                         }
                         break;
+                        //Add a room to the database
                     case "ADDROOM":
                         if (database.AddRoom (request.Room)) {
                             return new Package ("ADDROOM", database.GetStringRooms ());
                         }
                         break;
+                        //Get rooms list
                     case "GETROOMS":
                         return new Package ("GETROOMS", database.GetStringRooms ());
+                        //Get a a room by ID
+                    case "GETROOM":
+                        return new Package ("GETROOM", database.GetRoom (request.Body));
+                        //Remove a Room by id
                     case "REMOVEROOM":
                         database.RemoveRoom (request.Body);
                         return new Package ("REMOVEROOM", database.GetStringRooms ());
+                        //Receives the Schedule and saves it to the database
                     case "SENDSCHEDULE":
-                        if(database.addSchedule(request.Schedule))
-                        return new Package("GETSCHEDULE", database.GetStringSchedule());
+                        if (database.addSchedule (request.ScheduleList))
+                            return new Package ("SENDSCHEDULE", database.GetStringSchedule ());
                         break;
+                        //Send the schedule to tier 2
                     case "GETSCHEDULE":
-                        return new Package("GETSCHEDULE", database.GetStringSchedule());
-                    case "ARRAYMOVIES":
-                        return new Package("ARRAYMOVIES", JsonConvert.SerializeObject(database.GetRentedMovies()));
-                    case "ARRAYROOMS":
-                        return new Package("ARRAYMOVIES", JsonConvert.SerializeObject(database.GetRooms()));
+                        return new Package ("GETSCHEDULE", database.GetStringSchedule ());
                     default:
                         return wrong;
                 }
