@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Package {
 	
-	public static final String GET = "GET";
+	public static final String GETMOVIES = "GETMOVIES";
 	public static final String ADD = "ADD";
 	public static final String EXIT = "EXIT";
 	

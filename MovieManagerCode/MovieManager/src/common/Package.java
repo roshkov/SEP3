@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Package {
-	public static final String GET = "GET";
+	public static final String GETMOVIES = "GETMOVIES";
 	public static final String RENT = "RENT";
 	public static final String EXIT = "EXIT";
 	

@@ -91,16 +91,16 @@ public class Tier1MovieCreatorController {
 			}
 			break;
 
-		case 2: // case 2 should get movies... somehow
+		case 2: // case 2 should get movies
 			view.show("Getting movies...");
 			String answer;
 
 			try {
 				// receive from tier 2 server
-				Package GET = new Package("GET");
+				Package GETMOVIES = new Package("GETMOVIES");
 
 				// send to tier 2 server
-				String jsonGET = gson.toJson(GET);
+				String jsonGET = gson.toJson(GETMOVIES);
 				outputStream.writeUTF(jsonGET);
 				answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);

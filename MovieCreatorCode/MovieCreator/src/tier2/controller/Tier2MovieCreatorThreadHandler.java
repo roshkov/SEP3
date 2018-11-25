@@ -120,7 +120,7 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 		}
 
 		switch (request.getHeader()) {
-		case Package.GET:
+		case Package.GETMOVIES:
 			// Read from database server stream
 			inputStream = new DataInputStream(serverSocket.getInputStream());
 

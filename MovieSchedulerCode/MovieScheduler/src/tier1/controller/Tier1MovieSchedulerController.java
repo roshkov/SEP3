@@ -174,7 +174,7 @@ public class Tier1MovieSchedulerController {
 					}
 					break;
 				default:
-					view.show("Wrongeru numberu client-san");
+					view.show("INVALID INPUT");
 					break;
 				}	
 			break;
@@ -227,13 +227,13 @@ public class Tier1MovieSchedulerController {
 		case 4: //delete room - send id to t2 of specific room
 			view.show("Deleting room...\n");
 			int id1 = Integer.parseInt(view.get("Id: "));
-			Package DELETEROOM = new Package("DELETEROOM", id1);
+			Package REMOVEROOM = new Package("REMOVEROOM", id1);
 			
 			//send to tier 2 server
-			String json5 = gson.toJson(DELETEROOM);
+			String json5 = gson.toJson(REMOVEROOM);
 			view.show("Id sent.");
 			try {
-				// sending 'DELETEROOM' package to tier 2 in json format
+				// sending 'REMOVEROOM' package to tier 2 in json format
 				outputStream.writeUTF(json5);
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);

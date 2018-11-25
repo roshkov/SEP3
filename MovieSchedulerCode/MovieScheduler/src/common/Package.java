@@ -39,6 +39,11 @@ public class Package {
 	@SerializedName("ScheduledMovie")
 	@Expose
 	private ScheduledMovie scheduledMovie;
+	@SerializedName("Schedule")
+	@Expose
+	private Schedule schedule;
+
+	
 
 	public Package(String header) {
 		this.header = header;
@@ -67,6 +72,12 @@ public class Package {
 	public Package(String header, ScheduledMovie scheduledMovie) {
 		this.header = header;
 		this.scheduledMovie = scheduledMovie;
+	}
+	
+	public Package(String header, Schedule schedule)
+	{
+		this.header = header;
+		this.schedule = schedule;
 	}
 	
 	public Package(String header, ArrayList<Object> List) {
@@ -104,5 +115,13 @@ public class Package {
 	
 	public Room getRoom() {
 		return room;
+	}
+	
+	public ScheduledMovie getScheduledMovie() {
+		return scheduledMovie;
+	}
+	
+	public Schedule getSchedule() {
+		return schedule;
 	}
 }

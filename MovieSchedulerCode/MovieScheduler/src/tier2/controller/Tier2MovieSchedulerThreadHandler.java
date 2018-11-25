@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import common.Package;
+import common.Schedule;
 import tier2.view.Tier2MovieSchedulerView;
 
 public class Tier2MovieSchedulerThreadHandler implements Runnable {
@@ -22,9 +23,13 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 	private Socket serverSocket;
 	private Tier2MovieSchedulerView view;
 	private String ip;
+	private Schedule schedule;
 
 	public Tier2MovieSchedulerThreadHandler(Socket clientSocket, Tier2MovieSchedulerView view) throws IOException {
 		super();
+		
+		schedule = new Schedule();
+		
 		// Connecting to client socket
 		this.clientSocket = clientSocket;
 
@@ -111,14 +116,14 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 		}
 
 		switch (request.getHeader()) {
-		case Package.GET:
+		case Package.GETROOMS:
 			// Read from database server stream
 			inputStream = new DataInputStream(serverSocket.getInputStream());
 
 			// Write into database server stream
 			outputStream = new DataOutputStream(serverSocket.getOutputStream());
+			
 			// sending request to tier 3 server
-
 			json = gson.toJson(request);
 			outputStream.writeUTF(json);
 
@@ -126,6 +131,7 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 			// Makes sure the message is read in UTF8
 			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream(), "UTF8"));
 			line = in.readLine();
+			
 			// line = inputStream.readUTF();
 			view.show(ip + "> " + line);
 
@@ -139,14 +145,14 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
 			return replyFromServer;
 
-		case Package.RENT:
+		case Package.GETROOM:
 			// Read from database server stream
 			inputStream = new DataInputStream(serverSocket.getInputStream());
 
 			// Write into database server stream
 			outputStream = new DataOutputStream(serverSocket.getOutputStream());
+		
 			// sending request to tier 3 server
-
 			json = gson.toJson(request);
 			outputStream.writeUTF(json);
 
@@ -165,7 +171,195 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 			outputStream.close();
 
 			return replyFromServer;
+			
+		case Package.GETMOVIES:
+			// Read from database server stream
+			inputStream = new DataInputStream(serverSocket.getInputStream());
 
+			// Write into database server stream
+			outputStream = new DataOutputStream(serverSocket.getOutputStream());
+			
+			// sending request to tier 3 server
+			json = gson.toJson(request);
+			outputStream.writeUTF(json);
+
+			// getting reply from tier 3 server
+			// Makes sure the message is read in UTF8
+			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream(), "UTF8"));
+			line = in.readLine();
+			
+			// line = inputStream.readUTF();
+			view.show(ip + "> " + line);
+
+			// convert from JSon
+			replyFromServer = gson.fromJson(line, Package.class);
+			view.show("package: " + replyFromServer.getBody());
+			
+			// Close the streams when you are done
+			inputStream.close();
+			outputStream.close();
+
+			return replyFromServer;
+		
+		case Package.GETMOVIE:
+			// Read from database server stream
+			inputStream = new DataInputStream(serverSocket.getInputStream());
+
+			// Write into database server stream
+			outputStream = new DataOutputStream(serverSocket.getOutputStream());
+			
+			// sending request to tier 3 server
+			json = gson.toJson(request);
+			outputStream.writeUTF(json);
+
+			// getting reply from tier 3 server
+			// Makes sure the message is read in UTF8
+			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream(), "UTF8"));
+			line = in.readLine();
+			
+			// line = inputStream.readUTF();
+			view.show(ip + "> " + line);
+
+			// convert from JSon
+			replyFromServer = gson.fromJson(line, Package.class);
+			view.show("package: " + replyFromServer.getBody());
+			
+			// Close the streams when you are done
+			inputStream.close();
+			outputStream.close();
+
+			return replyFromServer;
+			
+		case Package.SCHEDULEDMOVIE:
+			
+			schedule.addScheduledMovie(request.getScheduledMovie());
+
+			return new Package("200", "ScheduleSent");
+			
+		case Package.SENDSCHEDULE:
+			// Read from database server stream
+			inputStream = new DataInputStream(serverSocket.getInputStream());
+
+			// Write into database server stream
+			outputStream = new DataOutputStream(serverSocket.getOutputStream());
+			
+			Package requestT3 = new Package("SENDSCHEDULE", schedule);
+			
+			// sending request to tier 3 server
+			json = gson.toJson(requestT3);
+			outputStream.writeUTF(json);
+
+			// getting reply from tier 3 server
+			// Makes sure the message is read in UTF8
+			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream(), "UTF8"));
+			line = in.readLine();
+			
+			// line = inputStream.readUTF();
+			view.show(ip + "> " + line);
+
+			// convert from JSon
+			replyFromServer = gson.fromJson(line, Package.class);
+			view.show("package: " + replyFromServer.getBody());
+			
+			// Close the streams when you are done
+			inputStream.close();
+			outputStream.close();
+
+			return replyFromServer;
+			
+		case Package.CANCELSCHEDULE:
+			
+			schedule = null;
+			
+			return new Package("200", "ScheduleCanceled");
+			
+		case Package.ADDROOM:
+			// Read from database server stream
+			inputStream = new DataInputStream(serverSocket.getInputStream());
+
+			// Write into database server stream
+			outputStream = new DataOutputStream(serverSocket.getOutputStream());
+					
+			// sending request to tier 3 server
+			json = gson.toJson(request);
+			outputStream.writeUTF(json);
+
+			// getting reply from tier 3 server
+			// Makes sure the message is read in UTF8
+			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream(), "UTF8"));
+			line = in.readLine();
+			
+			// line = inputStream.readUTF();
+			view.show(ip + "> " + line);
+
+			// convert from JSon
+			replyFromServer = gson.fromJson(line, Package.class);
+			view.show("package: " + replyFromServer.getBody());
+			
+			// Close the streams when you are done
+			inputStream.close();
+			outputStream.close();
+
+			return replyFromServer;
+			
+		case Package.REMOVEROOM:
+			// Read from database server stream
+			inputStream = new DataInputStream(serverSocket.getInputStream());
+
+			// Write into database server stream
+			outputStream = new DataOutputStream(serverSocket.getOutputStream());
+					
+			// sending request to tier 3 server
+			json = gson.toJson(request);
+			outputStream.writeUTF(json);
+
+			// getting reply from tier 3 server
+			// Makes sure the message is read in UTF8
+			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream(), "UTF8"));
+			line = in.readLine();
+			
+			// line = inputStream.readUTF();
+			view.show(ip + "> " + line);
+
+			// convert from JSon
+			replyFromServer = gson.fromJson(line, Package.class);
+			view.show("package: " + replyFromServer.getBody());
+			
+			// Close the streams when you are done
+			inputStream.close();
+			outputStream.close();
+
+			return replyFromServer;
+			
+		case Package.GETSCHEDULE:
+			// Read from database server stream
+			inputStream = new DataInputStream(serverSocket.getInputStream());
+
+			// Write into database server stream
+			outputStream = new DataOutputStream(serverSocket.getOutputStream());
+					
+			// sending request to tier 3 server
+			json = gson.toJson(request);
+			outputStream.writeUTF(json);
+
+			// getting reply from tier 3 server
+			// Makes sure the message is read in UTF8
+			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream(), "UTF8"));
+			line = in.readLine();
+			
+			// line = inputStream.readUTF();
+			view.show(ip + "> " + line);
+
+			// convert from JSon
+			replyFromServer = gson.fromJson(line, Package.class);
+			view.show("package: " + replyFromServer.getBody());
+			
+			// Close the streams when you are done
+			inputStream.close();
+			outputStream.close();
+
+			return replyFromServer;
+			
 		default:
 			return new Package("WRONG FORMAT");
 		}

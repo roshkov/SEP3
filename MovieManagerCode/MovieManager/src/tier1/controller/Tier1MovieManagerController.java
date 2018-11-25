@@ -78,10 +78,10 @@ public class Tier1MovieManagerController {
 
 			try {
 				// receive from tier 2 server
-				Package GET = new Package("GET");
+				Package GETMOVIES = new Package("GETMOVIES");
 
 				// send to tier 2 server
-				String jsonGET = gson.toJson(GET);
+				String jsonGET = gson.toJson(GETMOVIES);
 				outputStream.writeUTF(jsonGET);
 				answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
