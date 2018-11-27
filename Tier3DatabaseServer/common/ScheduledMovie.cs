@@ -47,16 +47,20 @@ namespace Tier3ServerDatabase.common {
             
         }
         public override string ToString () {
-            System.Console.WriteLine(Movie.Id);
-            System.Console.WriteLine(Room.Id);
-            System.Console.WriteLine(Id);
-            System.Console.WriteLine(NrOfBookedSeats());
             return "Day=" + Day + ", Time=" + Time + ", MovieId=" + Movie.Id + ", RoomId=" +
-                Room.Id + NrOfBookedSeats ();
+                Room.Id + NrOfBookedSeats () + " ";
         }
         //Method to check how many seats are booked
         public string NrOfBookedSeats () {
-            return " Number of Booked Seats=" + Seats.Count (b => b.Booked);
+            int count = 0;
+            foreach (Seat s in seats)
+            {
+                if(s.Booked == false)
+                {
+                    count++;
+                }
+            }
+            return " Number of Free Seats=" + count;
         }
 
     }
