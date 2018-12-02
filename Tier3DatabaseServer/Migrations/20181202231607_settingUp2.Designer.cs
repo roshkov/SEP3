@@ -10,8 +10,8 @@ using Tier3ServerDatabase.database;
 namespace Tier3DatabaseServer.Migrations
 {
     [DbContext(typeof(DatabaseAdapter))]
-    [Migration("20181121082758_ScheduleSecondTrial")]
-    partial class ScheduleSecondTrial
+    [Migration("20181202231607_settingUp2")]
+    partial class settingUp2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,9 +87,9 @@ namespace Tier3DatabaseServer.Migrations
                         .IsRequired()
                         .HasMaxLength(10);
 
-                    b.Property<int>("MovieId");
+                    b.Property<int?>("MovieId");
 
-                    b.Property<int>("RoomId");
+                    b.Property<int?>("RoomId");
 
                     b.Property<string>("Time")
                         .IsRequired()
@@ -123,15 +123,13 @@ namespace Tier3DatabaseServer.Migrations
 
             modelBuilder.Entity("Tier3ServerDatabase.common.ScheduledMovie", b =>
                 {
-                    b.HasOne("Tier3ServerDatabase.common.Movie")
+                    b.HasOne("Tier3ServerDatabase.common.Movie", "Movie")
                         .WithMany("Scheduled")
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("MovieId");
 
-                    b.HasOne("Tier3ServerDatabase.common.Room")
+                    b.HasOne("Tier3ServerDatabase.common.Room", "Room")
                         .WithMany("Scheduled")
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("RoomId");
                 });
 
             modelBuilder.Entity("Tier3ServerDatabase.common.Seat", b =>

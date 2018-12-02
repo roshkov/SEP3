@@ -90,7 +90,7 @@ namespace Tier3ServerDatabase.database {
         }
 
         //Method to return the schedule
-        public List<ScheduledMovie> GetSchedule () {
+         public List<ScheduledMovie> GetSchedule () {
             return _context.schedule.ToList ();
         }
         //Get The Schedule in string
@@ -110,6 +110,7 @@ namespace Tier3ServerDatabase.database {
             }
             return SaveAll ();
         }
+        
         //Method to save all the data inputted
         public bool SaveAll () {
             return _context.SaveChanges () > 0;
