@@ -5,5 +5,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mssql"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/gson_lib"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="E:/Facultate/SeM 3/SeP/My stuff/gson-2.6.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
