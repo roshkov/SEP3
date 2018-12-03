@@ -18,6 +18,8 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import java.awt.Color;
+import javax.swing.border.MatteBorder;
 
 public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 
@@ -48,22 +50,32 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.BLUE);
+		frame.setForeground(Color.YELLOW);
+		frame.setBackground(Color.YELLOW);
 		frame.setBounds(100, 100, 803, 556);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.YELLOW));
+		tabbedPane.setBackground(Color.WHITE);
 		frame.getContentPane().add(tabbedPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.MAGENTA));
+		panel.setBackground(Color.MAGENTA);
 		tabbedPane.addTab("Rooms", null, panel, null);
 		panel.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(255, 0, 255));
+		panel_2.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.MAGENTA));
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
 		JButton btnNewButton_4 = new JButton("Show");
+		btnNewButton_4.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.execute(4);
@@ -73,6 +85,7 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 		panel_2.add(btnNewButton_4);
 		
 		JButton btnInput = new JButton("Input");
+		btnInput.setBackground(Color.LIGHT_GRAY);
 		btnInput.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.addRoom(textField_2.getText(), textField_5.getText());
@@ -82,6 +95,7 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 		panel_2.add(btnInput);
 		
 		JButton btnDelete = new JButton("Delete");
+		btnDelete.setBackground(Color.LIGHT_GRAY);
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.deleteRoom(textField_6.getText());
@@ -101,6 +115,7 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 		textField_5.setColumns(10);
 		
 		textField_6 = new JTextField();
+		textField_6.setBackground(Color.WHITE);
 		textField_6.setBounds(676, 296, 96, 20);
 		panel_2.add(textField_6);
 		textField_6.setColumns(10);
@@ -128,6 +143,7 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 		textArea.setEditable(false);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.MAGENTA);
 		tabbedPane.addTab("Schedule", null, panel_1, null);
 		panel_1.setLayout(null);
 		
@@ -137,6 +153,7 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 		textField_3.setColumns(10);
 		
 		JButton btnNewButton_2 = new JButton("Input");
+		btnNewButton_2.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.addScheduledMovie(textField.getText(), textField_3.getText(), textField_1.getText(), textField_4.getText());
@@ -146,6 +163,7 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 		panel_1.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Show");
+		btnNewButton_3.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.execute(5);
@@ -176,6 +194,7 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 		textField_4.setColumns(10);
 		
 		JButton btnSend = new JButton("Send");
+		btnSend.setBackground(Color.LIGHT_GRAY);
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.execute(2);
@@ -185,6 +204,7 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 		panel_1.add(btnSend);
 		
 		JButton btnRestart = new JButton("Reset");
+		btnRestart.setBackground(Color.LIGHT_GRAY);
 		btnRestart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.execute(3);
@@ -210,7 +230,7 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 		panel_1.add(lblTime);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 11, 280, 199);
+		scrollPane.setBounds(8, 11, 270, 199);
 		panel_1.add(scrollPane);
 		
 		textArea_1 = new JTextArea();

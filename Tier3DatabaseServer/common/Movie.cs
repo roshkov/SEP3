@@ -35,6 +35,11 @@ namespace Tier3ServerDatabase.common {
             this.NameMainActor = nameMainActor;
             this.Rented = false;
         }
+
+        public Movie()
+        {
+            
+        }
         //The ID is ignored in JSON
         [Key]
         [JsonIgnore]

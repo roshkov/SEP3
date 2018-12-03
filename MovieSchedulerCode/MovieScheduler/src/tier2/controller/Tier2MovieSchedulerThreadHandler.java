@@ -269,7 +269,9 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 			
 		case Package.CANCELSCHEDULE:
 			
-			schedule = null;
+			//FIXED: Setting the schedule to null makes it unusable
+			// This way we can still use it after it has been recreated
+			schedule = new Schedule();
 			
 			return new Package("200", "ScheduleCanceled");
 			
