@@ -21,7 +21,7 @@ public class Tier1MovieManagerController {
 	public Tier1MovieManagerController(Tier1MovieManagerView view) {
 		try {
 			this.view = view;
-			view.show("Starting tier1 client");
+			//view.show("Starting tier1 client");
 			serverSocket = new Socket("localhost", 1098);
 
 			// Read from stream : String tmp = inputStream.readUTF();
@@ -47,11 +47,9 @@ public class Tier1MovieManagerController {
 			break;
 
 		case 1: // case 1 should take an id (for now) and send it to t2.
-
-			view.show("Renting movie...\n");
-			int id = Integer.parseInt(view.get("Enter the id of a movie: "));
-			view.show("Id sent!");
-
+			
+			int id = Integer.parseInt(view.get());
+			
 			Package RENT = new Package("RENT", id);
 
 			// send to tier 2 server
@@ -62,18 +60,21 @@ public class Tier1MovieManagerController {
 				outputStream.writeUTF(json);
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
-				view.show("package: " + request.getBody());
+				if (request.getHeader().equals("WRONG FORMAT")) {
+					view.showError();
+				}
 			} catch (IOException e) {
 
 				e.printStackTrace();
 			}
+			
 			break;
 
 		case 2: // case 2 should get movies... maybe gets them as a list of strings with the id to the left
 			// and the rest of the info to the right, the user just needs visual clarification as to what id he needs to input in
 			// case 1
 			//  t1 doesn't need to know what a movie is just the info it contains.
-			view.show("Getting movies...");
+			//view.show("Getting movies...");
 			String answer;
 
 			try {
@@ -85,8 +86,9 @@ public class Tier1MovieManagerController {
 				outputStream.writeUTF(jsonGET);
 				answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
-				view.show("package: " + request.getBody());
-
+				view.showMovies(request.getBody());
+				//view.showMovies("MOVIE 1, MOVIE 2, MOVIE 3");
+				
 			} catch (IOException e) {
 
 				e.printStackTrace();
@@ -94,7 +96,7 @@ public class Tier1MovieManagerController {
 			break;
 			
 		default:
-			view.show("INVALID INPUT");
+			view.showMovies("Invalid");
 			break;
 		}
 
