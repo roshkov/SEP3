@@ -17,7 +17,6 @@ import tier2.view.Tier2MovieSchedulerView;
 
 public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
-	private Socket clientSocket;
 	private DataInputStream inputStream;
 	private DataOutputStream outputStream;
 	private Socket serverSocket;
@@ -30,9 +29,6 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 		
 		schedule = new Schedule();
 		
-		// Connecting to client socket
-		this.clientSocket = clientSocket;
-
 		// Read from client stream
 		inputStream = new DataInputStream(clientSocket.getInputStream());
 
@@ -172,7 +168,7 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
 			return replyFromServer;
 			
-		case Package.GETMOVIES:
+		case Package.GETRENTEDMOVIES:
 			// Read from database server stream
 			inputStream = new DataInputStream(serverSocket.getInputStream());
 

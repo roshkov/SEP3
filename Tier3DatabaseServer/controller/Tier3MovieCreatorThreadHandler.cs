@@ -66,6 +66,9 @@ namespace Tier3ServerDatabase.controller {
                     // get a list of current movies
                     case "GETMOVIES":
                         return new Package ("GETMOVIES", database.GetStringMovies ());
+                    // get a list of rented movies
+                    case "GETRENTEDMOVIES":
+                        return new Package ("GETRENTEDMOVIES", database.GetStringRentedMovies ());
                         //get a certain Movie
                     case "GETMOVIE":
                         return new Package ("GETMOVIE", database.GetMovie (request.Body));

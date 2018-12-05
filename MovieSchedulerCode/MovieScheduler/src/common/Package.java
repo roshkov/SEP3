@@ -9,6 +9,7 @@ public class Package {
 	public static final String SCHEDULEDMOVIE = "SCHEDULEDMOVIE";
 	public static final String ADDROOM = "ADDROOM";
 	public static final String GETROOMS = "GETROOMS";
+	public static final String GETRENTEDMOVIES = "GETRENTEDMOVIES";
 	public static final String REMOVEROOM = "REMOVEROOM";
 	public static final String GETMOVIES = "GETMOVIES";
 	public static final String SENDSCHEDULE = "SENDSCHEDULE";

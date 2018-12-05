@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.GridLayout;
-import java.awt.TextArea;
+
 
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
@@ -50,7 +50,7 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.BLUE);
+		frame.getContentPane().setBackground(Color.GRAY);
 		frame.setForeground(Color.YELLOW);
 		frame.setBackground(Color.YELLOW);
 		frame.setBounds(100, 100, 803, 556);
@@ -110,7 +110,7 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 		textField_2.setColumns(10);
 		
 		textField_5 = new JTextField();
-		textField_5.setBounds(197, 296, 177, 76);
+		textField_5.setBounds(197, 296, 271, 23);
 		panel_2.add(textField_5);
 		textField_5.setColumns(10);
 		
