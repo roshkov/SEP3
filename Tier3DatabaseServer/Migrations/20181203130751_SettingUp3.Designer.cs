@@ -10,8 +10,8 @@ using Tier3ServerDatabase.database;
 namespace Tier3DatabaseServer.Migrations
 {
     [DbContext(typeof(DatabaseAdapter))]
-    [Migration("20181120223653_SchedulePrepared")]
-    partial class SchedulePrepared
+    [Migration("20181203130751_SettingUp3")]
+    partial class SettingUp3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,15 +87,19 @@ namespace Tier3DatabaseServer.Migrations
                         .IsRequired()
                         .HasMaxLength(10);
 
-                    b.Property<int>("MovieId");
+                    b.Property<int?>("MovieId");
 
-                    b.Property<int>("RoomId");
+                    b.Property<int?>("RoomId");
 
                     b.Property<string>("Time")
                         .IsRequired()
                         .HasMaxLength(10);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
+
+                    b.HasIndex("RoomId");
 
                     b.ToTable("schedule");
                 });
@@ -108,20 +112,31 @@ namespace Tier3DatabaseServer.Migrations
 
                     b.Property<bool>("Booked");
 
-                    b.Property<int?>("ScheduledMovieId");
+                    b.Property<int?>("MovieId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ScheduledMovieId");
+                    b.HasIndex("MovieId");
 
                     b.ToTable("seats");
                 });
 
+            modelBuilder.Entity("Tier3ServerDatabase.common.ScheduledMovie", b =>
+                {
+                    b.HasOne("Tier3ServerDatabase.common.Movie", "Movie")
+                        .WithMany("Scheduled")
+                        .HasForeignKey("MovieId");
+
+                    b.HasOne("Tier3ServerDatabase.common.Room", "Room")
+                        .WithMany("Scheduled")
+                        .HasForeignKey("RoomId");
+                });
+
             modelBuilder.Entity("Tier3ServerDatabase.common.Seat", b =>
                 {
-                    b.HasOne("Tier3ServerDatabase.common.ScheduledMovie")
+                    b.HasOne("Tier3ServerDatabase.common.ScheduledMovie", "Movie")
                         .WithMany("Seats")
-                        .HasForeignKey("ScheduledMovieId");
+                        .HasForeignKey("MovieId");
                 });
 #pragma warning restore 612, 618
         }

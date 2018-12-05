@@ -110,11 +110,11 @@ namespace Tier3DatabaseServer.Migrations
 
                     b.Property<bool>("Booked");
 
-                    b.Property<int?>("ScheduledMovieId");
+                    b.Property<int?>("MovieId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ScheduledMovieId");
+                    b.HasIndex("MovieId");
 
                     b.ToTable("seats");
                 });
@@ -132,9 +132,9 @@ namespace Tier3DatabaseServer.Migrations
 
             modelBuilder.Entity("Tier3ServerDatabase.common.Seat", b =>
                 {
-                    b.HasOne("Tier3ServerDatabase.common.ScheduledMovie")
+                    b.HasOne("Tier3ServerDatabase.common.ScheduledMovie", "Movie")
                         .WithMany("Seats")
-                        .HasForeignKey("ScheduledMovieId");
+                        .HasForeignKey("MovieId");
                 });
 #pragma warning restore 612, 618
         }
