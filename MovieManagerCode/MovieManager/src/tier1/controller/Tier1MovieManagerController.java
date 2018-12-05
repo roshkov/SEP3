@@ -22,7 +22,7 @@ public class Tier1MovieManagerController {
 		try {
 			this.view = view;
 			//view.show("Starting tier1 client");
-			serverSocket = new Socket("localhost", 1098);
+			serverSocket = new Socket("localhost", 1099);
 
 			// Read from stream : String tmp = inputStream.readUTF();
 			inputStream = new DataInputStream(serverSocket.getInputStream());
@@ -79,15 +79,14 @@ public class Tier1MovieManagerController {
 
 			try {
 				// receive from tier 2 server
-				Package GETMOVIES = new Package("GETMOVIES");
+				Package GETAVAILABLEMOVIES = new Package("GETAVAILABLEMOVIES");
 
 				// send to tier 2 server
-				String jsonGET = gson.toJson(GETMOVIES);
+				String jsonGET = gson.toJson(GETAVAILABLEMOVIES);
 				outputStream.writeUTF(jsonGET);
 				answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
 				view.showMovies(request.getBody());
-				//view.showMovies("MOVIE 1, MOVIE 2, MOVIE 3");
 				
 			} catch (IOException e) {
 

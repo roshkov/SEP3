@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -60,7 +61,7 @@ public class Tier1MovieManagerGui implements Tier1MovieManagerView{
 	private void initialize() {
 		frmMovieManagerGui = new JFrame();
 		frmMovieManagerGui.setTitle("Movie Manager Gui");
-		frmMovieManagerGui.getContentPane().setBackground(Color.WHITE);
+		frmMovieManagerGui.getContentPane().setBackground(new Color(100,240,240));
 		frmMovieManagerGui.getContentPane().setLayout(new BoxLayout(frmMovieManagerGui.getContentPane(), BoxLayout.X_AXIS));
 		
 		JPanel panel = new JPanel();
@@ -70,14 +71,13 @@ public class Tier1MovieManagerGui implements Tier1MovieManagerView{
 		movies = new JTextArea();
 		movies.setEditable(false);
 		movies.setLineWrap(true);
-		movies.setBounds(65, 111, 138, 184);
+		movies.setBounds(0, 24, 675, 184);
 		movies.setRows(1);
 		movies.setColumns(1);
-		//movies.setText("");
 		panel.add(movies);
 		
 		movieId = new JTextField();
-		movieId.setBounds(350, 179, 28, 22);
+		movieId.setBounds(264, 261, 28, 22);
 		movieId.setColumns(1);
 		panel.add(movieId);
 
@@ -89,7 +89,7 @@ public class Tier1MovieManagerGui implements Tier1MovieManagerView{
 				controller.execute(2);
 			}
 		});
-		updateButton.setBounds(311, 260, 97, 25);
+		updateButton.setBounds(10, 221, 97, 25);
 		panel.add(updateButton);
 		
 		
@@ -103,23 +103,25 @@ public class Tier1MovieManagerGui implements Tier1MovieManagerView{
 				controller.execute(1);
 			}
 		});
-		rentMovieButton.setBounds(420, 260, 97, 25);
+		rentMovieButton.setBounds(304, 260, 97, 25);
 		panel.add(rentMovieButton);
 		
 		availableMovies = new JTextField();
-		availableMovies.setBackground(Color.WHITE);
+		availableMovies.setBackground(UIManager.getColor("Button.background"));
 		availableMovies.setEditable(false);
+		availableMovies.setBorder(null);
 		availableMovies.setText("Available Movies:");
-		availableMovies.setBounds(65, 88, 116, 22);
+		availableMovies.setBounds(0, 0, 116, 22);
 		panel.add(availableMovies);
 		availableMovies.setColumns(10);
 		
 		
 		insertMovieId = new JTextField();
 		insertMovieId.setEditable(false);
-		insertMovieId.setBackground(Color.WHITE);
+		insertMovieId.setBorder(null);
+		insertMovieId.setBackground(UIManager.getColor("Button.background"));
 		insertMovieId.setText("Insert Movie Id:");
-		insertMovieId.setBounds(248, 179, 97, 22);
+		insertMovieId.setBounds(155, 261, 97, 22);
 		panel.add(insertMovieId);
 		insertMovieId.setColumns(10);
 		
