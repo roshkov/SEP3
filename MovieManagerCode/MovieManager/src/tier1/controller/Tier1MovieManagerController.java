@@ -61,7 +61,9 @@ public class Tier1MovieManagerController {
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
 				if (request.getHeader().equals("WRONG FORMAT")) {
-					view.showError();
+					view.showError(0);
+				} else {
+					execute(2);
 				}
 			} catch (IOException e) {
 
@@ -87,7 +89,9 @@ public class Tier1MovieManagerController {
 				answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
 				view.showMovies(request.getBody());
-				
+				if (request.getBody().equals("")) {
+					view.showError(1);
+				}
 			} catch (IOException e) {
 
 				e.printStackTrace();

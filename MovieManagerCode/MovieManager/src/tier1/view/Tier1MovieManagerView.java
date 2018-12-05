@@ -8,7 +8,7 @@ public interface Tier1MovieManagerView {
 
 	void showMovies(String text);
 
-	void showError();
+	void showError(int a);
 	
 	void startView(Tier1MovieManagerController controller);
 }

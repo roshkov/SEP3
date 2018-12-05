@@ -106,6 +106,16 @@ public class Tier1MovieManagerGui implements Tier1MovieManagerView{
 		rentMovieButton.setBounds(304, 260, 97, 25);
 		panel.add(rentMovieButton);
 		
+		JButton exitButton = new JButton("Exit");
+		exitButton.setBounds(566, 394, 97, 25);
+		exitButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				controller.execute(0);
+			}
+		});
+		panel.add(exitButton);
+		
 		availableMovies = new JTextField();
 		availableMovies.setBackground(UIManager.getColor("Button.background"));
 		availableMovies.setEditable(false);
@@ -124,6 +134,7 @@ public class Tier1MovieManagerGui implements Tier1MovieManagerView{
 		insertMovieId.setBounds(155, 261, 97, 22);
 		panel.add(insertMovieId);
 		insertMovieId.setColumns(10);
+		
 		
 		movieId.getDocument().addDocumentListener(new DocumentListener() {
 				@Override
@@ -171,7 +182,17 @@ public class Tier1MovieManagerGui implements Tier1MovieManagerView{
 	}
 	
 	@Override
-	public void showError() {
+	public void showError(int a) {
+		switch(a)
+		{
+		case 0:
 		JOptionPane.showMessageDialog(new JFrame(), "Invalid Input", "Error", JOptionPane.ERROR_MESSAGE);
-	}
+		break;
+		case 1:
+		JOptionPane.showMessageDialog(new JFrame(), "No Available Movies", "Error", JOptionPane.ERROR_MESSAGE);
+		break;
+		default:
+		JOptionPane.showMessageDialog(new JFrame(), "Unknown Error", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		}
 }
