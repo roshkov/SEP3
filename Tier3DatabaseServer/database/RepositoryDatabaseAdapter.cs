@@ -100,6 +100,17 @@ namespace Tier3ServerDatabase.database
             return _context.rooms.First(r => r.Id == Int32.Parse(id));
         }
 
+        //Method to get a string of rented Movies
+        public string GetStringRentedMovies()
+        {
+            String result = "";
+            foreach (Movie m in _context.movies.Where(m => m.Rented.Equals(true)).ToList())
+            {
+                result = result + m.ToString();
+            }
+            return result;
+        }
+
         //Method to remove a specific room by id
         public void RemoveRoom(string id)
         {

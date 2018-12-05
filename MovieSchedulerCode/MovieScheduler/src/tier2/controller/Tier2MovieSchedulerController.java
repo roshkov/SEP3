@@ -13,7 +13,7 @@ public class Tier2MovieSchedulerController {
 	{
 		this.view = view;
 		try {
-			this.server = new Tier2MovieSchedulerServer(1098, this); //TODO hardcoded port number
+			this.server = new Tier2MovieSchedulerServer(1100, this); //TODO hardcoded port number
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

@@ -24,14 +24,12 @@ public class Tier1MovieSchedulerController {
 	public Tier1MovieSchedulerController(Tier1MovieSchedulerView view) {
 		try {
 			this.view = view;
-			serverSocket = new Socket("localhost", 1098);
+			serverSocket = new Socket("localhost", 1100);
 
 			// Read from stream : String tmp = inputStream.readUTF();
 			inputStream = new DataInputStream(serverSocket.getInputStream());
 			// Write into stream : outputStream.writeUTF(new String("text to send"));
 			outputStream = new DataOutputStream(serverSocket.getOutputStream());
-
-			Gson gson = new Gson();
 
 		} catch (IOException e) {
 
@@ -72,10 +70,10 @@ public class Tier1MovieSchedulerController {
 				e.printStackTrace();
 			}
 			// Send request for receiving rented movies
-			Package GETMOVIES = new Package("GETMOVIES");
-			String json1 = gson.toJson(GETMOVIES);
+			Package GETRENTEDMOVIES = new Package("GETRENTEDMOVIES");
+			String json1 = gson.toJson(GETRENTEDMOVIES);
 			try {
-				// sending 'GETMOVIES' package to tier 2 in json format
+				// sending 'GETRENTEDMOVIES' package to tier 2 in json format
 				outputStream.writeUTF(json1);
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
@@ -129,7 +127,7 @@ public class Tier1MovieSchedulerController {
 				outputStream.writeUTF(json4);
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
-				view.showRooms("package: " + request.getBody());
+				view.showRooms(request.getBody());
 			} catch (IOException e) {
 
 				e.printStackTrace();
@@ -148,7 +146,21 @@ public class Tier1MovieSchedulerController {
 				outputStream.writeUTF(json6);
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
-				view.showSchedule("package: " + request.getBody());
+				view.showSchedule(request.getBody());
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+
+			// Send request for receiving rented movies
+			Package GETRENTEDMOVIES2 = new Package("GETRENTEDMOVIES");
+			String json8 = gson.toJson(GETRENTEDMOVIES2);
+			try {
+				// sending 'GETRENTEDMOVIES' package to tier 2 in json format
+				outputStream.writeUTF(json8);
+				String answer = inputStream.readUTF();
+				Package request = gson.fromJson(answer, Package.class);
+				view.showMovies(request.getBody());
 			} catch (IOException e) {
 
 				e.printStackTrace();
@@ -173,7 +185,7 @@ public class Tier1MovieSchedulerController {
 			outputStream.writeUTF(json5);
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
-			view.showRooms("package: " + request.getBody());
+			view.showRooms( request.getBody());
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -181,8 +193,8 @@ public class Tier1MovieSchedulerController {
 	}
 
 	public void addRoom(String size, String description) {
-		
-		Room room = new Room(Integer.parseInt(size) , description);
+
+		Room room = new Room(Integer.parseInt(size), description);
 		Package ADDROOM = new Package("ADDROOM", room);
 
 		// send to tier 2 server
@@ -210,7 +222,7 @@ public class Tier1MovieSchedulerController {
 			outputStream.writeUTF(json7);
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
-			view.showSchedule("package: " + request.getRoom().toString());
+			view.showSchedule( request.getRoom().toString());
 			room = request.getRoom();
 		} catch (IOException e) {
 
@@ -225,7 +237,7 @@ public class Tier1MovieSchedulerController {
 			outputStream.writeUTF(json8);
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
-			view.showSchedule("package: " + request.getMovie().toString());
+			view.showSchedule( request.getMovie().toString());
 			movie = request.getMovie();
 		} catch (IOException e) {
 
@@ -240,7 +252,7 @@ public class Tier1MovieSchedulerController {
 			outputStream.writeUTF(json2);
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
-			view.showSchedule("package: " + request.getBody());
+			view.showSchedule(request.getBody());
 		} catch (IOException e) {
 
 			e.printStackTrace();

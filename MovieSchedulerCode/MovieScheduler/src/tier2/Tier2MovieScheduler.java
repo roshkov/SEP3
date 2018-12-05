@@ -12,6 +12,7 @@ public class Tier2MovieScheduler {
 		Tier2MovieSchedulerView view = new Console();					
 		//controller
 		try {
+			@SuppressWarnings("unused")
 			Tier2MovieSchedulerController controller = new Tier2MovieSchedulerController(view);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
