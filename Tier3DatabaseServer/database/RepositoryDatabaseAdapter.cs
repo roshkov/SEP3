@@ -111,6 +111,17 @@ namespace Tier3ServerDatabase.database
             return result;
         }
 
+        //Method to get a string of movies that are not rented
+        public string GetStringAvailableMovies()
+        {
+             String result = "";
+            foreach (Movie m in _context.movies.Where(m => m.Rented.Equals(false)).ToList())
+            {
+                result = result + m.ToString();
+            }
+            return result;
+        }
+
         //Method to remove a specific room by id
         public void RemoveRoom(string id)
         {
