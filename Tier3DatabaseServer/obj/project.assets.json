@@ -3890,7 +3890,11 @@
       "projectPath": "E:\\Facultate\\SeM 3\\SeP\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
       "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
       "outputPath": "E:\\Facultate\\SeM 3\\SeP\\SEP3\\Tier3DatabaseServer\\obj\\",
+<<<<<<< HEAD
 >>>>>>> MovieManagerGui
+=======
+>>>>>>> 4790370561453c5129ccdbe34d1e078a410801d1
+>>>>>>> 358df7caff7838c5cad75c09dde4b68957585dee
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
