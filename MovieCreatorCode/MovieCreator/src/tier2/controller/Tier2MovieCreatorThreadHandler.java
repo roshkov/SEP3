@@ -174,6 +174,53 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 			outputStream.close();
 			return replyFromServer;
 
+		case Package.VERIFY:
+			//verifying the year of creation
+			try
+			{
+				Integer.parseInt(request.getYearCreation());
+			}
+			catch(NumberFormatException e)
+			{
+				view.show("Creation year invalid");
+				e.printStackTrace();
+				return new Package("CREATIONYEAR", "NumberFormatException caught");
+			}
+			
+			//verifying the release date
+			try
+			{
+				String[] date = request.getReleaseDate().split("/");
+				for (String element : date)
+				{
+					Integer.parseInt(element);
+				}
+			}
+			catch (NumberFormatException e)
+			{
+				view.show("Date invalid");
+				e.printStackTrace();
+				return new Package("RELEASEDATE", "NumberFormatException caught");
+			}
+			//verifying the price field
+			try {
+				Double testPrice = Double.parseDouble(request.getPrice());
+			}
+			catch (NumberFormatException e)
+			{
+				view.show("Price invalid");
+				e.printStackTrace();
+				return new Package("PRICE", "NumberFormatException caught");
+			}
+			catch (NullPointerException e)
+			{
+				view.show("Price was empty string");
+				e.printStackTrace();
+				return new Package("PRICE", "NullPointerException caught -- empty string");
+			}
+			
+			return new Package("OK", "Valid input");
+			
 		default:
 			return new Package("WRONG FORMAT");
 

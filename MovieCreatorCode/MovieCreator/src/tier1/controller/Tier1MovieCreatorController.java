@@ -88,7 +88,7 @@ public class Tier1MovieCreatorController {
 					} else if (serverAnswer.getHeader().equals("RELEASEDATE")) {
 						view.show("Please enter the date in this exact format: [DD/MM/YYYY]");
 					} else if (serverAnswer.getHeader().equals("PRICE")) {
-						view.show("Please enter only numbers in this field \n e.g.: 12.3");
+						view.show("Please enter only numbers in this field. Do not leave an empty field \n e.g.: 12.3");
 					} else if (serverAnswer.getHeader().equals("OK"))
 					{
 						ok = true;

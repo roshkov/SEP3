@@ -75,4 +75,16 @@ public class Package {
 	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
+
+	public String getYearCreation() {
+		return yearCreation;
+	}
+
+	public String getReleaseDate() {
+		return releaseDate;
+	}
+
+	public String getPrice() {
+		return price;
+	}
 }
