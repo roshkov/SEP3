@@ -76,12 +76,24 @@ namespace Tier2CustomerServerWebapi.Controllers
             try {
                 switch (request.Header) {
                         case "APIGETSCHEDULE":
+<<<<<<< HEAD
+                         return mDelegate.getSchedule(); //returns package. parameter schedule id and seat no. aren't used yet
+
+                         //
+                            //here goes the code
+                         //
+                        case "APIBOOKSEAT":
+                         return mDelegate.bookSeat(); //books seat, and retrieves updated schedule
+                         
+
+=======
                          return mDelegate.getSchedule(2,5); //returns package. parameter schedule id and seat no. aren't used yet
 
                          //
 
                          //
                         case "APIBOOKSEAT":
+>>>>>>> d82fb1e69b0a59c114f442c72bca7fabfe1100d5
                         //get whole schedule
                         //scheduled movie id ==> mark seat as booked, 
                         //sent to C3T2 using mDelegate

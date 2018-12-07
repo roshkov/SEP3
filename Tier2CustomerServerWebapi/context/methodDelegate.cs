@@ -37,10 +37,17 @@ namespace Tier2CustomerServerWebapi.context
        }
 
 
+<<<<<<< HEAD
+        public Package getSchedule ()                       //(int scheduledMovieID, int seat)
+        {
+        view.Show("getting schedule");
+        Package APIGETSCHEDULE = new Package("GETSCHEDULE");                //looks for it in C3Tier2
+=======
         public Package getSchedule (int scheduledMovieID, int seat)
         {
         view.Show("geeting schedule");
         Package APIGETSCHEDULE = new Package("APIGETSCHEDULE");
+>>>>>>> d82fb1e69b0a59c114f442c72bca7fabfe1100d5
 
         string json = JsonConvert.SerializeObject (APIGETSCHEDULE);
         view.Show(json);
@@ -61,5 +68,48 @@ namespace Tier2CustomerServerWebapi.context
          
          return answer;
     }
+<<<<<<< HEAD
+
+
+        public Package bookSeat ()                       //(int scheduledMovieID, int seat)
+        
+        {
+        view.Show("booking seat");
+        Package schedule = getSchedule();       //gets schedule
+        int seatToBook = 5;                     //hardcoded, but should come as a parameter from Tier2CustomerThreadHandler somehow from tier1
+       
+        // '1' is hardcoded value - id of scheduled movie;
+        //could be some method that goes through the list of scheduled movies and check for id for each movie
+        ScheduledMovie updatedScheduledMovie =  schedule.ScheduleList[1]; 
+        
+       //marking specific seat as booked
+        foreach(Seat s in updatedScheduledMovie.Seats){
+            if (s.Id==seatToBook)
+                s.Booked=true;
+        }
+       schedule.ScheduleList[1] = updatedScheduledMovie;
+      
+      
+       //sending schedule to C3Tier2
+         Package SENDSCHEDULE = new Package("SENDSCHEDULE"); 
+        SENDSCHEDULE.ScheduleList = schedule.ScheduleList;
+        
+        string json = JsonConvert.SerializeObject (SENDSCHEDULE);
+        byte[] msg = Encoding.UTF8.GetBytes (json, 0, json.Length);
+
+         using (StreamWriter streamWrite = new StreamWriter(networkStream))
+         {  
+            streamWriter.Write(msg);
+         }
+       //////////////////////////////////////////////////
+
+
+       // 
+       return schedule; //something else
+
+    }
+
+=======
+>>>>>>> d82fb1e69b0a59c114f442c72bca7fabfe1100d5
 }
 }
