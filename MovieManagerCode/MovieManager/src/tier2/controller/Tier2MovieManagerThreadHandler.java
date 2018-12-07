@@ -13,7 +13,6 @@ import com.google.gson.GsonBuilder;
 
 import common.Package;
 import tier2.view.Tier2MovieManagerView;
-import tier2.view.Tier2MovieManagerView;
 
 public class Tier2MovieManagerThreadHandler implements Runnable {
 
@@ -112,7 +111,7 @@ public class Tier2MovieManagerThreadHandler implements Runnable {
 		}
 
 		switch (request.getHeader()) {
-		case Package.GETMOVIES:
+		case Package.GETAVAILABLEMOVIES:
 			// Read from database server stream
 			inputStream = new DataInputStream(serverSocket.getInputStream());
 
