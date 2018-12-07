@@ -45,7 +45,6 @@ public class Movie {
 
 	public Movie(String title, String yearCreation, String releaseDate, double price, String nameStudio,
 			String nameDirector, String description, String nameMainActor) {
-		super();
 		this.title = title;
 		this.yearCreation = yearCreation;
 		this.releaseDate = releaseDate;

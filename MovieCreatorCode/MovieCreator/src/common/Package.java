@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class Package {
 	
 	public static final String GETMOVIES = "GETMOVIES";
+	public static final String VERIFY = "VERIFY";
 	public static final String ADD = "ADD";
 	public static final String EXIT = "EXIT";
 	
@@ -18,6 +19,15 @@ public class Package {
 	@SerializedName("Movie")
 	@Expose
 	private Movie movie = null;
+	@SerializedName("YearCreation")
+	@Expose
+	private String yearCreation = null;
+	@SerializedName("ReleaseDate")
+	@Expose
+	private String releaseDate = null;
+	@SerializedName("Price")
+	@Expose
+	private String price = null;
 
 	public Package(String header) {
 		this.header = header;
@@ -30,6 +40,15 @@ public class Package {
 
 	public Package(String header, Movie movie) {
 		this.header = header;
+		this.movie = movie;
+	}
+	
+	public Package(String header, String yearCreation, String releaseDate, String price, Movie movie)
+	{
+		this.header = header;
+		this.yearCreation = yearCreation;
+		this.releaseDate = releaseDate;
+		this.price = price;
 		this.movie = movie;
 	}
 
