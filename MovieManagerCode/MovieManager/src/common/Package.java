@@ -7,6 +7,7 @@ public class Package {
 	public static final String GETMOVIES = "GETMOVIES";
 	public static final String RENT = "RENT";
 	public static final String EXIT = "EXIT";
+	public static final String GETAVAILABLEMOVIES = "GETAVAILABLEMOVIES";
 	
 	@SerializedName("Header")
 	@Expose

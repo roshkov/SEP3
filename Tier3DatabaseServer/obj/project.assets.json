@@ -3872,23 +3872,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Claudiu\\.nuget\\packages\\": {},
+    "C:\\Users\\andre\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
       "projectName": "Tier3DatabaseServer",
       "projectPath": "C:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
       "packagesPath": "C:\\Users\\Claudiu\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier3DatabaseServer\\obj\\",
+=======
+      "projectUniqueName": "E:\\Facultate\\SeM 3\\SeP\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
+      "projectName": "Tier3DatabaseServer",
+      "projectPath": "E:\\Facultate\\SeM 3\\SeP\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
+      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+      "outputPath": "E:\\Facultate\\SeM 3\\SeP\\SEP3\\Tier3DatabaseServer\\obj\\",
+>>>>>>> 4790370561453c5129ccdbe34d1e078a410801d1
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Claudiu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
