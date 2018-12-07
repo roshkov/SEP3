@@ -55,6 +55,12 @@ public class Package {
 		this.room = room;
 	}
 	
+	public Package(String header,String size, Room room) {
+		this.header = header;
+		this.body = size;
+		this.room = room;
+	}
+	
 	public Package(String header, Movie movie) {
 		this.header = header;
 		this.movie = movie;
@@ -75,6 +81,7 @@ public class Package {
 		this.header = header;
 		this.List = List;
 	}
+	
 
 	public String getBody() {
 		return body;

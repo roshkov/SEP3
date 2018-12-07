@@ -185,7 +185,7 @@ public class Tier1MovieSchedulerController {
 			outputStream.writeUTF(json5);
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
-			view.showRooms( request.getBody());
+			view.showRooms(request.getBody());
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -194,8 +194,8 @@ public class Tier1MovieSchedulerController {
 
 	public void addRoom(String size, String description) {
 
-		Room room = new Room(Integer.parseInt(size), description);
-		Package ADDROOM = new Package("ADDROOM", room);
+		Room room = new Room(description);
+		Package ADDROOM = new Package("ADDROOM", size, room);
 
 		// send to tier 2 server
 		String json3 = gson.toJson(ADDROOM);
@@ -222,8 +222,10 @@ public class Tier1MovieSchedulerController {
 			outputStream.writeUTF(json7);
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
-			view.showSchedule( request.getRoom().toString());
-			room = request.getRoom();
+			// check if the database provided you with the room
+			if (request.getRoom() != null) {
+				room = request.getRoom();
+			}
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -237,8 +239,10 @@ public class Tier1MovieSchedulerController {
 			outputStream.writeUTF(json8);
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
-			view.showSchedule( request.getMovie().toString());
-			movie = request.getMovie();
+			// check if the database provided you with the movie
+			if (request.getMovie() != null) {
+				movie = request.getMovie();
+			}
 		} catch (IOException e) {
 
 			e.printStackTrace();
