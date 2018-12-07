@@ -10,27 +10,29 @@ public class Room {
 	@SerializedName("Description")
 	@Expose
 	private String description;
-	
-	public Room(int size, String description)
-	{
+
+	public Room(int size, String description) {
 		this.size = size;
 		this.description = description;
 	}
-	
-	public int getSize()
-	{
+
+	public Room(String description) {
+		this.description = description;
+	}
+
+	public int getSize() {
 		return size;
 	}
-	public String getDescription()
-	{
+
+	public String getDescription() {
 		return description;
 	}
-	public void setSize(int size)
-	{
+
+	public void setSize(int size) {
 		this.size = size;
 	}
-	public void setDescription(String description)
-	{
+
+	public void setDescription(String description) {
 		this.description = description;
 	}
 }

@@ -26,10 +26,45 @@ public class ScheduledMovie {
 		this.day = day;
 		this.movie = movie;
 		this.room = room;
+		if(room != null)
+		{
 		this.seats = new Seat[room.getSize()];
 		for(int i = 0; i < room.getSize(); i++)
 		{
 			seats[i] = new Seat(false);
 		}
+		}
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getDay() {
+		return day;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
+	}
+
+	public Movie getMovie() {
+		return movie;
+	}
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
 	}
 }
