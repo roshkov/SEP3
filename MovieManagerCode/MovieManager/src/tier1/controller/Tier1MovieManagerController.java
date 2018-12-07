@@ -7,6 +7,7 @@ import java.net.Socket;
 
 import com.google.gson.Gson;
 
+import common.Init;
 import common.Package;
 import tier1.view.Tier1MovieManagerView;
 
@@ -22,7 +23,7 @@ public class Tier1MovieManagerController {
 		try {
 			this.view = view;
 			//view.show("Starting tier1 client");
-			serverSocket = new Socket("localhost", 1099);
+			serverSocket = new Socket(Init.getInstance().getIp(), Init.getInstance().getPort());
 
 			// Read from stream : String tmp = inputStream.readUTF();
 			inputStream = new DataInputStream(serverSocket.getInputStream());
@@ -48,7 +49,7 @@ public class Tier1MovieManagerController {
 
 		case 1: // case 1 should take an id (for now) and send it to t2.
 			
-			int id = Integer.parseInt(view.get());
+			int id = Integer.parseInt(view.getId());
 			
 			Package RENT = new Package("RENT", id);
 
@@ -61,10 +62,13 @@ public class Tier1MovieManagerController {
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
 				if (request.getHeader().equals("WRONG FORMAT")) {
-					view.showError(0);
-				} else {
-					execute(2);
+					view.show(0);
+				} 
+				else if (!view.getMovies().equals("")){
+					view.show(2);
+					execute(2);	
 				}
+				
 			} catch (IOException e) {
 
 				e.printStackTrace();
@@ -90,7 +94,9 @@ public class Tier1MovieManagerController {
 				Package request = gson.fromJson(answer, Package.class);
 				view.showMovies(request.getBody());
 				if (request.getBody().equals("")) {
-					view.showError(1);
+					view.show(1);
+				} else {
+					view.show(3);
 				}
 			} catch (IOException e) {
 
@@ -99,7 +105,7 @@ public class Tier1MovieManagerController {
 			break;
 			
 		default:
-			view.showMovies("Invalid");
+			view.show(0);
 			break;
 		}
 

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import common.Init;
 import common.Package;
 import common.Schedule;
 import tier2.view.Tier2MovieSchedulerView;
@@ -137,7 +138,7 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
 		try {
 			view.show("Connecting to tier3 server");
-			serverSocket = new Socket("localhost", 1097);
+			serverSocket = new Socket(Init.getInstance().getIpDb(), Init.getInstance().getPortDb());
 		} catch (IOException e) {
 			view.show("Database offline, couldn't connect to server");
 			e.printStackTrace();
@@ -298,21 +299,17 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
 		case Package.SCHEDULEDMOVIE:
 			//if the room/movie is null it means that the user inputed something else besides a number or a number not present in the list
-			if (request.getScheduledMovie().getRoom() == null) {
+			if (request.getScheduledMovie().getRoom() == null)
 				return new Package("401",
 						"Wrong ID/Wrong format Inputted(Must be a number present in the list written with digits)\n ");
-			}
-			if (request.getScheduledMovie().getMovie() == null) {
+			if (request.getScheduledMovie().getMovie() == null)
 				return new Package("401",
 						"Wrong ID/Wrong format Inputted(Must be a number present in the list written with digits)\n ");
-			}
 			//if the system can find the day or time present in the list, it sends to the user he inputted the wrong day and/or time
-			if (!days.contains(request.getScheduledMovie().getDay())) {
+			if (!days.contains(request.getScheduledMovie().getDay()))
 				return new Package("401", "Wrong Day Inputted");
-			}
-			if (!times.contains(request.getScheduledMovie().getTime())) {
+			if (!times.contains(request.getScheduledMovie().getTime()))
 				return new Package("401", "Wrong Time Inputted");
-			}
 			schedule.addScheduledMovie(request.getScheduledMovie());
 
 			return new Package("200", "ScheduleSent");

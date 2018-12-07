@@ -171,10 +171,14 @@ public class Tier1MovieManagerGui implements Tier1MovieManagerView{
 	}
 
 	@Override
-	public String get() {
+	public String getId() {
 		return movieId.getText();
 	}
-
+	
+	@Override
+	public String getMovies() {
+		return movies.getText();
+	}
 	@Override
 	public void showMovies(String text) {
 		// TODO Auto-generated method stub
@@ -182,17 +186,25 @@ public class Tier1MovieManagerGui implements Tier1MovieManagerView{
 	}
 	
 	@Override
-	public void showError(int a) {
+	public void show(int a) {
 		switch(a)
 		{
+		//Errors - 0, 1
 		case 0:
 		JOptionPane.showMessageDialog(new JFrame(), "Invalid Input", "Error", JOptionPane.ERROR_MESSAGE);
 		break;
 		case 1:
 		JOptionPane.showMessageDialog(new JFrame(), "No Available Movies", "Error", JOptionPane.ERROR_MESSAGE);
 		break;
+		case 2:
+		JOptionPane.showMessageDialog(new JFrame(), "Movie (Id: "+getId()+")"+" Rented!", "Success!", JOptionPane.PLAIN_MESSAGE);
+		break;
+		case 3:
+		JOptionPane.showMessageDialog(new JFrame(), "Movie List Updated!", "Success!", JOptionPane.PLAIN_MESSAGE);
+		break;
 		default:
 		JOptionPane.showMessageDialog(new JFrame(), "Unknown Error", "Error", JOptionPane.ERROR_MESSAGE);
+		break;
 		}
 		}
 }

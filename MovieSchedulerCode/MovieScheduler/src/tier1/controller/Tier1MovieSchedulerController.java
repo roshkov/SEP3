@@ -7,6 +7,7 @@ import java.net.Socket;
 
 import com.google.gson.Gson;
 
+import common.Init;
 import common.Movie;
 import common.Package;
 import common.Room;
@@ -24,7 +25,7 @@ public class Tier1MovieSchedulerController {
 	public Tier1MovieSchedulerController(Tier1MovieSchedulerView view) {
 		try {
 			this.view = view;
-			serverSocket = new Socket("localhost", 1100);
+			serverSocket = new Socket(Init.getInstance().getIp(), Init.getInstance().getPort());
 
 			// Read from stream : String tmp = inputStream.readUTF();
 			inputStream = new DataInputStream(serverSocket.getInputStream());

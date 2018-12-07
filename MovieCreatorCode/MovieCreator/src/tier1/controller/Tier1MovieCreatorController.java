@@ -4,16 +4,14 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import common.Init;
 import common.Movie;
 import common.Package;
 import tier1.view.Tier1MovieCreatorView;
-import java.util.Date;
 
 public class Tier1MovieCreatorController {
 
@@ -28,7 +26,7 @@ public class Tier1MovieCreatorController {
 		try {
 			this.view = view;
 			view.show("Starting tier1 client");
-			serverSocket = new Socket("localhost", 1098);
+			serverSocket = new Socket(Init.getInstance().getIp(), Init.getInstance().getPort());
 
 			// Read from stream : String tmp = inputStream.readUTF();
 			inputStream = new DataInputStream(serverSocket.getInputStream());

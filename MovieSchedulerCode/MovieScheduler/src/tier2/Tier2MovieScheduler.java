@@ -2,13 +2,17 @@ package tier2;
 
 import java.net.UnknownHostException;
 
+import common.Init;
 import tier2.controller.Tier2MovieSchedulerController;
 import tier2.view.Console;
 import tier2.view.Tier2MovieSchedulerView;
 
 public class Tier2MovieScheduler {
 	public static void main(String[] args) 
-	{	//view
+	{	
+		//Init
+		Init.getInstance().getData();
+		//view
 		Tier2MovieSchedulerView view = new Console();					
 		//controller
 		try {
