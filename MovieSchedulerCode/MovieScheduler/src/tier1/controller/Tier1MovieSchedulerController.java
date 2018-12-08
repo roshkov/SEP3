@@ -13,22 +13,42 @@ import common.Room;
 import common.ScheduledMovie;
 import tier1.view.Tier1MovieSchedulerView;
 
+/**
+ * The class that controls the data flow to Tier 2 in the Movie Scheduler component
+ * @author Claudiu
+ *
+ */
 public class Tier1MovieSchedulerController {
+	/**
+	 * The socket to create the connection to the server on Tier 2
+	 */
 	private Socket serverSocket;
+	/**
+	 * The Interface for the view
+	 */
 	private Tier1MovieSchedulerView view;
+	/**
+	 * The stream from which the controller will receive information
+	 */
 	private DataInputStream inputStream;
+	/**
+	 * The stream from which the controller will output information to
+	 */
 	private DataOutputStream outputStream;
+	/**
+	 * A Gson Object that it's used to translate java Objects into json Objects
+	 */
 	private Gson gson;
 
-	// constructor
+
 	public Tier1MovieSchedulerController(Tier1MovieSchedulerView view) {
 		try {
 			this.view = view;
 			serverSocket = new Socket("localhost", 1100);
 
-			// Read from stream : String tmp = inputStream.readUTF();
+			// Read from stream 
 			inputStream = new DataInputStream(serverSocket.getInputStream());
-			// Write into stream : outputStream.writeUTF(new String("text to send"));
+			// Write into stream 
 			outputStream = new DataOutputStream(serverSocket.getOutputStream());
 
 		} catch (IOException e) {

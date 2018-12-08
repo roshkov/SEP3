@@ -11794,30 +11794,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Users\\Claudiu\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\via\\sep3\\Tier2CustomerServerWebapi\\Tier2CustomerServerWebapi.csproj",
+      "projectUniqueName": "c:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier2CustomerServerWebapi\\Tier2CustomerServerWebapi.csproj",
       "projectName": "Tier2CustomerServerWebapi",
-      "projectPath": "D:\\via\\sep3\\Tier2CustomerServerWebapi\\Tier2CustomerServerWebapi.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\via\\sep3\\Tier2CustomerServerWebapi\\obj\\",
+      "projectPath": "c:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier2CustomerServerWebapi\\Tier2CustomerServerWebapi.csproj",
+      "packagesPath": "C:\\Users\\Claudiu\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier2CustomerServerWebapi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Claudiu\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

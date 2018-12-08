@@ -12,6 +12,7 @@ namespace Tier3ServerDatabase.common {
 
         private List<ScheduledMovie> scheduleList;
         private Room room;
+        private List<ScheduledMovie> list;
 
         public string Header { get => header; set => header = value; }
         public string Body { get => body; set => body = value; }
