@@ -3939,11 +3939,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "c:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
       "projectName": "Tier3DatabaseServer",
       "projectPath": "c:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
       "packagesPath": "C:\\Users\\Claudiu\\.nuget\\packages\\",
       "outputPath": "c:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier3DatabaseServer\\obj\\",
+=======
+      "projectUniqueName": "E:\\Facultate\\SeM 3\\SeP\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
+      "projectName": "Tier3DatabaseServer",
+      "projectPath": "E:\\Facultate\\SeM 3\\SeP\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
+      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+      "outputPath": "E:\\Facultate\\SeM 3\\SeP\\SEP3\\Tier3DatabaseServer\\obj\\",
+>>>>>>> 83a6a159206953793e982c3ec63168c7489918ed
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

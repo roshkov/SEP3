@@ -2,6 +2,8 @@ package tier2.controller;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+
+import common.Init;
 import tier2.view.Tier2MovieCreatorView;
 
 public class Tier2MovieCreatorController {
@@ -13,7 +15,7 @@ public class Tier2MovieCreatorController {
 		
 		this.view = view;
 		try {
-			this.server = new Tier2MovieCreatorServer(1098, this);
+			this.server = new Tier2MovieCreatorServer(Init.getInstance().getPort(), this);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

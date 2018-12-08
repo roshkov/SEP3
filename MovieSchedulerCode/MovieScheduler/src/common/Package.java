@@ -6,7 +6,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * The Package class is used in communication between the tiers in the components
+ * The Package class is used in communication between the tiers in the
+ * components
+ * 
  * @author Claudiu
  *
  */
@@ -22,7 +24,9 @@ public class Package {
 	public static final String GETROOM = "GETROOM";
 	public static final String GETMOVIE = "GETMOVIE";
 	public static final String CANCELSCHEDULE = "CANCELSCHEDULE";
-	
+	public static final String GETALLSCHEDULE = "GETALLSCHEDULE";
+	public static final String UPDATESCHEDULE = "UPDATESCHEDULE";
+
 	/**
 	 * The header is used as a indicator for the type of content in the package
 	 */
@@ -30,7 +34,8 @@ public class Package {
 	@Expose
 	private String header;
 	/**
-	 * Most of the content of the packages, it's usually used to get the String results from the other tiers
+	 * Most of the content of the packages, it's usually used to get the String
+	 * results from the other tiers
 	 */
 	@SerializedName("Body")
 	@Expose
@@ -60,16 +65,16 @@ public class Package {
 	@Expose
 	private ScheduledMovie scheduledMovie;
 	/**
-	 * A more condensed form of the List of Scheduled Movies that is used for convenience
+	 * A more condensed form of the List of Scheduled Movies that is used for
+	 * convenience
 	 */
 	@SerializedName("Schedule")
 	@Expose
 	private Schedule schedule;
 
-	
-
 	/**
 	 * A constructor that only uses that header to signal something
+	 * 
 	 * @param header
 	 */
 	public Package(String header) {
@@ -78,6 +83,7 @@ public class Package {
 
 	/**
 	 * The constructor that is used most often for communication
+	 * 
 	 * @param header
 	 * @param body
 	 */
@@ -85,8 +91,10 @@ public class Package {
 		this.header = header;
 		this.body = body;
 	}
+
 	/**
 	 * A constructor to send a Room over other tiers
+	 * 
 	 * @param header
 	 * @param room
 	 */
@@ -94,21 +102,24 @@ public class Package {
 		this.header = header;
 		this.room = room;
 	}
-	
+
 	/**
-	 * A constructor used to send a Room that needs to have the size check for format
+	 * A constructor used to send a Room that needs to have the size check for
+	 * format
+	 * 
 	 * @param header
 	 * @param size
 	 * @param room
 	 */
-	public Package(String header,String size, Room room) {
+	public Package(String header, String size, Room room) {
 		this.header = header;
 		this.body = size;
 		this.room = room;
 	}
-	
+
 	/**
 	 * A constructor to send a Movie over other tiers
+	 * 
 	 * @param header
 	 * @param movie
 	 */
@@ -116,9 +127,10 @@ public class Package {
 		this.header = header;
 		this.movie = movie;
 	}
-	
+
 	/**
 	 * A constructor to send a Scheduled Movie over other tiers
+	 * 
 	 * @param header
 	 * @param scheduledMovie
 	 */
@@ -126,20 +138,21 @@ public class Package {
 		this.header = header;
 		this.scheduledMovie = scheduledMovie;
 	}
-	
+
 	/**
 	 * A constructor to send a Schedule over other tiers
+	 * 
 	 * @param header
 	 * @param schedule
 	 */
-	public Package(String header, Schedule schedule)
-	{
+	public Package(String header, Schedule schedule) {
 		this.header = header;
 		this.schedule = schedule;
 	}
-	
+
 	/**
 	 * A constructor to send a Scheduled Movies List over other tiers
+	 * 
 	 * @param header
 	 * @param List
 	 */
@@ -147,7 +160,6 @@ public class Package {
 		this.header = header;
 		this.List = List;
 	}
-	
 
 	public String getBody() {
 		return body;
@@ -164,20 +176,28 @@ public class Package {
 	public String getHeader() {
 		return header;
 	}
-	
+
 	public Movie getMovie() {
 		return movie;
 	}
-	
+
 	public Room getRoom() {
 		return room;
 	}
-	
+
 	public ScheduledMovie getScheduledMovie() {
 		return scheduledMovie;
 	}
-	
+
 	public Schedule getSchedule() {
 		return schedule;
+	}
+
+	public ArrayList<ScheduledMovie> getList() {
+		return List;
+	}
+
+	public void setList(ArrayList<ScheduledMovie> list) {
+		List = list;
 	}
 }

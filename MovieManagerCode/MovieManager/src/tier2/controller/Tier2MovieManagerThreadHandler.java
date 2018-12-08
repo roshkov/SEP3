@@ -11,6 +11,7 @@ import java.net.UnknownHostException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import common.Init;
 import common.Package;
 import tier2.view.Tier2MovieManagerView;
 
@@ -104,7 +105,7 @@ public class Tier2MovieManagerThreadHandler implements Runnable {
 
 		try {
 			view.show("Connecting to tier3 server");
-			serverSocket = new Socket("localhost", 1097);
+			serverSocket = new Socket(Init.getInstance().getIpDb(), Init.getInstance().getPortDb());
 		} catch (IOException e) {
 			view.show("Database offline, couldn't connect to server");
 			e.printStackTrace();

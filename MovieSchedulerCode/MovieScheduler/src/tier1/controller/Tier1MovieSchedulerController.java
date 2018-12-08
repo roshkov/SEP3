@@ -7,6 +7,7 @@ import java.net.Socket;
 
 import com.google.gson.Gson;
 
+import common.Init;
 import common.Movie;
 import common.Package;
 import common.Room;
@@ -41,10 +42,14 @@ public class Tier1MovieSchedulerController {
 	private Gson gson;
 
 
+	/**
+	 * A constructor to inject the view and set up the input and output streams
+	 * @param view
+	 */
 	public Tier1MovieSchedulerController(Tier1MovieSchedulerView view) {
 		try {
 			this.view = view;
-			serverSocket = new Socket("localhost", 1100);
+			serverSocket = new Socket(Init.getInstance().getIp(), Init.getInstance().getPort());
 
 			// Read from stream 
 			inputStream = new DataInputStream(serverSocket.getInputStream());
@@ -57,6 +62,16 @@ public class Tier1MovieSchedulerController {
 		}
 	}
 
+	/**
+	 * Method to execute the choice made by the user in the view that hasd multiple cases
+	 * case 0: EXIT
+	 * case 1: Displaying the information needed to schedule a movie
+	 * case 2: Sending the schedule through tier 2 to the database
+	 * case 3: Canceling the scheduling
+	 * case 4: Getting an displaying the list of rooms available
+	 * case 5: Displaying the Schedule and the available rented movies
+	 * @param choice
+	 */
 	public void execute(int choice) {
 		// Choices done for testing
 		gson = new Gson();
@@ -194,6 +209,10 @@ public class Tier1MovieSchedulerController {
 
 	}
 
+	/**
+	 * A method to delete a room using the ID of the room
+	 * @param ID
+	 */
 	public void deleteRoom(String ID) {
 		Package REMOVEROOM = new Package("REMOVEROOM", ID);
 
@@ -212,6 +231,11 @@ public class Tier1MovieSchedulerController {
 		}
 	}
 
+	/**
+	 * Sending the details about a Room to have the size checked if it is the proper format on tier 2
+	 * @param size
+	 * @param description
+	 */
 	public void addRoom(String size, String description) {
 
 		Room room = new Room(description);
@@ -232,6 +256,13 @@ public class Tier1MovieSchedulerController {
 		}
 	}
 
+	/**
+	 * Sending the details of the scheduled movie to be checked on tier 2
+	 * @param roomId
+	 * @param movieId
+	 * @param day
+	 * @param time
+	 */
 	public void addScheduledMovie(String roomId, String movieId, String day, String time) {
 		Room room = null;
 		// After selecting id, send package with it to t2

@@ -2,6 +2,7 @@ package tier2.view;
 public class Console implements Tier2MovieCreatorView {
 
 	public Console() {
+		
 	}
 
 	@Override

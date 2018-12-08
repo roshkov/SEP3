@@ -4,11 +4,13 @@ import tier1.controller.Tier1MovieManagerController;
 
 public interface Tier1MovieManagerView {
 	
-	String get();
+	String getId();
+	
+	String getMovies();
 
 	void showMovies(String text);
 
-	void showError(int a);
+	void show(int a);
 	
 	void startView(Tier1MovieManagerController controller);
 }

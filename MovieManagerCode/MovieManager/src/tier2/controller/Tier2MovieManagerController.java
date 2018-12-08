@@ -3,6 +3,7 @@ package tier2.controller;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
+import common.Init;
 import tier2.view.Tier2MovieManagerView;
 
 public class Tier2MovieManagerController {
@@ -13,7 +14,7 @@ public class Tier2MovieManagerController {
 	{
 		this.view = view;
 		try {
-			this.server = new Tier2MovieManagerServer(1099, this); //TODO hardcoded port number
+			this.server = new Tier2MovieManagerServer(Init.getInstance().getPort(), this); //TODO hardcoded port number
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
