@@ -1,0 +1,21 @@
+﻿@page
+@model AboutModel
+@{
+    ViewData["Title"] = "BookTicket";
+}
+
+@{ 
+    Shedule s = new Shedule();
+}
+
+<h1>Movie Schedule</h1>
+
+<form method = "post" asp-action="Pick">
+    @for (int i = 0; i < s.list.Capacity; i++)
+    {
+        <input type="radio" name="Movie" value="@i" checked> @s.list.ElementAt(i).ToString()<br>
+    }
+    
+    
+     <button type="submit">Choose</button>
+</form>
