@@ -45,8 +45,17 @@ namespace Tier3ServerDatabase.controller
 
                 view.Show("Reply: " + reply.Body);
                 //Convert the package to json
-                string json = JsonConvert.SerializeObject(reply);
-
+                string json = JsonConvert.SerializeObject(reply, Formatting.Indented,
+                            new JsonSerializerSettings
+                            {
+                                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                            });
+                //Second solution in case this doesn't work
+                /*string json = JsonConvert.SerializeObject(reply, Formatting.Indented, 
+                             new JsonSerializerSettings
+{
+    PreserveReferencesHandling = PreserveReferencesHandling.Objects
+}); */
                 view.Show(json);
                 // Convert it to bytes
                 byte[] msg = Encoding.UTF8.GetBytes(json, 0, json.Length);
