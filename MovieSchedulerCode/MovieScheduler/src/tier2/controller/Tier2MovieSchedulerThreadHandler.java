@@ -129,9 +129,9 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 		try {
 			while (continueCommuticating) {
 
-//				BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF8"));
-//				String line = in.readLine();
-				String line = inputStream.readUTF();
+				BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF8"));
+				String line = in.readLine();
+//				String line = inputStream.readUTF();
 				view.show(ip + "> " + line);
 
 				// convert from JSon
@@ -139,7 +139,6 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 				GsonBuilder gsonBuilder = new GsonBuilder();
 				gsonBuilder.serializeNulls();
 				Gson gson = gsonBuilder.create();
-				System.out.println(line);
 				Package request = gson.fromJson(line, Package.class);
 				view.show("package: " + request.getHeader());
 
