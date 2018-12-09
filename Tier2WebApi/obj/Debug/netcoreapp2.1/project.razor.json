@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "e:\\Facultate\\SEM3\\SEP3_repo\\SEP3\\Tier2WebApi\\Tier2WebApi.csproj",
+  "TargetFramework": "netcoreapp2.1",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "MVC-2.1",
+    "LanguageVersion": "2.1",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-2.1"
+      }
+    ]
+  }
+}

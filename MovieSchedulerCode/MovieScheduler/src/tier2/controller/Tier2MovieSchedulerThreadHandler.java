@@ -57,6 +57,8 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 	 * A list of defaults Time values
 	 */
 	private ArrayList<String> times;
+	
+	private Socket clientSocket;
 
 	/**
 	 * Establish the streams and poppulate the array list with the default values in
@@ -72,6 +74,8 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 		addDays();
 
 		addTimes();
+		
+		this.clientSocket = clientSocket;
 
 		schedule = new Schedule();
 
@@ -125,12 +129,16 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 		try {
 			while (continueCommuticating) {
 
+//				BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF8"));
+//				String line = in.readLine();
 				String line = inputStream.readUTF();
 				view.show(ip + "> " + line);
 
 				// convert from JSon
 				// getting request from client
-				Gson gson = new Gson();
+				GsonBuilder gsonBuilder = new GsonBuilder();
+				gsonBuilder.serializeNulls();
+				Gson gson = gsonBuilder.create();
 				System.out.println(line);
 				Package request = gson.fromJson(line, Package.class);
 				view.show("package: " + request.getHeader());
