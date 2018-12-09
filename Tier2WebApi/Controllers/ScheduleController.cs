@@ -32,17 +32,28 @@ namespace Tier2WebApi.Controllers
             NetworkStream NetworkStream = client.GetStream();
             string json = JsonConvert.SerializeObject(GETALLSCHEDULE);
             
-            using (StreamWriter StreamWriter = new StreamWriter(NetworkStream))
-            {  
-                StreamWriter.Write(json);
-            }
+            // StreamWriter StreamWriter = new StreamWriter(NetworkStream);
+            // StreamWriter.Write(json);
+            // StreamWriter.Close();
 
-            using (StreamReader StreamReader = new StreamReader(NetworkStream))
-            {  
-                var streamTask = StreamReader.ReadToEnd();
-                Answer = JsonConvert.DeserializeObject(streamTask) as Package; 
-            } 
-            
+            byte[] bytesToSend = Encoding.UTF8.GetBytes(json, 0, json.Length);
+            NetworkStream.Write(bytesToSend);
+            NetworkStream.Write(Encoding.UTF8.GetBytes(Environment.NewLine));
+            NetworkStream.Flush();
+
+            Byte[] bytes = new byte[client.ReceiveBufferSize];
+            NetworkStream.Read(bytes, 0, client.ReceiveBufferSize);
+            String reply = Encoding.UTF8.GetString(bytes, 2, client.ReceiveBufferSize-2);
+
+            // using (StreamReader StreamReader = new StreamReader(NetworkStream))
+            // {
+            //     var streamTask = StreamReader.ReadToEnd();
+            //     Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + streamTask);
+            //     Answer = JsonConvert.DeserializeObject(streamTask) as Package; 
+            // StreamReader.Dispose();
+            // }
+        
+        Answer = JsonConvert.DeserializeObject<Package>(reply); 
         Schedule = Answer.ScheduleList;
         
         client.GetStream().Close();

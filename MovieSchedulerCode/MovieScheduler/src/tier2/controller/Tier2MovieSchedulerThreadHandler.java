@@ -147,9 +147,9 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
 				// convert to JSon
 				// sending reply to client
+				view.show("Server to " + ip + "> " + reply);
 				String json = gson.toJson(reply);
 				outputStream.writeUTF(json);
-				view.show("Server to " + ip + "> " + reply);
 				if (reply.getHeader().equalsIgnoreCase("EXIT")) {
 					continueCommuticating = false;
 				}

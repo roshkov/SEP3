@@ -45,7 +45,7 @@ namespace Tier3ServerDatabase.controller
 
                 view.Show("Reply: " + reply.Body);
                 //Convert the package to json
-                string json = JsonConvert.SerializeObject(reply, Formatting.Indented,
+                string json = JsonConvert.SerializeObject(reply,
                             new JsonSerializerSettings
                             {
                                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
