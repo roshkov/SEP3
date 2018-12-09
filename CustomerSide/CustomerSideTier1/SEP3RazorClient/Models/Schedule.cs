@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace SEP3RazorClient
 {
-    public class Shedule
+    public class Schedule
     {
         public List<ScheduledMovie> list;
 
-        public Shedule()
+        public Schedule()
         {
             list = new List<ScheduledMovie>();
             Create();

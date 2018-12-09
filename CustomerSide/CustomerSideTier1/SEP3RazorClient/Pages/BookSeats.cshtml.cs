@@ -5,33 +5,30 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
-using SEP3RazorClient.Models;
-
+using SEP3RazorClient.Communication;
 namespace SEP3RazorClient.Pages
 {
     public class SeatsModel : PageModel
     {
-        private Shedule shedule;
-
-        public ScheduledMovie sm { get; set; }
+        private List<ScheduledMovie> schedule;
         [BindProperty(SupportsGet = true)]
         public int Choice { get; set; }
-        public Shedule Shedule { get => shedule; set => shedule = value; }
+
         [BindProperty]
         public int SeatChoice { get; set; }
+        public List<ScheduledMovie> Schedule { get => schedule; set => schedule = value; }
 
         [HttpGet]
-        public void OnGet(int choice)
+        public void OnGet()
         {
-           
+
             // get from api
-            Shedule = new Shedule();
-           
+            schedule = APIProvider.GetScheduleAsync("https://localhost:5001/api/schedule").Result;
         }
 
         public ActionResult OnPost()
-        {  
-            System.Console.WriteLine((Int32.Parse(Request.Form["SeatChoice"]) - 1));
+        {
+            APIProvider.UpdateProductAsync(Choice, (Int32.Parse(Request.Form["SeatChoice"]) - 1));
             return Redirect("/BookSeats/" + Choice);
         }
     }

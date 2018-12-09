@@ -14,7 +14,7 @@ namespace SEP3RazorClient
     {
         public static void Main(string[] args)
         {
-            Shedule s = new Shedule();
+            Schedule s = new Schedule();
             CreateWebHostBuilder(args).Build().Run();
         }
 

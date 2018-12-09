@@ -1,19 +1,18 @@
 ﻿@page
-@model AboutModel
+@model BookTicketModel
 @{
     ViewData["Title"] = "BookTicket";
+    int count = Model.Schedule.Count;
 }
 
-@{ 
-    Shedule s = new Shedule();
-}
+
 
 <h1>Movie Schedule</h1>
 
 <form method = "post" asp-action="Pick">
-    @for (int i = 0; i < s.list.Capacity; i++)
+    @for (int i = 0; i < count; i++)
     {
-        <input type="radio" name="Movie" value="@i" checked> @s.list.ElementAt(i).ToString()<br>
+        <input type="radio" name="Movie" value="@i" checked>@Model.Schedule.ElementAt(0).ToString()<br>
     }
     
     

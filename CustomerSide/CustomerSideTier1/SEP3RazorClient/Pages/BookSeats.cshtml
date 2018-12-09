@@ -2,18 +2,12 @@
 @model SEP3RazorClient.Pages.SeatsModel
 @{
     ViewData["Title"] = "Seats";
-    Shedule s = Model.Shedule;
-    ScheduledMovie sm = s.list.ElementAt(Model.Choice);
-}
-
-@{
+    ScheduledMovie sm = Model.Schedule.ElementAt(Model.Choice);
     string txt = "";
     int count = sm.NrOfFreeSeats();
 }
 
 <h2>Seats</h2>
-<h2>@Model.Choice</h2>
-<h2>@count</h2>
 <div>
     <h6 align="center">SCREEN</h6>
     <div>
@@ -21,7 +15,7 @@
             @for (int i = 0; i < count / 10; i++)
             {
             <tr>
-                @if (@sm.Seats.ElementAt(i * 10 + 1).Booked)
+                @if (@sm.Seats.ElementAt(i * 10 + 0).Booked)
                 {
                     txt = "red";
                 }
@@ -30,7 +24,7 @@
                     txt = "green";
                 }
                 <td class=@txt>@(i * 10 + 1)</td>
-                @if (@sm.Seats.ElementAt(i * 10 + 2).Booked)
+                @if (@sm.Seats.ElementAt(i * 10 + 1).Booked)
                 {
                     txt = "red";
                 }
@@ -39,7 +33,7 @@
                     txt = "green";
                 }
                 <td class=@txt>@(i * 10 + 2)</td>
-                @if (@sm.Seats.ElementAt(i * 10 + 3).Booked)
+                @if (@sm.Seats.ElementAt(i * 10 + 2).Booked)
                 {
                     txt = "red";
                 }
@@ -48,7 +42,7 @@
                     txt = "green";
                 }
                 <td class=@txt>@(i * 10 + 3)</td>
-                @if (@sm.Seats.ElementAt(i * 10 + 4).Booked)
+                @if (@sm.Seats.ElementAt(i * 10 + 3).Booked)
                 {
                     txt = "red";
                 }
@@ -57,7 +51,7 @@
                     txt = "green";
                 }
                 <td class=@txt>@(i * 10 + 4)</td>
-                @if (@sm.Seats.ElementAt(i * 10 + 5).Booked)
+                @if (@sm.Seats.ElementAt(i * 10 + 4).Booked)
                 {
                     txt = "red";
                 }
@@ -66,7 +60,7 @@
                     txt = "green";
                 }
                 <td class=@txt>@(i * 10 + 5)</td>
-                @if (@sm.Seats.ElementAt(i * 10 + 6).Booked)
+                @if (@sm.Seats.ElementAt(i * 10 + 5).Booked)
                 {
                     txt = "red";
                 }
@@ -75,7 +69,7 @@
                     txt = "green";
                 }
                 <td class=@txt>@(i * 10 + 6)</td>
-                @if (@sm.Seats.ElementAt(i * 10 + 7).Booked)
+                @if (@sm.Seats.ElementAt(i * 10 + 6).Booked)
                 {
                     txt = "red";
                 }
@@ -84,7 +78,7 @@
                     txt = "green";
                 }
                 <td class=@txt>@(i * 10 + 7)</td>
-                @if (@sm.Seats.ElementAt(i * 10 + 8).Booked)
+                @if (@sm.Seats.ElementAt(i * 10 + 7).Booked)
                 {
                     txt = "red";
                 }
@@ -93,7 +87,7 @@
                     txt = "green";
                 }
                 <td class=@txt>@(i * 10 + 8)</td>
-                @if (@sm.Seats.ElementAt(i * 10 + 9).Booked)
+                @if (@sm.Seats.ElementAt(i * 10 + 8).Booked)
                 {
                     txt = "red";
                 }
@@ -102,7 +96,7 @@
                     txt = "green";
                 }
                 <td class=@txt>@(i * 10 + 9)</td>
-                @if (@sm.Seats.ElementAt(i * 10 + 10).Booked)
+                @if (@sm.Seats.ElementAt(i * 10 + 9).Booked)
                 {
                     txt = "red";
                 }
