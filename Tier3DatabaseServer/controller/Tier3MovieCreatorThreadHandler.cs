@@ -125,7 +125,7 @@ namespace Tier3ServerDatabase.controller
                     case "GETSCHEDULE":
                         return new Package("GETSCHEDULE", database.GetStringSchedule());
                     case "GETALLSCHEDULE":
-                        return new Package("GETSCHEDULE", null, null, null, database.GetSchedule());
+                        return new Package("GETALLSCHEDULE", null, null, null, database.GetSchedule());
                     default:
                         return wrong;
                 }

@@ -12,16 +12,39 @@ import common.Init;
 import common.Movie;
 import common.Package;
 import tier1.view.Tier1MovieCreatorView;
-
+/**
+ * Controls data flow from the user to tier2
+ * @author Stefan
+ *
+ */
 public class Tier1MovieCreatorController {
 
+	/**
+	 * Socket used to connect to tier2 server
+	 */
 	private Socket serverSocket;
+	/**
+	 * The controller has access to the view through an interface
+	 */
 	private Tier1MovieCreatorView view;
+	/**
+	 * Stream for receiving information
+	 */
 	private DataInputStream inputStream;
+	/**
+	 * Stream for sending information
+	 */
 	private DataOutputStream outputStream;
+	/**
+	 * Serialization
+	 */
 	private Gson gson;
 
-	// constructor
+	/**
+	 * Controller has access to the view through dependency injection.
+	 * The connection to tier2 is established, opens input and output streams
+	 * @param view
+	 */
 	public Tier1MovieCreatorController(Tier1MovieCreatorView view) {
 		try {
 			this.view = view;
@@ -33,7 +56,7 @@ public class Tier1MovieCreatorController {
 			// Write into stream : outputStream.writeUTF(new String("text to send"));
 			outputStream = new DataOutputStream(serverSocket.getOutputStream());
 
-			Gson gson = new Gson();
+			gson = new Gson();
 
 		} catch (IOException e) {
 
@@ -41,6 +64,11 @@ public class Tier1MovieCreatorController {
 		}
 	}
 
+	/**
+	 * Depending on what input the view received from the user, the controller will handle the data from the user.
+	 * The controller can use the view in order to display information to the user or ask them for input
+	 * @param choice
+	 */
 	public void execute(int choice) {
 		// Choices done for testing
 		GsonBuilder gsonBuilder = new GsonBuilder();

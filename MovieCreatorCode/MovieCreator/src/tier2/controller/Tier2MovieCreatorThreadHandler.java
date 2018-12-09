@@ -14,16 +14,44 @@ import com.google.gson.GsonBuilder;
 import common.Init;
 import common.Package;
 import tier2.view.Tier2MovieCreatorView;
-
+/**
+ * Class that handles the communication and flow of data from the client
+ * @author Stefan
+ *
+ */
 public class Tier2MovieCreatorThreadHandler implements Runnable {
 
+	/**
+	 * The socket the client uses
+	 */
 	private Socket clientSocket;
+	/**
+	 * Stream for receiving data from the client
+	 */
 	private DataInputStream inputStream;
+	/**
+	 * Stream for sending data to the client
+	 */
 	private DataOutputStream outputStream;
+	/**
+	 * Socket used to connect to tier3
+	 */
 	private Socket serverSocket;
+	/**
+	 * Access to the view
+	 */
 	private Tier2MovieCreatorView view;
+	/**
+	 * IP address of the client
+	 */
 	private String ip;
 
+	/**
+	 * Input and output streams are established. Access to the client socket given through dependency injection
+	 * @param clientSocket
+	 * @param view
+	 * @throws IOException
+	 */
 	public Tier2MovieCreatorThreadHandler(Socket clientSocket, Tier2MovieCreatorView view) throws IOException {
 		super();
 		// Connecting to client socket
@@ -43,7 +71,7 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 
 	/**
 	 * This method waits for a request Package from the client then sends a reply
-	 * Package back to him
+	 * Package back to them
 	 * 
 	 * @see operation
 	 * @see Package
@@ -89,9 +117,9 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 	}
 
 	/**
-	 * Method that takes the request Package then uses the model to create a reply
-	 * Package depending on the request
-	 * 
+	 * Method that takes the request Package and depending on the header field creates a reply
+	 * Package.
+	 * In order to create the reply package socket communication to tier3 is established in this method
 	 * @param request
 	 *            The Package received from the client
 	 * @return a Package containing what the client requested
