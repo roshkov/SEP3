@@ -31,7 +31,7 @@ namespace SEP3RazorClient.Communication
             }
         }
 
-        public static async void UpdateProductAsync(int id1, int id2)
+        public static async void UpdateProductAsync(int id, int id2)
         {
             using (var httpClientHandler = new HttpClientHandler())
             {
@@ -41,7 +41,7 @@ namespace SEP3RazorClient.Communication
                     client.BaseAddress = new Uri("http://localhost:5001/api/");
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    HttpResponseMessage response = await client.PutAsJsonAsync($"api/schedule/{id1}", id2);
+                    HttpResponseMessage response = await client.PutAsJsonAsync($"api/schedule/{id}", id2);
                     response.EnsureSuccessStatusCode();
                 }
             }

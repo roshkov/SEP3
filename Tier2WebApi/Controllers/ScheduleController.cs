@@ -66,10 +66,11 @@ namespace Tier2WebApi.Controllers
             return Schedule;
         }
         // POST api/values
-        [Route("api/schedule/{id1}/{id2}")]
-        public void Post(int id1, int id2)
+        [HttpPut("{id")]
+        public void Put([FromQuery]int id, [FromBody]int id2)
         {
-            Schedule[id1].Seats.ElementAt(id2).Booked = true;
+            Schedule[id].Seats.ElementAt(id2).Booked = true;
+            
         }
     }
 }
