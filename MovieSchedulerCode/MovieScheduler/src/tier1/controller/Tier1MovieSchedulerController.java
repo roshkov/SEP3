@@ -1,11 +1,10 @@
 package tier1.controller;
 
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
-
-import javax.sound.sampled.AudioFormat.Encoding;
 
 import com.google.gson.Gson;
 
@@ -37,7 +36,8 @@ public class Tier1MovieSchedulerController {
 	/**
 	 * The stream from which the controller will output information to
 	 */
-	private DataOutputStream outputStream;
+	//private DataOutputStream outputStream;
+	private BufferedWriter outputStream;
 	/**
 	 * A Gson Object that it's used to translate java Objects into json Objects
 	 */
@@ -56,7 +56,8 @@ public class Tier1MovieSchedulerController {
 			// Read from stream 
 			inputStream = new DataInputStream(serverSocket.getInputStream());
 			// Write into stream 
-			outputStream = new DataOutputStream(serverSocket.getOutputStream());
+			//new BufferedReader(new InputStreamReader(inputStream, "UTF8"))
+			outputStream = new BufferedWriter(new OutputStreamWriter(serverSocket.getOutputStream(), "UTF8"));
 
 		} catch (IOException e) {
 
@@ -98,7 +99,10 @@ public class Tier1MovieSchedulerController {
 			String json = gson.toJson(GETROOMS);
 			try {
 				// sending 'GETROOMS' package to tier 2 in json format
-				outputStream.writeUTF(json);
+				//outputStream.write(json+"\n",0,(json+"\n").length());
+				outputStream.write(json);
+				outputStream.newLine();
+				outputStream.flush();
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
 				view.showRooms(request.getBody());
@@ -110,8 +114,12 @@ public class Tier1MovieSchedulerController {
 			Package GETRENTEDMOVIES = new Package("GETRENTEDMOVIES");
 			String json1 = gson.toJson(GETRENTEDMOVIES);
 			try {
+				outputStream.write(json1);
+				outputStream.newLine();
+				outputStream.flush();
 				// sending 'GETRENTEDMOVIES' package to tier 2 in json format
-				outputStream.writeUTF(json1);
+				//outputStream.write(json1+"\n",0,(json1+"\n").length());
+				//outputStream.write(json1+"\n");
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
 				view.showMovies(request.getBody());
@@ -128,7 +136,11 @@ public class Tier1MovieSchedulerController {
 			String json9 = gson.toJson(SENDSCHEDULE);
 			try {
 				// sending 'SENDSCHEDULE' package to tier 2 in json format
-				outputStream.writeUTF(json9);
+				outputStream.write(json9);
+				outputStream.newLine();
+				outputStream.flush();
+				//outputStream.write(json9+"\n",0,(json9+"\n").length());
+				//outputStream.write(json9+"\n");
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
 				view.showSchedule(request.getBody());
@@ -143,7 +155,11 @@ public class Tier1MovieSchedulerController {
 			String json10 = gson.toJson(CANCELSCHEDULE);
 			try {
 				// sending 'CANCELSCHEDULE' package to tier 2 in json format
-				outputStream.writeUTF(json10);
+				outputStream.write(json10);
+				outputStream.newLine();
+				outputStream.flush();
+				//outputStream.write(json10+"\n",0,(json10+"\n").length());
+				//outputStream.write(json10+"\n");
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
 				view.showSchedule(request.getBody());
@@ -161,7 +177,11 @@ public class Tier1MovieSchedulerController {
 			String json4 = gson.toJson(GETROOMS1);
 			try {
 				// sending 'GETROOMS' package to tier 2 in json format
-				outputStream.writeUTF(json4);
+				outputStream.write(json4);
+				outputStream.newLine();
+				outputStream.flush();
+				//outputStream.write(json4+"\n",0,(json4+"\n").length());
+				//outputStream.write(json4+"\n");
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
 				view.showRooms(request.getBody());
@@ -180,7 +200,11 @@ public class Tier1MovieSchedulerController {
 			view.showSchedule("Request sent.");
 			try {
 				// sending 'GETSCHEDULE' package to tier 2 in json format
-				outputStream.writeUTF(json6);
+				outputStream.write(json6);
+				outputStream.newLine();
+				outputStream.flush();
+				//outputStream.write(json6+"\n",0,(json6+"\n").length());
+				//outputStream.write(json6+"\n");
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
 				view.showSchedule(request.getBody());
@@ -194,7 +218,11 @@ public class Tier1MovieSchedulerController {
 			String json8 = gson.toJson(GETRENTEDMOVIES2);
 			try {
 				// sending 'GETRENTEDMOVIES' package to tier 2 in json format
-				outputStream.writeUTF(json8);
+				outputStream.write(json8);
+				outputStream.newLine();
+				outputStream.flush();
+				//outputStream.write(json8+"\n",0,(json8+"\n").length());
+				//outputStream.write(json8+"\n");
 				String answer = inputStream.readUTF();
 				Package request = gson.fromJson(answer, Package.class);
 				view.showMovies(request.getBody());
@@ -223,7 +251,11 @@ public class Tier1MovieSchedulerController {
 		view.showRooms("Id sent.");
 		try {
 			// sending 'REMOVEROOM' package to tier 2 in json format
-			outputStream.writeUTF(json5);
+			outputStream.write(json5);
+			outputStream.newLine();
+			outputStream.flush();
+			//outputStream.write(json5+"\n",0,(json5+"\n").length());
+			//outputStream.write(json5+"\n");
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
 			view.showRooms(request.getBody());
@@ -248,7 +280,11 @@ public class Tier1MovieSchedulerController {
 
 		try {
 			// sending 'ADDROOM' package to tier 2 in json format
-			outputStream.writeUTF(json3);
+			outputStream.write(json3);
+			outputStream.newLine();
+			outputStream.flush();
+			//outputStream.write(json3+"\n",0,(json3+"\n").length());
+			//outputStream.write(json3+"\n");
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
 			view.showRooms(request.getBody());
@@ -272,7 +308,11 @@ public class Tier1MovieSchedulerController {
 		String json7 = gson.toJson(GETROOM);
 		try {
 			// sending 'GETROOM' package to tier 2 in json format
-			outputStream.writeUTF(json7);
+			outputStream.write(json7);
+			outputStream.newLine();
+			outputStream.flush();
+			//outputStream.write(json7+"\n",0,(json7+"\n").length());
+			//outputStream.write(json7+"\n");
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
 			// check if the database provided you with the room
@@ -289,7 +329,11 @@ public class Tier1MovieSchedulerController {
 		String json8 = gson.toJson(GETMOVIE);
 		try {
 			// sending 'GETMOVIE' package to tier 2 in json format
-			outputStream.writeUTF(json8);
+			outputStream.write(json8);
+			outputStream.newLine();
+			outputStream.flush();
+			//outputStream.write(json8+"\n",0,(json8+"\n").length());
+			//outputStream.write(json8+"\n");
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
 			// check if the database provided you with the movie
@@ -306,7 +350,11 @@ public class Tier1MovieSchedulerController {
 		String json2 = gson.toJson(SCHEDULEDMOVIE);
 		try {
 			// sending 'SCHEDULEDMOVIE' package to tier 2 in json format
-			outputStream.writeUTF(json2);
+			outputStream.write(json2);
+			outputStream.newLine();
+			outputStream.flush();
+			//outputStream.write(json2+"\n",0,(json2+"\n").length());
+			//outputStream.write(json2+"\n");
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
 			view.showSchedule(request.getBody());
