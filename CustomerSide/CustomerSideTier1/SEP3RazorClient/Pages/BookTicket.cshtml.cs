@@ -15,7 +15,7 @@ namespace SEP3RazorClient.Pages
         List<ScheduledMovie> schedule;
         public void OnGet()
         {
-            Schedule = APIProvider.GetScheduleAsync("https://localhost:5001/api/schedule").Result;
+            Schedule = APIProvider.GetScheduleAsync("https://localhost:5003/api/schedule").Result;
         }
 
         public ActionResult OnPost()

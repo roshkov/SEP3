@@ -58,7 +58,7 @@ using SEP3RazorClient;
             WriteLiteral("\r\n\r\n\r\n<h1>Movie Schedule</h1>\r\n\r\n");
             EndContext();
             BeginContext(149, 262, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7703b382c03a4bcba41348baecffd50a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cd7354b89cb54bb39198a0cf2d44084c", async() => {
                 BeginContext(189, 2, true);
                 WriteLiteral("\r\n");
                 EndContext();

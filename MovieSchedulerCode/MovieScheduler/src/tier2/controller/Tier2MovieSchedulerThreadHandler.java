@@ -568,8 +568,7 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
 			// sending request to tier 3 server
 			json = gson.toJson(updateT3);
-			outputStream.writeUTF(json);
-
+			outputStream.writeUTF(json + "\n");
 			// getting reply from tier 3 server
 			// Makes sure the message is read in UTF8
 			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream(), "UTF8"));

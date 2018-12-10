@@ -23,13 +23,13 @@ namespace SEP3RazorClient.Pages
         {
 
             // get from api
-            schedule = APIProvider.GetScheduleAsync("https://localhost:5001/api/schedule").Result;
+            schedule = APIProvider.GetScheduleAsync("https://localhost:5003/api/schedule").Result;
         }
 
         public ActionResult OnPost()
         {
             APIProvider.UpdateProductAsync(Choice, (Int32.Parse(Request.Form["SeatChoice"]) - 1));
-            return Redirect("/BookSeats/" + Choice);
+            return Redirect("/BookTicket");
         }
     }
 }

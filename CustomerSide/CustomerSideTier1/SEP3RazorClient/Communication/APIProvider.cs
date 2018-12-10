@@ -11,13 +11,10 @@ namespace SEP3RazorClient.Communication
 
         public static async Task<List<ScheduledMovie>> GetScheduleAsync(string path)
         {
-            using (var httpClientHandler = new HttpClientHandler())
-            {
-                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
-                using (var client = new HttpClient(httpClientHandler))
+                using (var client = new HttpClient())
                 {
                     // Update port # in the following line.
-                    client.BaseAddress = new Uri("http://localhost:5001/api/");
+                    client.BaseAddress = new Uri("https://localhost:5003/api/");
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     List<ScheduledMovie> list = null;
@@ -28,23 +25,21 @@ namespace SEP3RazorClient.Communication
                     }
                     return list;
                 }
-            }
+            
         }
 
         public static async void UpdateProductAsync(int id, int id2)
         {
-            using (var httpClientHandler = new HttpClientHandler())
-            {
-                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
-                using (var client = new HttpClient(httpClientHandler))
+ 
+                using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("http://localhost:5001/api/");
+                    client.BaseAddress = new Uri("https://localhost:5003/api/");
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    HttpResponseMessage response = await client.PutAsJsonAsync($"api/schedule/{id}", id2);
+                    HttpResponseMessage response = await client.PutAsJsonAsync("https://localhost:5003/api/schedule/" + id, id2);
                     response.EnsureSuccessStatusCode();
                 }
-            }
+            
         }
 
 

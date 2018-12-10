@@ -65,12 +65,29 @@ namespace Tier2WebApi.Controllers
         {
             return Schedule;
         }
-        // POST api/values
-        [HttpPut("{id")]
+         // PUT api/schedule
+        [HttpPut("{id}")]
         public void Put([FromQuery]int id, [FromBody]int id2)
         {
+            System.Console.WriteLine(id);
+            System.Console.WriteLine(id2);
             Schedule[id].Seats.ElementAt(id2).Booked = true;
-            
+            System.Console.WriteLine(Schedule[id].Seats.ElementAt(id2).Booked);
+            Package UPDATECHEDULE = new Package("UPDATESCHEDULE", null, null, null, Schedule);
+
+            TcpClient client = new TcpClient("127.0.0.1",1100);
+             NetworkStream NetworkStream = client.GetStream();
+            string json = JsonConvert.SerializeObject(UPDATECHEDULE);
+             byte[] bytesToSend = Encoding.UTF8.GetBytes(json, 0, json.Length);
+            NetworkStream.Write(bytesToSend);
+            NetworkStream.Write(Encoding.UTF8.GetBytes(Environment.NewLine));
+            NetworkStream.Flush();
+            // Reading so it doesn't throw error and block the whole circuit
+            Byte[] bytes = new byte[client.ReceiveBufferSize];
+            NetworkStream.Read(bytes, 0, client.ReceiveBufferSize);
+            String reply = Encoding.UTF8.GetString(bytes, 2, client.ReceiveBufferSize-2);
+            client.GetStream().Close();
+            client.Close();
         }
     }
 }

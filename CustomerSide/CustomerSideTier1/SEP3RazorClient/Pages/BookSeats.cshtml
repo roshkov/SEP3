@@ -4,7 +4,7 @@
     ViewData["Title"] = "Seats";
     ScheduledMovie sm = Model.Schedule.ElementAt(Model.Choice);
     string txt = "";
-    int count = sm.NrOfFreeSeats();
+    int count = sm.Seats.Count;
 }
 
 <h2>Seats</h2>
