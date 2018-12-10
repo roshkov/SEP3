@@ -65,7 +65,9 @@ namespace Tier2WebApi.Controllers
         {
             return Schedule;
         }
-         // PUT api/schedule
+
+        // PUT api/schedule
+
         [HttpPut("{id}")]
         public void Put([FromQuery]int id, [FromBody]int id2)
         {
