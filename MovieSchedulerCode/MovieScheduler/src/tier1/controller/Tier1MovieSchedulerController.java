@@ -5,30 +5,57 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+import javax.sound.sampled.AudioFormat.Encoding;
+
 import com.google.gson.Gson;
 
+import common.Init;
 import common.Movie;
 import common.Package;
 import common.Room;
 import common.ScheduledMovie;
 import tier1.view.Tier1MovieSchedulerView;
 
+/**
+ * The class that controls the data flow to Tier 2 in the Movie Scheduler component
+ * @author Claudiu
+ *
+ */
 public class Tier1MovieSchedulerController {
+	/**
+	 * The socket to create the connection to the server on Tier 2
+	 */
 	private Socket serverSocket;
+	/**
+	 * The Interface for the view
+	 */
 	private Tier1MovieSchedulerView view;
+	/**
+	 * The stream from which the controller will receive information
+	 */
 	private DataInputStream inputStream;
+	/**
+	 * The stream from which the controller will output information to
+	 */
 	private DataOutputStream outputStream;
+	/**
+	 * A Gson Object that it's used to translate java Objects into json Objects
+	 */
 	private Gson gson;
 
-	// constructor
+
+	/**
+	 * A constructor to inject the view and set up the input and output streams
+	 * @param view
+	 */
 	public Tier1MovieSchedulerController(Tier1MovieSchedulerView view) {
 		try {
 			this.view = view;
-			serverSocket = new Socket("localhost", 1100);
+			serverSocket = new Socket(Init.getInstance().getIp(), Init.getInstance().getPort());
 
-			// Read from stream : String tmp = inputStream.readUTF();
+			// Read from stream 
 			inputStream = new DataInputStream(serverSocket.getInputStream());
-			// Write into stream : outputStream.writeUTF(new String("text to send"));
+			// Write into stream 
 			outputStream = new DataOutputStream(serverSocket.getOutputStream());
 
 		} catch (IOException e) {
@@ -37,6 +64,16 @@ public class Tier1MovieSchedulerController {
 		}
 	}
 
+	/**
+	 * Method to execute the choice made by the user in the view that hasd multiple cases
+	 * case 0: EXIT
+	 * case 1: Displaying the information needed to schedule a movie
+	 * case 2: Sending the schedule through tier 2 to the database
+	 * case 3: Canceling the scheduling
+	 * case 4: Getting an displaying the list of rooms available
+	 * case 5: Displaying the Schedule and the available rented movies
+	 * @param choice
+	 */
 	public void execute(int choice) {
 		// Choices done for testing
 		gson = new Gson();
@@ -174,6 +211,10 @@ public class Tier1MovieSchedulerController {
 
 	}
 
+	/**
+	 * A method to delete a room using the ID of the room
+	 * @param ID
+	 */
 	public void deleteRoom(String ID) {
 		Package REMOVEROOM = new Package("REMOVEROOM", ID);
 
@@ -185,17 +226,22 @@ public class Tier1MovieSchedulerController {
 			outputStream.writeUTF(json5);
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
-			view.showRooms( request.getBody());
+			view.showRooms(request.getBody());
 		} catch (IOException e) {
 
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Sending the details about a Room to have the size checked if it is the proper format on tier 2
+	 * @param size
+	 * @param description
+	 */
 	public void addRoom(String size, String description) {
 
-		Room room = new Room(Integer.parseInt(size), description);
-		Package ADDROOM = new Package("ADDROOM", room);
+		Room room = new Room(description);
+		Package ADDROOM = new Package("ADDROOM", size, room);
 
 		// send to tier 2 server
 		String json3 = gson.toJson(ADDROOM);
@@ -212,6 +258,13 @@ public class Tier1MovieSchedulerController {
 		}
 	}
 
+	/**
+	 * Sending the details of the scheduled movie to be checked on tier 2
+	 * @param roomId
+	 * @param movieId
+	 * @param day
+	 * @param time
+	 */
 	public void addScheduledMovie(String roomId, String movieId, String day, String time) {
 		Room room = null;
 		// After selecting id, send package with it to t2
@@ -222,8 +275,10 @@ public class Tier1MovieSchedulerController {
 			outputStream.writeUTF(json7);
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
-			view.showSchedule( request.getRoom().toString());
-			room = request.getRoom();
+			// check if the database provided you with the room
+			if (request.getRoom() != null) {
+				room = request.getRoom();
+			}
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -237,8 +292,10 @@ public class Tier1MovieSchedulerController {
 			outputStream.writeUTF(json8);
 			String answer = inputStream.readUTF();
 			Package request = gson.fromJson(answer, Package.class);
-			view.showSchedule( request.getMovie().toString());
-			movie = request.getMovie();
+			// check if the database provided you with the movie
+			if (request.getMovie() != null) {
+				movie = request.getMovie();
+			}
 		} catch (IOException e) {
 
 			e.printStackTrace();

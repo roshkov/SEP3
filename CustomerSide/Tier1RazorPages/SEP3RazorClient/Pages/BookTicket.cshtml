@@ -1,0 +1,20 @@
+﻿@page
+@model BookTicketModel
+@{
+    ViewData["Title"] = "BookTicket";
+    int count = Model.Schedule.Count;
+}
+
+
+
+<h1>Movie Schedule</h1>
+
+<form method = "post" asp-action="Pick">
+    @for (int i = 0; i < count; i++)
+    {
+        <input type="radio" name="Movie" value="@i" checked>@Model.Schedule.ElementAt(0).ToString()<br>
+    }
+    
+    
+     <button type="submit">Choose</button>
+</form>

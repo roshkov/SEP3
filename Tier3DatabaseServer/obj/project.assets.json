@@ -3885,6 +3885,7 @@
     "version": "1.0.0",
     "restore": {
 <<<<<<< HEAD
+<<<<<<< HEAD
       "projectUniqueName": "d:\\via\\sep3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
       "projectName": "Tier3DatabaseServer",
       "projectPath": "d:\\via\\sep3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
@@ -3892,11 +3893,18 @@
       "outputPath": "d:\\via\\sep3\\Tier3DatabaseServer\\obj\\",
 =======
       "projectUniqueName": "C:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
+=======
+      "projectUniqueName": "c:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
+>>>>>>> upstream/master
       "projectName": "Tier3DatabaseServer",
-      "projectPath": "C:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
+      "projectPath": "c:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
       "packagesPath": "C:\\Users\\Claudiu\\.nuget\\packages\\",
+<<<<<<< HEAD
       "outputPath": "C:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier3DatabaseServer\\obj\\",
 >>>>>>> d82fb1e69b0a59c114f442c72bca7fabfe1100d5
+=======
+      "outputPath": "c:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier3DatabaseServer\\obj\\",
+>>>>>>> upstream/master
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

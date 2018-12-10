@@ -11,8 +11,8 @@ import java.net.UnknownHostException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import common.Init;
 import common.Package;
-import tier2.view.Tier2MovieManagerView;
 import tier2.view.Tier2MovieManagerView;
 
 public class Tier2MovieManagerThreadHandler implements Runnable {
@@ -24,6 +24,14 @@ public class Tier2MovieManagerThreadHandler implements Runnable {
 	private Tier2MovieManagerView view;
 	private String ip;
 
+	
+	/**
+	 * Construct that assigns received argument to local field, 
+	 *  sets up input and output streams
+	 * @param clientSocket
+	 * @param view
+	 * @throws IOException
+	 */
 	public Tier2MovieManagerThreadHandler(Socket clientSocket, Tier2MovieManagerView view) throws IOException {
 		super();
 		// Connecting to client socket
@@ -41,6 +49,11 @@ public class Tier2MovieManagerThreadHandler implements Runnable {
 		view.show(ip + " connected");
 	}
 
+	
+	/**
+	 * Method that read the request from the clients stream,  
+	 * gets data from Tier 3 server and send a reply back to the client
+	 */
 	@Override
 	public void run() {
 		boolean continueCommuticating = true;
@@ -105,14 +118,14 @@ public class Tier2MovieManagerThreadHandler implements Runnable {
 
 		try {
 			view.show("Connecting to tier3 server");
-			serverSocket = new Socket("localhost", 1097);
+			serverSocket = new Socket(Init.getInstance().getIpDb(), Init.getInstance().getPortDb());
 		} catch (IOException e) {
 			view.show("Database offline, couldn't connect to server");
 			e.printStackTrace();
 		}
 
 		switch (request.getHeader()) {
-		case Package.GETMOVIES:
+		case Package.GETAVAILABLEMOVIES:
 			// Read from database server stream
 			inputStream = new DataInputStream(serverSocket.getInputStream());
 

@@ -26,8 +26,17 @@ import javax.swing.SwingConstants;
 
 import tier1.controller.Tier1MovieCreatorController;
 
+/**
+ * Used to create a GUI for the user to interact with our system
+ * @author Stefan
+ *
+ */
 public class Tier1MovieCreatorGUI implements Tier1MovieCreatorView, Runnable {
 
+	/**
+	 * The view has access to the controller in order to give it specific commands when the user interacts with the GUI
+	 * @see Tier1MovieCreatorController#execute(int)
+	 */
 	private Tier1MovieCreatorController controller;
 	
 	private JFrame frame;
@@ -89,14 +98,28 @@ public class Tier1MovieCreatorGUI implements Tier1MovieCreatorView, Runnable {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	/**
+	 * Tells the controller to ask the user for the data required to create a Movie
+	 * @see common.Movie
+	 * @see Tier1MovieCreatorController#execute(int)
+	 * @param evt
+	 */
 	private void createMovieActionPerformed(java.awt.event.ActionEvent evt) {
 		controller.execute(1);	
 	}
 	
+	/**
+	 * Tells the controller to display the movies to the user
+	 * @param evt
+	 */
 	private void listMoviesActionPerformed(java.awt.event.ActionEvent evt) {
 		controller.execute(2);	
 	}
 	
+	/**
+	 * Tells the controller to exit the program
+	 * @param evt
+	 */
 	private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		controller.execute(0);	
 	}

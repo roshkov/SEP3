@@ -39,14 +39,14 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 	private JTextField textField_6;
 
 	/**
-	 * Create the application.
+	 * Constructor to create the application.
 	 */
 	public Tier1MovieSchedulerGUI() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the frame for the Movie Scheduler GUI.
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -258,17 +258,26 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 
 
 
+	/* (non-Javadoc)
+	 * @see tier1.view.Tier1MovieSchedulerView#showRooms(java.lang.String)
+	 */
 	@Override
 	public void showRooms(String text) {
 		textArea.setText(text);
 		textArea_2.setText(text);
 	}
 	
+	/* (non-Javadoc)
+	 * @see tier1.view.Tier1MovieSchedulerView#showSchedule(java.lang.String)
+	 */
 	@Override
 	public void showSchedule(String text) {
 		textArea_4.setText(text);
 	}
 
+	/* (non-Javadoc)
+	 * @see tier1.view.Tier1MovieSchedulerView#startView(tier1.controller.Tier1MovieSchedulerController)
+	 */
 	@Override
 	public void startView(Tier1MovieSchedulerController controller) {		
 		this.controller = controller;
@@ -285,11 +294,17 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 		controller.execute(1);
 	}
 
+	/* (non-Javadoc)
+	 * @see tier1.view.Tier1MovieSchedulerView#showMovies(java.lang.String)
+	 */
 	@Override
 	public void showMovies(String text) {
 		textArea_1.setText(text);
 	}
 
+	/* (non-Javadoc)
+	 * @see tier1.view.Tier1MovieSchedulerView#showTime(java.lang.String)
+	 */
 	@Override
 	public void showTime(String text) {
 		textArea_3.setText(text);

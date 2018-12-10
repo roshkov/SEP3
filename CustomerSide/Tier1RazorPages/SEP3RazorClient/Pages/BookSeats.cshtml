@@ -1,0 +1,126 @@
+﻿@page  "{Choice}"
+@model SEP3RazorClient.Pages.SeatsModel
+@{
+    ViewData["Title"] = "Seats";
+    ScheduledMovie sm = Model.Schedule.ElementAt(Model.Choice);
+    string txt = "";
+    int count = sm.Seats.Count;
+}
+
+<h2>Seats</h2>
+<div>
+    <h6 align="center">SCREEN</h6>
+    <div>
+        <table align="center">
+            @for (int i = 0; i < count / 10; i++)
+            {
+            <tr>
+                @if (@sm.Seats.ElementAt(i * 10 + 0).Booked)
+                {
+                    txt = "red";
+                }
+                else
+                {
+                    txt = "green";
+                }
+                <td class=@txt>@(i * 10 + 1)</td>
+                @if (@sm.Seats.ElementAt(i * 10 + 1).Booked)
+                {
+                    txt = "red";
+                }
+                else
+                {
+                    txt = "green";
+                }
+                <td class=@txt>@(i * 10 + 2)</td>
+                @if (@sm.Seats.ElementAt(i * 10 + 2).Booked)
+                {
+                    txt = "red";
+                }
+                else
+                {
+                    txt = "green";
+                }
+                <td class=@txt>@(i * 10 + 3)</td>
+                @if (@sm.Seats.ElementAt(i * 10 + 3).Booked)
+                {
+                    txt = "red";
+                }
+                else
+                {
+                    txt = "green";
+                }
+                <td class=@txt>@(i * 10 + 4)</td>
+                @if (@sm.Seats.ElementAt(i * 10 + 4).Booked)
+                {
+                    txt = "red";
+                }
+                else
+                {
+                    txt = "green";
+                }
+                <td class=@txt>@(i * 10 + 5)</td>
+                @if (@sm.Seats.ElementAt(i * 10 + 5).Booked)
+                {
+                    txt = "red";
+                }
+                else
+                {
+                    txt = "green";
+                }
+                <td class=@txt>@(i * 10 + 6)</td>
+                @if (@sm.Seats.ElementAt(i * 10 + 6).Booked)
+                {
+                    txt = "red";
+                }
+                else
+                {
+                    txt = "green";
+                }
+                <td class=@txt>@(i * 10 + 7)</td>
+                @if (@sm.Seats.ElementAt(i * 10 + 7).Booked)
+                {
+                    txt = "red";
+                }
+                else
+                {
+                    txt = "green";
+                }
+                <td class=@txt>@(i * 10 + 8)</td>
+                @if (@sm.Seats.ElementAt(i * 10 + 8).Booked)
+                {
+                    txt = "red";
+                }
+                else
+                {
+                    txt = "green";
+                }
+                <td class=@txt>@(i * 10 + 9)</td>
+                @if (@sm.Seats.ElementAt(i * 10 + 9).Booked)
+                {
+                    txt = "red";
+                }
+                else
+                {
+                    txt = "green";
+                }
+                <td class=@txt>@(i * 10 + 10)</td>
+            </tr>
+            }
+        </table>
+    </div>
+    <div>
+        <form method = "post" asp-action="PickSeat">
+            Use the slider or write directly the desired seat between 1 and @(count-1)
+            <br>
+            @Html.Hidden("Choice")
+            <label for="Seat Number">Seat Number</label>
+            <input type = "number" min="1" max=@(count-1) name ="SeatChoice">
+            <button type="submit">BOOK</button>
+        </form>
+    </div>
+    <div>
+        <h4 align="center"><a asp-page="/Home">BACK TO HOME PAGE</a></h4>
+    </div>
+</div>
+
