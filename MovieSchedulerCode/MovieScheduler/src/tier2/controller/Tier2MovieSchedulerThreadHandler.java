@@ -129,9 +129,10 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 		try {
 			while (continueCommuticating) {
 
-				BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF8"));
+				BufferedReader in = new BufferedReader(new InputStreamReader(inputStream, "UTF8"));
 				String line = in.readLine();
-//				String line = inputStream.readUTF();
+				//in.close();
+				//String line = inputStream.readUTF();
 				view.show(ip + "> " + line);
 
 				// convert from JSon
