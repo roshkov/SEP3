@@ -65,8 +65,8 @@ namespace Tier2WebApi.Controllers
         {
             return Schedule;
         }
-        // POST api/values
-        [HttpPut("{id")]
+        // PUT api/schedule
+        [HttpPut("{id}")]
         public void Put([FromQuery]int id, [FromBody]int id2)
         {
             Schedule[id].Seats.ElementAt(id2).Booked = true;
