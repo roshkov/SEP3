@@ -40,3 +40,17 @@ E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.
 E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.RazorTargetAssemblyInfo.cache
 E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.dll
 E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.pdb
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.csprojAssemblyReference.cache
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.csproj.CoreCompileInputs.cache
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.RazorAssemblyInfo.cache
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.RazorAssemblyInfo.cs
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.AssemblyInfoInputs.cache
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.AssemblyInfo.cs
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.dll
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.pdb
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier2WebApi\bin\Debug\netcoreapp2.1\Tier2WebApi.deps.json
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier2WebApi\bin\Debug\netcoreapp2.1\Tier2WebApi.runtimeconfig.json
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier2WebApi\bin\Debug\netcoreapp2.1\Tier2WebApi.runtimeconfig.dev.json
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier2WebApi\bin\Debug\netcoreapp2.1\Tier2WebApi.dll
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier2WebApi\bin\Debug\netcoreapp2.1\Tier2WebApi.pdb
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.RazorTargetAssemblyInfo.cache

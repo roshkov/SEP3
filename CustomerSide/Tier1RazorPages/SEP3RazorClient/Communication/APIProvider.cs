@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SEP3RazorClient.Communication
 {
-    public static class APIProvider
+    public class APIProvider
     {
 
-        public static async Task<List<ScheduledMovie>> GetScheduleAsync(string path)
+        public async Task<List<ScheduledMovie>> GetScheduleAsync(string path)
         {
                 using (var client = new HttpClient())
                 {
@@ -28,7 +28,7 @@ namespace SEP3RazorClient.Communication
             
         }
 
-        public static async void UpdateProductAsync(int id, int id2)
+        public async void UpdateProductAsync(int id, int id2)
         {
  
                 using (var client = new HttpClient())

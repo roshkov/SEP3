@@ -11,25 +11,30 @@ namespace SEP3RazorClient.Pages
     public class SeatsModel : PageModel
     {
         private List<ScheduledMovie> schedule;
+
         [BindProperty(SupportsGet = true)]
         public int Choice { get; set; }
-
-        [BindProperty]
-        public int SeatChoice { get; set; }
         public List<ScheduledMovie> Schedule { get => schedule; set => schedule = value; }
+        public APIProvider Provider { get => provider; set => provider = value; }
 
+        APIProvider provider;
+
+        public SeatsModel(APIProvider provider)
+        {
+            Provider = provider;
+        }
+
+        // get the schedule from the api using the APIProvider
         [HttpGet]
         public void OnGet()
         {
-
-            // get from api
-            schedule = APIProvider.GetScheduleAsync("https://localhost:5003/api/schedule").Result;
+            schedule =  Provider.GetScheduleAsync("https://localhost:5003/api/schedule").Result;
         }
-
+        // book a seat inside the movie
         public ActionResult OnPost()
         {
-            APIProvider.UpdateProductAsync(Choice, (Int32.Parse(Request.Form["SeatChoice"]) - 1));
-            return Redirect("/BookTicket");
+            Provider.UpdateProductAsync(Choice, (Int32.Parse(Request.Form["SeatChoice"]) - 1));
+            return Redirect("/BookSeats/" + Choice);
         }
     }
 }

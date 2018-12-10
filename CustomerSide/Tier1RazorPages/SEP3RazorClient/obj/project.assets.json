@@ -12537,11 +12537,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\CustomerSide\\CustomerSideTier1\\SEP3RazorClient\\SEP3RazorClient.csproj",
+      "projectUniqueName": "C:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\CustomerSide\\Tier1RazorPages\\SEP3RazorClient\\SEP3RazorClient.csproj",
       "projectName": "SEP3RazorClient",
-      "projectPath": "C:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\CustomerSide\\CustomerSideTier1\\SEP3RazorClient\\SEP3RazorClient.csproj",
+      "projectPath": "C:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\CustomerSide\\Tier1RazorPages\\SEP3RazorClient\\SEP3RazorClient.csproj",
       "packagesPath": "C:\\Users\\Claudiu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\CustomerSide\\CustomerSideTier1\\SEP3RazorClient\\obj\\",
+      "outputPath": "C:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\CustomerSide\\Tier1RazorPages\\SEP3RazorClient\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
