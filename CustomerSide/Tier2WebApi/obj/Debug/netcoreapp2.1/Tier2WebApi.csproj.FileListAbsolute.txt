@@ -26,3 +26,17 @@ C:\Users\Claudiu\Desktop\Programming\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Ti
 C:\Users\Claudiu\Desktop\Programming\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.RazorTargetAssemblyInfo.cache
 C:\Users\Claudiu\Desktop\Programming\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.dll
 C:\Users\Claudiu\Desktop\Programming\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.pdb
+E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\bin\Debug\netcoreapp2.1\Tier2WebApi.deps.json
+E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\bin\Debug\netcoreapp2.1\Tier2WebApi.runtimeconfig.json
+E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\bin\Debug\netcoreapp2.1\Tier2WebApi.runtimeconfig.dev.json
+E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\bin\Debug\netcoreapp2.1\Tier2WebApi.dll
+E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\bin\Debug\netcoreapp2.1\Tier2WebApi.pdb
+E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.csprojAssemblyReference.cache
+E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.csproj.CoreCompileInputs.cache
+E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.RazorAssemblyInfo.cache
+E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.RazorAssemblyInfo.cs
+E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.AssemblyInfoInputs.cache
+E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.AssemblyInfo.cs
+E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.RazorTargetAssemblyInfo.cache
+E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.dll
+E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier2WebApi\obj\Debug\netcoreapp2.1\Tier2WebApi.pdb

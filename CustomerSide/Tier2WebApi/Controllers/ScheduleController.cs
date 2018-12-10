@@ -67,7 +67,7 @@ namespace Tier2WebApi.Controllers
         }
 
         // PUT api/schedule
-
+        //[HttpPut("{id}")] ?id=bla&id2=bla2
         [HttpPut("{id}")]
         public void Put([FromQuery]int id, [FromBody]int id2)
         {

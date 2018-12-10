@@ -11548,23 +11548,39 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD:CustomerSide/Tier2WebApi/obj/project.assets.json
     "C:\\Users\\Claudiu\\.nuget\\packages\\": {},
+=======
+    "C:\\Users\\andre\\.nuget\\packages\\": {},
+>>>>>>> 240f8005cf1d3c1a6f8a409add9da997a3abe847:Tier2WebApi/obj/project.assets.json
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD:CustomerSide/Tier2WebApi/obj/project.assets.json
       "projectUniqueName": "c:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier2WebApi\\Tier2WebApi.csproj",
       "projectName": "Tier2WebApi",
       "projectPath": "c:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier2WebApi\\Tier2WebApi.csproj",
       "packagesPath": "C:\\Users\\Claudiu\\.nuget\\packages\\",
       "outputPath": "c:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\Tier2WebApi\\obj\\",
+=======
+      "projectUniqueName": "E:\\Facultate\\SeM 3\\SeP\\Sep\\SEP3\\Tier2WebApi\\Tier2WebApi.csproj",
+      "projectName": "Tier2WebApi",
+      "projectPath": "E:\\Facultate\\SeM 3\\SeP\\Sep\\SEP3\\Tier2WebApi\\Tier2WebApi.csproj",
+      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+      "outputPath": "E:\\Facultate\\SeM 3\\SeP\\Sep\\SEP3\\Tier2WebApi\\obj\\",
+>>>>>>> 240f8005cf1d3c1a6f8a409add9da997a3abe847:Tier2WebApi/obj/project.assets.json
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
+<<<<<<< HEAD:CustomerSide/Tier2WebApi/obj/project.assets.json
         "C:\\Users\\Claudiu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> 240f8005cf1d3c1a6f8a409add9da997a3abe847:Tier2WebApi/obj/project.assets.json
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"

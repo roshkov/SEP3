@@ -33,6 +33,7 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 	 * Output stream to the client
 	 */
 	private DataOutputStream outputStream;
+	//private BufferedWriter outputStream;
 	/**
 	 * Server socket used to initialize the stream to the database when needed
 	 */
@@ -84,7 +85,8 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
 		// Write into client stream
 		outputStream = new DataOutputStream(clientSocket.getOutputStream());
-
+		//outputStream = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF8"));
+		
 		this.view = view;
 
 		this.ip = clientSocket.getInetAddress().getHostAddress();
@@ -129,17 +131,22 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 		try {
 			while (continueCommuticating) {
 
-				BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF8"));
-				String line = in.readLine();
-//				String line = inputStream.readUTF();
-				view.show(ip + "> " + line);
-
+				BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+				//System.out.println("cacat");
+				//System.out.println(in.readLine());
+				//String line = in.readLine();
+				//in.close();
+				//String line = inputStream.readUTF();
+				
+				//The code line below is the problem, also we tried converting what the stream read to a string
+				//view.show(ip + "> " + in.readLine());
+				
 				// convert from JSon
 				// getting request from client
 				GsonBuilder gsonBuilder = new GsonBuilder();
 				gsonBuilder.serializeNulls();
 				Gson gson = gsonBuilder.create();
-				Package request = gson.fromJson(line, Package.class);
+				Package request = gson.fromJson(in.readLine(), Package.class);
 				view.show("package: " + request.getHeader());
 
 				// creating reply by communicating with tier 3 server
@@ -150,6 +157,9 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 				view.show("Server to " + ip + "> " + reply);
 				String json = gson.toJson(reply);
 				outputStream.writeUTF(json);
+				//outputStream.write(json);
+				//outputStream.newLine();
+				//outputStream.flush();
 				if (reply.getHeader().equalsIgnoreCase("EXIT")) {
 					continueCommuticating = false;
 				}
