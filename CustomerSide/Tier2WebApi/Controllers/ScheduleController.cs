@@ -33,7 +33,7 @@ namespace Tier2WebApi.Controllers
         // PUT api/schedule
         //[HttpPut("{id}")] ?id=bla&id2=bla2
         [HttpPut("{id}")]
-        public void Put([FromQuery]int id, [FromBody]int id2)
+        public void Put(int id, [FromBody]int id2)
         {   
             //Book the seat chosen by the client
             Schedule[id].Seats.ElementAt(id2).Booked = true;

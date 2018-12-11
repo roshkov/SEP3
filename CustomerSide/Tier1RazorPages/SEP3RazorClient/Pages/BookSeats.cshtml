@@ -5,9 +5,12 @@
     ScheduledMovie sm = Model.Schedule.ElementAt(Model.Choice);
     string txt = "";
     int count = sm.Seats.Count;
+    string title =sm.Movie.Title;
 }
 
 <h2>Seats</h2>
+<h3 align = "center">@title</h3>
+<br>
 <div>
     <h6 align="center">SCREEN</h6>
     <div>
@@ -111,16 +114,17 @@
     </div>
     <div>
         <form method = "post" asp-action="PickSeat">
-            Use the slider or write directly the desired seat between 1 and @(count-1)
-            <br>
             @Html.Hidden("Choice")
+            @if(@Model.DisapprovedBooking == true)
+            {
+                <h3>You tried to book an already booked seat</h3>
+            }
             <label for="Seat Number">Seat Number</label>
-            <input type = "number" min="1" max=@(count-1) name ="SeatChoice">
+            <input type = "number" min="1" max=@(count) name ="SeatChoice" required>
             <button type="submit">BOOK</button>
+            <br>
+            Use the slider or write directly the desired seat between 1 and @(count)
         </form>
-    </div>
-    <div>
-        <h4 align="center"><a asp-page="/Home">BACK TO HOME PAGE</a></h4>
     </div>
 </div>
 

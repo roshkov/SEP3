@@ -36,7 +36,7 @@ namespace SEP3RazorClient
 
             services.AddMvc().AddRazorPagesOptions(options =>
             {
-                options.Conventions.AddPageRoute("/BookSeats", "");
+                options.Conventions.AddPageRoute("/Home", "");
             });
 
 

@@ -168,3 +168,4 @@ C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier1RazorPages\SEP3Razor
 C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier1RazorPages\SEP3RazorClient\obj\Debug\netcoreapp2.1\SEP3RazorClient.dll
 C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier1RazorPages\SEP3RazorClient\obj\Debug\netcoreapp2.1\SEP3RazorClient.pdb
 C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier1RazorPages\SEP3RazorClient\obj\Debug\netcoreapp2.1\SEP3RazorClient.csproj.CopyComplete
+C:\Users\Claudiu\Desktop\Programming\SEP3\CustomerSide\Tier1RazorPages\SEP3RazorClient\obj\Debug\netcoreapp2.1\Razor\Pages\TicketBooked.g.cshtml.cs

@@ -10,10 +10,12 @@ namespace SEP3RazorClient.Pages
 {
     public class SeatsModel : PageModel
     {
+        public Boolean disapprovedBooking = false;
         private List<ScheduledMovie> schedule;
 
         [BindProperty(SupportsGet = true)]
         public int Choice { get; set; }
+        public Boolean DisapprovedBooking { get; set; }
         public List<ScheduledMovie> Schedule { get => schedule; set => schedule = value; }
         public APIProvider Provider { get => provider; set => provider = value; }
 
@@ -28,13 +30,29 @@ namespace SEP3RazorClient.Pages
         [HttpGet]
         public void OnGet()
         {
-            schedule =  Provider.GetScheduleAsync("https://localhost:5003/api/schedule").Result;
+            Schedule = Provider.GetScheduleAsync("https://localhost:5003/api/schedule").Result; 
+            DisapprovedBooking = Provider.DisapprovedBooking;
         }
         // book a seat inside the movie
         public ActionResult OnPost()
-        {
-            Provider.UpdateProductAsync(Choice, (Int32.Parse(Request.Form["SeatChoice"]) - 1));
-            return Redirect("/BookSeats/" + Choice);
+        {   Schedule = Provider.GetScheduleAsync("https://localhost:5003/api/schedule").Result;
+            int chosenSeat = Int32.Parse(Request.Form["SeatChoice"]) -1;
+             if (Provider.UpdateProductAsync(Choice, (chosenSeat)).Result)
+             {  
+                if(!Schedule.ElementAt(Choice).Seats.ElementAt(chosenSeat).Booked)
+                {
+                Provider.DisapprovedBooking = false;
+                return Redirect("/TicketBooked/");
+                }
+                else
+                {
+                Provider.DisapprovedBooking = true;
+                return Redirect("/BookSeats/" + Choice);
+                }
+             }
+            else
+                return Redirect("/Error");
+               
         }
     }
 }

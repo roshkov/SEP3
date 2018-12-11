@@ -20,6 +20,7 @@ namespace SEP3RazorClient.Pages
         {
             //This assures it doesn't need to ask again for information each time a method is called
             Provider = provider;
+            Provider.DisapprovedBooking = false;
         }
         // get the schedule from the api using the APIProvider
         public void OnGet()

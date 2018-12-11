@@ -2,12 +2,14 @@
 @model BookTicketModel
 @{
     ViewData["Title"] = "BookTicket";
-    int count = Model.Schedule.Count;
 }
 
 
 
 <h1>Movie Schedule</h1>
+@if(@Model.Schedule != null)
+{
+int count = Model.Schedule.Count;
 
 <form method = "post" asp-action="Pick">
     <h1>Monday</h1>
@@ -76,3 +78,8 @@
     
      <button type="submit">Choose</button>
 </form>
+}
+else
+{
+    <h2>No schedule is available yet</h2>
+}
