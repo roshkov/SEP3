@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,8 +14,6 @@ import com.google.gson.GsonBuilder;
 import common.Init;
 import common.Package;
 import common.Schedule;
-import common.ScheduledMovie;
-import tier2.model.SortHelper;
 import tier2.model.Validation;
 import tier2.view.Tier2MovieSchedulerView;
 
@@ -28,10 +25,7 @@ import tier2.view.Tier2MovieSchedulerView;
  */
 public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
-	/**
-	 * Input stream from the client
-	 */
-	private DataInputStream inputStream;
+
 	/**
 	 * Output stream to the client
 	 */
@@ -58,8 +52,6 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 	
 	
 	private Validation validation = Validation.getInstance();
-	
-	private SortHelper sorter = SortHelper.getInstance();
 
 	/**
 	 * Establish the streams and poppulate the array list with the default values in
@@ -76,9 +68,9 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
 		schedule = new Schedule();
 
-		// Read from client stream
+	/*	// Read from client stream
 		inputStream = new DataInputStream(clientSocket.getInputStream());
-
+*/
 		// Write into client stream
 		outputStream = new DataOutputStream(clientSocket.getOutputStream());
 		//outputStream = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF8"));
