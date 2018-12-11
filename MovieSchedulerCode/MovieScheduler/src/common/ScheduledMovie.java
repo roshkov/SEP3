@@ -1,5 +1,7 @@
 package common;
 
+import java.util.Arrays;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -95,4 +97,11 @@ public class ScheduledMovie {
 	public void setRoom(Room room) {
 		this.room = room;
 	}
+
+	@Override
+	public String toString() {
+		return "ScheduledMovie [time=" + time + ", day=" + day + "]";
+	}
+	
+	
 }

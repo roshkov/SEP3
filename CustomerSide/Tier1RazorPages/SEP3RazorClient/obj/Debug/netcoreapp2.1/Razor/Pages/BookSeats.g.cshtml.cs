@@ -430,7 +430,7 @@ WriteAttributeValue("", 3194, txt, 3194, 4, false);
             WriteLiteral("        </table>\r\n    </div>\r\n    <div>\r\n        ");
             EndContext();
             BeginContext(3303, 389, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d6484fdd976f4cd4a687c57f32485704", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cfd411f2f2584da58d1909926aaed7da", async() => {
                 BeginContext(3347, 78, true);
                 WriteLiteral("\r\n            Use the slider or write directly the desired seat between 1 and ");
                 EndContext();
@@ -486,7 +486,7 @@ WriteAttributeValue("", 3596, count-1, 3596, 10, false);
             WriteLiteral("\r\n    </div>\r\n    <div>\r\n        <h4 align=\"center\">");
             EndContext();
             BeginContext(3744, 41, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f38795ba087744dcad37176f58c8355d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eaf06d1245404a6f95dbb33598268dad", async() => {
                 BeginContext(3764, 17, true);
                 WriteLiteral("BACK TO HOME PAGE");
                 EndContext();

@@ -13,13 +13,16 @@ import javax.swing.JTextField;
 
 import tier1.controller.Tier1MovieSchedulerController;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import java.awt.Color;
 import javax.swing.border.MatteBorder;
+import javax.swing.JList;
 
 public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 
@@ -32,16 +35,21 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 	private JTextArea textArea_4;
 	private Tier1MovieSchedulerController controller;
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_4;
 	private JTextField textField_2;
 	private JTextField textField_5;
 	private JTextField textField_6;
+	private DefaultListModel<String> days;
+	private DefaultListModel<String> times;
+	private JList<String> list;
+	private JList<String> list_1;
 
 	/**
 	 * Constructor to create the application.
 	 */
 	public Tier1MovieSchedulerGUI() {
+		addDays();
+
+		addTimes();
 		initialize();
 	}
 
@@ -156,7 +164,7 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 		btnNewButton_2.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.addScheduledMovie(textField.getText(), textField_3.getText(), textField_1.getText(), textField_4.getText());
+				controller.addScheduledMovie(textField.getText(), textField_3.getText(), list.getSelectedValue(), list_1.getSelectedValue());
 			}
 		});
 		btnNewButton_2.setBounds(677, 420, 89, 23);
@@ -182,16 +190,6 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 		textField.setBounds(290, 233, 96, 20);
 		panel_1.add(textField);
 		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(571, 233, 96, 20);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(670, 233, 96, 20);
-		panel_1.add(textField_4);
-		textField_4.setColumns(10);
 		
 		JButton btnSend = new JButton("Send");
 		btnSend.setBackground(Color.LIGHT_GRAY);
@@ -254,6 +252,20 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 		
 		textArea_4 = new JTextArea();
 		scrollPane_3.setViewportView(textArea_4);
+		
+		JScrollPane scrollPane_4 = new JScrollPane();
+		scrollPane_4.setBounds(571, 234, 89, 23);
+		panel_1.add(scrollPane_4);
+		
+		list = new JList<String>(days);
+		scrollPane_4.setViewportView(list);
+		
+		JScrollPane scrollPane_5 = new JScrollPane();
+		scrollPane_5.setBounds(673, 234, 97, 23);
+		panel_1.add(scrollPane_5);
+		
+		list_1 = new JList<String>(times);
+		scrollPane_5.setViewportView(list_1);
 	}
 
 
@@ -308,5 +320,30 @@ public class Tier1MovieSchedulerGUI implements Tier1MovieSchedulerView{
 	@Override
 	public void showTime(String text) {
 		textArea_3.setText(text);
+	}
+	
+	/**
+	 * Method to populate the Days arraylist with days of the week
+	 */
+	public void addDays() {
+		days = new DefaultListModel<>();
+		days.addElement("Monday");
+		days.addElement("Tuesday");
+		days.addElement("Wednesday");
+		days.addElement("Thursday");
+		days.addElement("Friday");
+		days.addElement("Saturday");
+		days.addElement("Sunday");
+	}
+
+	/**
+	 * Method to populate the Times arraylist with times available for scheduling
+	 */
+	public void addTimes() {
+		times = new DefaultListModel<>();
+		times.addElement("10:00");
+		times.addElement("13:00");
+		times.addElement("16:00");
+		times.addElement("20:00");
 	}
 }
