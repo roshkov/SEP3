@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,6 +14,7 @@ import com.google.gson.GsonBuilder;
 import common.Init;
 import common.Package;
 import common.Schedule;
+import tier2.model.Validation;
 import tier2.view.Tier2MovieSchedulerView;
 
 /**
@@ -25,14 +25,12 @@ import tier2.view.Tier2MovieSchedulerView;
  */
 public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
-	/**
-	 * Input stream from the client
-	 */
-	private DataInputStream inputStream;
+
 	/**
 	 * Output stream to the client
 	 */
 	private DataOutputStream outputStream;
+	//private BufferedWriter outputStream;
 	/**
 	 * Server socket used to initialize the stream to the database when needed
 	 */
@@ -49,14 +47,11 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 	 * The schedule class that holds the list of scheduled movies
 	 */
 	private Schedule schedule;
-	/**
-	 * A list of defaults Day values
-	 */
-	private ArrayList<String> days;
-	/**
-	 * A list of defaults Time values
-	 */
-	private ArrayList<String> times;
+	
+	private Socket clientSocket;
+	
+	
+	private Validation validation = Validation.getInstance();
 
 	/**
 	 * Establish the streams and poppulate the array list with the default values in
@@ -68,56 +63,25 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 	 */
 	public Tier2MovieSchedulerThreadHandler(Socket clientSocket, Tier2MovieSchedulerView view) throws IOException {
 		super();
-
-		addDays();
-
-		addTimes();
+		
+		this.clientSocket = clientSocket;
 
 		schedule = new Schedule();
 
-		// Read from client stream
+	/*	// Read from client stream
 		inputStream = new DataInputStream(clientSocket.getInputStream());
-
+*/
 		// Write into client stream
 		outputStream = new DataOutputStream(clientSocket.getOutputStream());
-
+		//outputStream = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF8"));
+		
 		this.view = view;
 
 		this.ip = clientSocket.getInetAddress().getHostAddress();
 		view.show(ip + " connected");
 	}
 
-	/**
-	 * Method to populate the Days arraylist with days of the week
-	 */
-	public void addDays() {
-		days = new ArrayList<String>();
-		days.add("Monday");
-		days.add("Tuesday");
-		days.add("Wednesday");
-		days.add("Thursday");
-		days.add("Friday");
-		days.add("Saturday");
-		days.add("Sunday");
-		days.add("monday");
-		days.add("tuesday");
-		days.add("wednesday");
-		days.add("thursday");
-		days.add("friday");
-		days.add("saturday");
-		days.add("sunday");
-	}
-
-	/**
-	 * Method to populate the Times arraylist with times available for scheduling
-	 */
-	public void addTimes() {
-		times = new ArrayList<String>();
-		times.add("10:00");
-		times.add("13:00");
-		times.add("16:00");
-		times.add("20:00");
-	}
+	
 
 	@Override
 	public void run() {
@@ -125,14 +89,21 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 		try {
 			while (continueCommuticating) {
 
-				String line = inputStream.readUTF();
-				view.show(ip + "> " + line);
-
+				BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+				//System.out.println("test");
+				//System.out.println(in.readLine());
+				//String line = in.readLine();
+				//in.close();
+				//String line = inputStream.readUTF();
+				
+				//The code line below is the problem, also we tried converting what the stream read to a string
+				
 				// convert from JSon
 				// getting request from client
-				Gson gson = new Gson();
-				System.out.println(line);
-				Package request = gson.fromJson(line, Package.class);
+				GsonBuilder gsonBuilder = new GsonBuilder();
+				gsonBuilder.serializeNulls();
+				Gson gson = gsonBuilder.create();
+				Package request = gson.fromJson(in.readLine(), Package.class);
 				view.show("package: " + request.getHeader());
 
 				// creating reply by communicating with tier 3 server
@@ -140,9 +111,12 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
 				// convert to JSon
 				// sending reply to client
+				view.show("Server to " + ip + "> " + reply);
 				String json = gson.toJson(reply);
 				outputStream.writeUTF(json);
-				view.show("Server to " + ip + "> " + reply);
+				//outputStream.write(json);
+				//outputStream.newLine();
+				//outputStream.flush();
 				if (reply.getHeader().equalsIgnoreCase("EXIT")) {
 					continueCommuticating = false;
 				}
@@ -340,18 +314,14 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 		case Package.SCHEDULEDMOVIE:
 			// if the room/movie is null it means that the user inputed something else
 			// besides a number or a number not present in the list
-			if (request.getScheduledMovie().getRoom() == null)
+			if (validation.CheckIfRoomIsNull(request.getScheduledMovie().getRoom()))
 				return new Package("401",
 						"Wrong ID/Wrong format Inputted(Must be a number present in the list written with digits)\n ");
-			if (request.getScheduledMovie().getMovie() == null)
+			if (validation.CheckIfMovieIsNull(request.getScheduledMovie().getMovie()))
 				return new Package("401",
 						"Wrong ID/Wrong format Inputted(Must be a number present in the list written with digits)\n ");
-			// if the system can find the day or time present in the list, it sends to the
-			// user he inputted the wrong day and/or time
-			if (!days.contains(request.getScheduledMovie().getDay()))
-				return new Package("401", "Wrong Day Inputted");
-			if (!times.contains(request.getScheduledMovie().getTime()))
-				return new Package("401", "Wrong Time Inputted");
+			if(validation.CheckIfNotAvailableTimeAndDay(request.getScheduledMovie().getDay(), request.getScheduledMovie().getTime(), schedule.getList()))
+				return new Package("401", "Movie already scheduled at that day and time");
 			schedule.addScheduledMovie(request.getScheduledMovie());
 
 			return new Package("200", "ScheduleSent");
@@ -362,7 +332,7 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
 			// Write into database server stream
 			outputStream = new DataOutputStream(serverSocket.getOutputStream());
-
+			//Send a List
 			Package requestT3 = new Package("SENDSCHEDULE", schedule.getList());
 
 			// sending request to tier 3 server
@@ -561,8 +531,7 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
 			// sending request to tier 3 server
 			json = gson.toJson(updateT3);
-			outputStream.writeUTF(json);
-
+			outputStream.writeUTF(json + "\n");
 			// getting reply from tier 3 server
 			// Makes sure the message is read in UTF8
 			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream(), "UTF8"));

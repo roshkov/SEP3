@@ -45,8 +45,11 @@ namespace Tier3ServerDatabase.controller
 
                 view.Show("Reply: " + reply.Body);
                 //Convert the package to json
-                string json = JsonConvert.SerializeObject(reply);
-
+                string json = JsonConvert.SerializeObject(reply,
+                            new JsonSerializerSettings
+                            {
+                                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                            });
                 view.Show(json);
                 // Convert it to bytes
                 byte[] msg = Encoding.UTF8.GetBytes(json, 0, json.Length);
@@ -125,7 +128,7 @@ namespace Tier3ServerDatabase.controller
                     case "GETSCHEDULE":
                         return new Package("GETSCHEDULE", database.GetStringSchedule());
                     case "GETALLSCHEDULE":
-                        return new Package("GETSCHEDULE", null, null, null, database.GetSchedule());
+                        return new Package("GETALLSCHEDULE", null, null, null, database.GetSchedule());
                     default:
                         return wrong;
                 }
