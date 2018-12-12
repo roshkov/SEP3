@@ -1,6 +1,14 @@
 {
-  "ProjectFilePath": "d:\\via\\sep3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
+  "ProjectFilePath": "d:\\via\\sep3\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
   "TargetFramework": "netcoreapp2.1",
   "TagHelpers": [],
-  "Configuration": null
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
 }
