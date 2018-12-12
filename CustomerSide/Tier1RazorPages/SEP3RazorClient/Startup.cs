@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SEP3RazorClient.Communication;
 
 namespace SEP3RazorClient
 {
@@ -24,6 +25,7 @@ namespace SEP3RazorClient
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<APIProvider>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -34,7 +36,7 @@ namespace SEP3RazorClient
 
             services.AddMvc().AddRazorPagesOptions(options =>
             {
-                options.Conventions.AddPageRoute("/BookSeats", "");
+                options.Conventions.AddPageRoute("/Home", "");
             });
 
 

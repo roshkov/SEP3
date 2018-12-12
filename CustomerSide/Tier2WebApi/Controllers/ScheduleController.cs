@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Tier2WebApi.Common;
+using Tier2WebApi.Communication;
 
 namespace Tier2WebApi.Controllers
 {
@@ -18,46 +19,9 @@ namespace Tier2WebApi.Controllers
     {
         private List<ScheduledMovie> Schedule;
 
-        public ScheduleController()
+        public ScheduleController(Tier2JavaProvider provider)
         {
-            Package Answer;
-            Package GETALLSCHEDULE = new Package("GETALLSCHEDULE");
-
-            //byte[] adr = {127, 0, 0, 1};
-            TcpClient client = new TcpClient("127.0.0.1",1100);
-
-            //Connect to end point
-            //client.Connect(new IPEndPoint(new IPAddress(adr),1100));
-            
-            NetworkStream NetworkStream = client.GetStream();
-            string json = JsonConvert.SerializeObject(GETALLSCHEDULE);
-            
-            // StreamWriter StreamWriter = new StreamWriter(NetworkStream);
-            // StreamWriter.Write(json);
-            // StreamWriter.Close();
-
-            byte[] bytesToSend = Encoding.UTF8.GetBytes(json, 0, json.Length);
-            NetworkStream.Write(bytesToSend);
-            NetworkStream.Write(Encoding.UTF8.GetBytes(Environment.NewLine));
-            NetworkStream.Flush();
-
-            Byte[] bytes = new byte[client.ReceiveBufferSize];
-            NetworkStream.Read(bytes, 0, client.ReceiveBufferSize);
-            String reply = Encoding.UTF8.GetString(bytes, 2, client.ReceiveBufferSize-2);
-
-            // using (StreamReader StreamReader = new StreamReader(NetworkStream))
-            // {
-            //     var streamTask = StreamReader.ReadToEnd();
-            //     Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + streamTask);
-            //     Answer = JsonConvert.DeserializeObject(streamTask) as Package; 
-            // StreamReader.Dispose();
-            // }
-        
-        Answer = JsonConvert.DeserializeObject<Package>(reply); 
-        Schedule = Answer.ScheduleList;
-        
-        client.GetStream().Close();
-        client.Close();
+            Schedule = provider.Schedule;
         }
         // GET api/schedule
         [HttpGet]
@@ -67,27 +31,26 @@ namespace Tier2WebApi.Controllers
         }
 
         // PUT api/schedule
-
+        //[HttpPut("{id}")] ?id=bla&id2=bla2
         [HttpPut("{id}")]
-        public void Put([FromQuery]int id, [FromBody]int id2)
-        {
-            System.Console.WriteLine(id);
-            System.Console.WriteLine(id2);
+        public void Put(int id, [FromBody]int id2)
+        {   
+            //Book the seat chosen by the client
             Schedule[id].Seats.ElementAt(id2).Booked = true;
-            System.Console.WriteLine(Schedule[id].Seats.ElementAt(id2).Booked);
+            //Prepare the package to update the values in the database
             Package UPDATECHEDULE = new Package("UPDATESCHEDULE", null, null, null, Schedule);
-
-            TcpClient client = new TcpClient("127.0.0.1",1100);
-             NetworkStream NetworkStream = client.GetStream();
+            //Connect back to the java server
+            TcpClient client = new TcpClient("127.0.0.1", 1100);
+            //Send the package, look in Tier2JavaProvider for more explanations
+            NetworkStream NetworkStream = client.GetStream();
             string json = JsonConvert.SerializeObject(UPDATECHEDULE);
-             byte[] bytesToSend = Encoding.UTF8.GetBytes(json, 0, json.Length);
+            byte[] bytesToSend = Encoding.UTF8.GetBytes(json, 0, json.Length);
             NetworkStream.Write(bytesToSend);
             NetworkStream.Write(Encoding.UTF8.GetBytes(Environment.NewLine));
-            NetworkStream.Flush();
-            // Reading so it doesn't throw error and block the whole circuit
+            // Reading so it doesn't throw error and block the whole data flow
             Byte[] bytes = new byte[client.ReceiveBufferSize];
             NetworkStream.Read(bytes, 0, client.ReceiveBufferSize);
-            String reply = Encoding.UTF8.GetString(bytes, 2, client.ReceiveBufferSize-2);
+            String reply = Encoding.UTF8.GetString(bytes, 2, client.ReceiveBufferSize - 2);
             client.GetStream().Close();
             client.Close();
         }

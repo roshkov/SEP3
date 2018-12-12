@@ -133,7 +133,8 @@ namespace Tier3ServerDatabase.database
         public List<ScheduledMovie> GetSchedule()
         {   //We use eager loading to make sure we have everything we need as we query the schedule
             //https://docs.microsoft.com/en-us/ef/core/querying/related-data#eager-loading
-            List<ScheduledMovie> movies = _context.schedule.Include(schedule => schedule.Movie).Include(Scheduled => Scheduled.Seats).Include(Scheduled => Scheduled.Room).ToList();
+            //We get an ordered list by time
+            List<ScheduledMovie> movies = _context.schedule.Include(schedule => schedule.Movie).Include(Scheduled => Scheduled.Seats).Include(Scheduled => Scheduled.Room).OrderBy(s => s.Time).ToList();
             return movies;
         }
         //Get The Schedule in string
