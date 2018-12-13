@@ -24,7 +24,6 @@ public class Tier2MovieManager {
 		try {
 			Tier2MovieManagerController controller = new Tier2MovieManagerController(view);
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 	}
