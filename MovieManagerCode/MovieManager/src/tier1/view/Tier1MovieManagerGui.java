@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -67,14 +68,6 @@ public class Tier1MovieManagerGui implements Tier1MovieManagerView{
 		JPanel panel = new JPanel();
 		frmMovieManagerGui.getContentPane().add(panel);
 		panel.setLayout(null);
-		
-		movies = new JTextArea();
-		movies.setEditable(false);
-		movies.setLineWrap(true);
-		movies.setBounds(0, 24, 675, 184);
-		movies.setRows(1);
-		movies.setColumns(1);
-		panel.add(movies);
 		
 		movieId = new JTextField();
 		movieId.setBounds(264, 261, 28, 22);
@@ -134,6 +127,17 @@ public class Tier1MovieManagerGui implements Tier1MovieManagerView{
 		insertMovieId.setBounds(155, 261, 97, 22);
 		panel.add(insertMovieId);
 		insertMovieId.setColumns(10);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(5, 25, 667, 194);
+		panel.add(scrollPane);
+		
+		movies = new JTextArea();
+		scrollPane.setViewportView(movies);
+		movies.setEditable(false);
+		movies.setLineWrap(true);
+		movies.setRows(1);
+		movies.setColumns(1);
 		
 		
 		movieId.getDocument().addDocumentListener(new DocumentListener() {
