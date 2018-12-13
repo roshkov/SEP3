@@ -58,7 +58,7 @@ namespace Tier3ServerDatabase.database
         //Method for adding a Movie to the database
         public bool AddMovie(Movie movie)
         {
-            _context.Add(movie);
+            _context.Add<Movie>(movie);
             return SaveAll();
         }
 
@@ -73,7 +73,7 @@ namespace Tier3ServerDatabase.database
         //Method to add a room
         public bool AddRoom(Room room)
         {
-            _context.Add(room);
+            _context.Add<Room>(room);
             return SaveAll();
         }
 

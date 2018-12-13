@@ -39,7 +39,6 @@ namespace Tier3ServerDatabase.controller
                 Package request = JsonConvert.DeserializeObject<Package>(data);
                 // Print out the received message to the console.
                 view.Show("Package: " + request.Header);
-
                 //Get the proper reply
                 Package reply = Operation(request);
 
