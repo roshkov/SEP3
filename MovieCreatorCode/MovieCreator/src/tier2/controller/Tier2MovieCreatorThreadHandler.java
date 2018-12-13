@@ -11,51 +11,22 @@ import java.net.UnknownHostException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import common.Init;
+import common.Movie;
 import common.Package;
+import tier2.model.Validation;
 import tier2.view.Tier2MovieCreatorView;
-/**
- * Class that handles the communication and flow of data from the client
- * @author Stefan
- *
- */
+
 public class Tier2MovieCreatorThreadHandler implements Runnable {
 
-	/**
-	 * The socket the client uses
-	 */
-	private Socket clientSocket;
-	/**
-	 * Stream for receiving data from the client
-	 */
 	private DataInputStream inputStream;
-	/**
-	 * Stream for sending data to the client
-	 */
 	private DataOutputStream outputStream;
-	/**
-	 * Socket used to connect to tier3
-	 */
 	private Socket serverSocket;
-	/**
-	 * Access to the view
-	 */
 	private Tier2MovieCreatorView view;
-	/**
-	 * IP address of the client
-	 */
 	private String ip;
+	private Validation validation = Validation.getInstance();
 
-	/**
-	 * Input and output streams are established. Access to the client socket given through dependency injection
-	 * @param clientSocket
-	 * @param view
-	 * @throws IOException
-	 */
 	public Tier2MovieCreatorThreadHandler(Socket clientSocket, Tier2MovieCreatorView view) throws IOException {
 		super();
-		// Connecting to client socket
-		this.clientSocket = clientSocket;
 
 		// Read from client stream
 		inputStream = new DataInputStream(clientSocket.getInputStream());
@@ -71,7 +42,7 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 
 	/**
 	 * This method waits for a request Package from the client then sends a reply
-	 * Package back to them
+	 * Package back to him
 	 * 
 	 * @see operation
 	 * @see Package
@@ -88,7 +59,7 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 				// convert from JSon
 				// getting request from client
 				Gson gson = new Gson();
-				gson.serializeNulls();
+
 				System.out.println(line);
 				Package request = gson.fromJson(line, Package.class);
 				view.show("package: " + request.getHeader());
@@ -117,9 +88,9 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 	}
 
 	/**
-	 * Method that takes the request Package and depending on the header field creates a reply
-	 * Package.
-	 * In order to create the reply package socket communication to tier3 is established in this method
+	 * Method that takes the request Package then uses the model to create a reply
+	 * Package depending on the request
+	 * 
 	 * @param request
 	 *            The Package received from the client
 	 * @return a Package containing what the client requested
@@ -142,7 +113,7 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 		
 		try {
 			view.show("Connecting to tier3 server");
-			serverSocket = new Socket(Init.getInstance().getIpDb(), Init.getInstance().getPortDb());
+			serverSocket = new Socket("localhost", 1097);
 		} catch (IOException e) {
 			view.show("Database offline, couldn't connect to server");
 			e.printStackTrace();
@@ -178,13 +149,19 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 			return replyFromServer;
 
 		case Package.ADD:
+			String validationResult = validation.checkMovie(request.getMovie(), request.getBody());
+			if(validationResult.equals(""))
+			{
 			// Read from server stream
 			inputStream = new DataInputStream(serverSocket.getInputStream());
 
 			// Write into server stream
 			outputStream = new DataOutputStream(serverSocket.getOutputStream());
+			//Preparing the movie to be sent
+			request.getMovie().setPrice(Double.parseDouble(request.getBody()));
+			Movie movieToSend = request.getMovie();
 			// sending request to tier 3 server
-			requestToServer = new Package("ADD", request.getMovie());
+			requestToServer = new Package("ADD", movieToSend);
 			json = gson.toJson(requestToServer);
 			outputStream.writeUTF(json);
 
@@ -202,54 +179,12 @@ public class Tier2MovieCreatorThreadHandler implements Runnable {
 			inputStream.close();
 			outputStream.close();
 			return replyFromServer;
+			}
+			else
+			{
+				return new Package("401", validationResult);
+			}
 
-		case Package.VERIFY:
-			//verifying the year of creation
-			try
-			{
-				Integer.parseInt(request.getYearCreation());
-			}
-			catch(NumberFormatException e)
-			{
-				view.show("Creation year invalid");
-				e.printStackTrace();
-				return new Package("CREATIONYEAR", "NumberFormatException caught");
-			}
-			
-			//verifying the release date
-			try
-			{
-				String[] date = request.getReleaseDate().split("/");
-				for (String element : date)
-				{
-					Integer.parseInt(element);
-				}
-			}
-			catch (NumberFormatException e)
-			{
-				view.show("Date invalid");
-				e.printStackTrace();
-				return new Package("RELEASEDATE", "NumberFormatException caught");
-			}
-			//verifying the price field
-			try {
-				Double testPrice = Double.parseDouble(request.getPrice());
-			}
-			catch (NumberFormatException e)
-			{
-				view.show("Price invalid");
-				e.printStackTrace();
-				return new Package("PRICE", "NumberFormatException caught");
-			}
-			catch (NullPointerException e)
-			{
-				view.show("Price was empty string");
-				e.printStackTrace();
-				return new Package("PRICE", "NullPointerException caught -- empty string");
-			}
-			
-			return new Package("OK", "Valid input");
-			
 		default:
 			return new Package("WRONG FORMAT");
 

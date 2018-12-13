@@ -4,12 +4,6 @@ import java.util.Scanner;
 
 import tier1.controller.Tier1MovieCreatorController;
 
-/**
- * Used in early development stages in order to test the functionality of the system.
- * The system now uses a GUI {@link Tier1MovieCreatorGUI}
- * @author Stefan
- *
- */
 public class Tier1MovieCreatorConsole implements Tier1MovieCreatorView, Runnable {
 
 	private Scanner input;
