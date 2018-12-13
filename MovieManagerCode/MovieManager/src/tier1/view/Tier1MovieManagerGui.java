@@ -156,11 +156,11 @@ public class Tier1MovieManagerGui implements Tier1MovieManagerView{
 				
 				public void changed()
 				{
-					if (movieId.getText().equals("")) {
-						rentMovieButton.setEnabled(false);
+					if (movieId.getText().matches("[0-9]+")) {
+						rentMovieButton.setEnabled(true);
 					}
 					else {
-						rentMovieButton.setEnabled(true);
+						rentMovieButton.setEnabled(false);
 					}
 						
 				}

@@ -20,6 +20,8 @@ E:\Facultate\SeM 3\SeP\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3Dat
 E:\Facultate\SeM 3\SeP\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.AssemblyInfo.cs
 E:\Facultate\SeM 3\SeP\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.dll
 E:\Facultate\SeM 3\SeP\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.pdb
+<<<<<<< HEAD
+=======
 E:\Facultate\SEM3\SEP3_repo\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.deps.json
 E:\Facultate\SEM3\SEP3_repo\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.runtimeconfig.json
 E:\Facultate\SEM3\SEP3_repo\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.runtimeconfig.dev.json
@@ -31,6 +33,7 @@ E:\Facultate\SEM3\SEP3_repo\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tie
 E:\Facultate\SEM3\SEP3_repo\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.AssemblyInfo.cs
 E:\Facultate\SEM3\SEP3_repo\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.dll
 E:\Facultate\SEM3\SEP3_repo\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.pdb
+>>>>>>> edce127cbf0ad0b96cdb3835bfc181b98af29e95
 E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.deps.json
 E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.runtimeconfig.json
 E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.runtimeconfig.dev.json

@@ -7,8 +7,6 @@ The purpose of the project is to facilitate Zinema’s management process regard
 
 -Ticket Booking 
 
--Advertisement Placing
-
 -Movie Screening
 
 ![alt text](https://1.bp.blogspot.com/-VbLa1eZo608/VJs_2XbJDEI/AAAAAAAADm8/Bn_8Hv2bes8/s1600/homer_barney.png)
