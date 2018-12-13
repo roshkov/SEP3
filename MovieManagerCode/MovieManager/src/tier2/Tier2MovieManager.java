@@ -22,6 +22,7 @@ public class Tier2MovieManager {
 		Tier2MovieManagerView view = new Console();					
 		//controller
 		try {
+			@SuppressWarnings("unused")
 			Tier2MovieManagerController controller = new Tier2MovieManagerController(view);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();

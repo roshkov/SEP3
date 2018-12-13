@@ -1,28 +1,11 @@
 package tier1.view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Toolkit;
-import java.awt.GridLayout;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.ImageIcon;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.CardLayout;
-import javax.swing.BoxLayout;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
+
 
 import tier1.controller.Tier1MovieCreatorController;
 

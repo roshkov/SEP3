@@ -96,7 +96,7 @@ public class Tier1MovieManagerGui implements Tier1MovieManagerView{
 				controller.execute(1);
 			}
 		});
-		rentMovieButton.setBounds(304, 260, 97, 25);
+		rentMovieButton.setBounds(304, 260, 116, 25);
 		panel.add(rentMovieButton);
 		
 		JButton exitButton = new JButton("Exit");

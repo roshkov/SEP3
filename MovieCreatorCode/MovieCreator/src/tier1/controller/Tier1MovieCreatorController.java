@@ -4,16 +4,12 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import common.Movie;
 import common.Package;
 import tier1.view.Tier1MovieCreatorView;
-import java.util.Date;
 
 public class Tier1MovieCreatorController {
 	
@@ -21,8 +17,6 @@ public class Tier1MovieCreatorController {
 	private Tier1MovieCreatorView view;
 	private DataInputStream inputStream;
 	private DataOutputStream outputStream;
-	private Gson gson;
-
 	// constructor
 	public Tier1MovieCreatorController(Tier1MovieCreatorView view) {
 		try {
@@ -34,8 +28,6 @@ public class Tier1MovieCreatorController {
 			inputStream = new DataInputStream(serverSocket.getInputStream());
 			// Write into stream : outputStream.writeUTF(new String("text to send"));
 			outputStream = new DataOutputStream(serverSocket.getOutputStream());
-
-			Gson gson = new Gson();
 
 		} catch (IOException e) {
 
