@@ -23,6 +23,14 @@ public class Tier2MovieManagerThreadHandler implements Runnable {
 	private Tier2MovieManagerView view;
 	private String ip;
 
+	
+	/**
+	 * Construct that assigns received argument to local field, 
+	 *  sets up input and output streams
+	 * @param clientSocket
+	 * @param view
+	 * @throws IOException
+	 */
 	public Tier2MovieManagerThreadHandler(Socket clientSocket, Tier2MovieManagerView view) throws IOException {
 		super();
 
@@ -38,6 +46,11 @@ public class Tier2MovieManagerThreadHandler implements Runnable {
 		view.show(ip + " connected");
 	}
 
+	
+	/**
+	 * Method that read the request from the clients stream,  
+	 * gets data from Tier 3 server and send a reply back to the client
+	 */
 	@Override
 	public void run() {
 		boolean continueCommuticating = true;

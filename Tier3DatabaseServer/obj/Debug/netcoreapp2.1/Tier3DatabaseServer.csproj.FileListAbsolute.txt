@@ -9,6 +9,19 @@ C:\Users\Claudiu\Desktop\Programming\SEP3\Tier3DatabaseServer\bin\Debug\netcorea
 C:\Users\Claudiu\Desktop\Programming\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.pdb
 C:\Users\Claudiu\Desktop\Programming\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.dll
 C:\Users\Claudiu\Desktop\Programming\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.pdb
+<<<<<<< HEAD
+D:\via\sep3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.deps.json
+D:\via\sep3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.runtimeconfig.json
+D:\via\sep3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.runtimeconfig.dev.json
+D:\via\sep3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.dll
+D:\via\sep3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.pdb
+D:\via\sep3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.csprojAssemblyReference.cache
+D:\via\sep3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.csproj.CoreCompileInputs.cache
+D:\via\sep3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.AssemblyInfoInputs.cache
+D:\via\sep3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.AssemblyInfo.cs
+D:\via\sep3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.dll
+D:\via\sep3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.pdb
+=======
 E:\Facultate\SeM 3\SeP\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.deps.json
 E:\Facultate\SeM 3\SeP\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.runtimeconfig.json
 E:\Facultate\SeM 3\SeP\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.runtimeconfig.dev.json
@@ -33,7 +46,22 @@ E:\Facultate\SEM3\SEP3_repo\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tie
 E:\Facultate\SEM3\SEP3_repo\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.AssemblyInfo.cs
 E:\Facultate\SEM3\SEP3_repo\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.dll
 E:\Facultate\SEM3\SEP3_repo\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.pdb
+<<<<<<< HEAD
+>>>>>>> upstream/master
+D:\via\sep3\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.deps.json
+D:\via\sep3\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.runtimeconfig.json
+D:\via\sep3\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.runtimeconfig.dev.json
+D:\via\sep3\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.dll
+D:\via\sep3\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.pdb
+D:\via\sep3\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.csprojAssemblyReference.cache
+D:\via\sep3\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.csproj.CoreCompileInputs.cache
+D:\via\sep3\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.AssemblyInfoInputs.cache
+D:\via\sep3\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.AssemblyInfo.cs
+D:\via\sep3\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.dll
+D:\via\sep3\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.pdb
+=======
 >>>>>>> edce127cbf0ad0b96cdb3835bfc181b98af29e95
+>>>>>>> b22f09a2b91316d3a75c07be69c5c0a7849f7385
 E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.deps.json
 E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.runtimeconfig.json
 E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier3DatabaseServer\bin\Debug\netcoreapp2.1\Tier3DatabaseServer.runtimeconfig.dev.json
@@ -45,3 +73,4 @@ E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier
 E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.AssemblyInfo.cs
 E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.dll
 E:\Facultate\SeM 3\SeP\Sep\SEP3\Tier3DatabaseServer\obj\Debug\netcoreapp2.1\Tier3DatabaseServer.pdb
+>>>>>>> e110e37274e4004821f9f9b9a7be67239f128002

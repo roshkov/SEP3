@@ -18,7 +18,12 @@ public class Tier1MovieManagerController {
 	private DataOutputStream outputStream;
 	private Gson gson;
 
-	// constructor
+	/**
+	 * Constructor that assigns received argument to local fields,
+	 * sets up socket communication and input/output stream, 
+	 * switches view to Tier1MovieManager view
+	 * @param view
+	 */
 	public Tier1MovieManagerController(Tier1MovieManagerView view) {
 		try {
 			this.view = view;
@@ -35,7 +40,10 @@ public class Tier1MovieManagerController {
 			e.printStackTrace();
 		}
 	}
-
+/**
+ * Based on the parameter received, method sends packages to Tier2 to execute renting or getting available movie list
+ * @param choice
+ */
 	public void execute(int choice) {
 		// Choices done for testing
 		gson = new Gson();

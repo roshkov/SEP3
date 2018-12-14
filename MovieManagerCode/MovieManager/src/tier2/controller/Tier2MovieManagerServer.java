@@ -9,12 +9,22 @@ public class Tier2MovieManagerServer implements Runnable {
 	private ServerSocket welcomeSocket;
 	private Tier2MovieManagerController controller;
 
+	
+	/**
+	 * Constructor that assigns received argument to local fields
+	 * @param port
+	 * @param controller
+	 * @throws IOException
+	 */
 	public Tier2MovieManagerServer(int port, Tier2MovieManagerController controller) throws IOException {
 		super();
 		this.controller = controller;
 		this.welcomeSocket = new ServerSocket(port);
 	}
 
+	/**
+	 * Method starts the server and waits until a connection from client
+	 */
 	@Override
 	public void run() {
 		while (true)

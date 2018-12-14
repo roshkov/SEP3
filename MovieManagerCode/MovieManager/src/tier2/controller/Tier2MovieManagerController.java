@@ -10,6 +10,13 @@ public class Tier2MovieManagerController {
 	private Tier2MovieManagerView view;
 	private Tier2MovieManagerServer server;
 	
+	
+	/**
+	 * Constructor that sets view field value to the Tier2MovieManager view,
+	 * sets sets server field value to Tier2 server value 
+	 * @param view
+	 * @throws UnknownHostException
+	 */
 	public Tier2MovieManagerController(Tier2MovieManagerView view) throws UnknownHostException
 	{
 		this.view = view;
@@ -22,6 +29,10 @@ public class Tier2MovieManagerController {
 		t.start();
 	}
 	
+	/**
+	 * 
+	 * @return Tier2MovieManagerView class
+	 */
 	public Tier2MovieManagerView getView()
 	{
 		return this.view;

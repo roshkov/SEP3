@@ -18,6 +18,11 @@ public class Init {
 
 	}
 
+	
+	/**
+	 * Init object that is created if it does not already exist
+	 * @return instance 
+	 */
 	public static Init getInstance() {
 
 		if (instance == null) {
@@ -26,38 +31,77 @@ public class Init {
 		return instance;
 	}
 
+	/**
+	 * Method gets port used
+	 * @return Integer of port number
+	 */
 	public int getPort() {
 		return port;
 	}
 
+	/**
+	 * Method sets port number
+	 * @param Port number
+	 */
 	public void setPort(int port) {
 		this.port = port;
 	}
 	
+	/**
+	 * Method gets the port number of database
+	 * @return Integer of database port number
+	 */
 	public int getPortDb() {
 		return portDb;
 	}
 
+	/**
+	 * Method sets port number of database
+	 * @param Integer of database port number	
+	 */
 	public void setPortDb(int port) {
 		this.portDb = port;
 	}
 
+	
+	/**
+	 * Method gets Ip used
+	 * @return String with IP
+	 */
 	public String getIp() {
 		return ip;
 	}
 
+	/**
+	 * Method sets Ip used
+	 * @param String with IP
+	 */
+	
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
 	
+	
+	/**
+	 * Method gets the IP of database
+	 * @return String with databse IP
+	 */
 	public String getIpDb() {
 		return ipDb;
 	}
 
+	/**
+	 * Method sets IP of database
+	 * @param String of database I{
+	 */
 	public void setIpDb(String ip) {
 		this.ipDb = ip;
 	}
 
+	
+	/**
+	 * Method receives file with IP, port, database IP, database port and sets values for the class fields
+	 */
 	public void getData() {
 		try {
 			scanner = new Scanner(initData);

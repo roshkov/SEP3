@@ -173,22 +173,37 @@ public class Tier1MovieManagerGui implements Tier1MovieManagerView{
 		frmMovieManagerGui.setBounds(100, 100, 693, 479);
 		frmMovieManagerGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
+	
+	/**
+	 * @return String with movie id
+	 */
 	@Override
 	public String getId() {
 		return movieId.getText();
 	}
-	
+	/**
+	 * @return String with all movies displayed
+	 */
 	@Override
 	public String getMovies() {
 		return movies.getText();
 	}
+	
+	
+	/**
+	 * Method sets movies to be displayed
+	 * @param text
+	 */
 	@Override
 	public void showMovies(String text) {
 		// TODO Auto-generated method stub
 		movies.setText(text);
 	}
 	
+	/**
+	 * Method displays specific message dialog dependent on a parameter received
+	 * @param a
+	 */
 	@Override
 	public void show(int a) {
 		switch(a)

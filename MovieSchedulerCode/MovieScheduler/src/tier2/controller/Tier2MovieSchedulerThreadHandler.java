@@ -70,7 +70,8 @@ public class Tier2MovieSchedulerThreadHandler implements Runnable {
 
 	/*	// Read from client stream
 		inputStream = new DataInputStream(clientSocket.getInputStream());
-*/
+*/ 
+		
 		// Write into client stream
 		outputStream = new DataOutputStream(clientSocket.getOutputStream());
 		//outputStream = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF8"));
