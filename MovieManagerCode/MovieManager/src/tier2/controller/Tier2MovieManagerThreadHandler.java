@@ -17,7 +17,6 @@ import tier2.view.Tier2MovieManagerView;
 
 public class Tier2MovieManagerThreadHandler implements Runnable {
 
-	private Socket clientSocket;
 	private DataInputStream inputStream;
 	private DataOutputStream outputStream;
 	private Socket serverSocket;
@@ -34,8 +33,6 @@ public class Tier2MovieManagerThreadHandler implements Runnable {
 	 */
 	public Tier2MovieManagerThreadHandler(Socket clientSocket, Tier2MovieManagerView view) throws IOException {
 		super();
-		// Connecting to client socket
-		this.clientSocket = clientSocket;
 
 		// Read from client stream
 		inputStream = new DataInputStream(clientSocket.getInputStream());

@@ -26,16 +26,16 @@ namespace Tier3DatabaseServer.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
-                        .HasMaxLength(40);
+                        .HasMaxLength(200);
 
                     b.Property<string>("NameDirector")
-                        .HasMaxLength(20);
+                        .HasMaxLength(60);
 
                     b.Property<string>("NameMainActor")
-                        .HasMaxLength(20);
+                        .HasMaxLength(60);
 
                     b.Property<string>("NameStudio")
-                        .HasMaxLength(20);
+                        .HasMaxLength(80);
 
                     b.Property<decimal>("Price")
                         .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
@@ -49,7 +49,7 @@ namespace Tier3DatabaseServer.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(20);
+                        .HasMaxLength(60);
 
                     b.Property<string>("YearCreation")
                         .HasMaxLength(20);

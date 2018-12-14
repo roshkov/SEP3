@@ -20,7 +20,7 @@ public class Tier1MovieManager {
 		Tier1MovieManagerView view = new Tier1MovieManagerGui();					
 		//controller
 		Tier1MovieManagerController controller = new Tier1MovieManagerController(view); 
-		//starts thread in itadas
+		//starts thread 
 		view.startView(controller);   
 	}
 }

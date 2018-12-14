@@ -12,6 +12,7 @@ public class Init {
 	private String ip;
 	//Both tiers use the same txt file. When the applications will be deployed, each tier will have its own.
 	private File initData = new File("initData.txt");
+	private Scanner scanner;
 	
 	private Init() {
 
@@ -103,7 +104,7 @@ public class Init {
 	 */
 	public void getData() {
 		try {
-			Scanner scanner = new Scanner(initData);
+			scanner = new Scanner(initData);
 			String[] initData = scanner.nextLine().split(" ");
 			Init.getInstance().setIp(initData[0]);
 			Init.getInstance().setPort(Integer.parseInt(initData[1]));

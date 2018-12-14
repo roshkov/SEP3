@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "ProjectFilePath": "d:\\via\\sep3\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
+=======
+  "ProjectFilePath": "e:\\Facultate\\SeM 3\\SeP\\Sep\\SEP3\\Tier3DatabaseServer\\Tier3DatabaseServer.csproj",
+>>>>>>> b22f09a2b91316d3a75c07be69c5c0a7849f7385
   "TargetFramework": "netcoreapp2.1",
   "TagHelpers": [],
   "Configuration": {
