@@ -24,6 +24,46 @@ public class Validation {
 
 	public String checkMovie(Movie movie, String price) {
 		String result = "";
+		if (movie.getTitle() == null)
+		{
+			result = result + "The Title is null ";
+			return result;
+		}
+		if (movie.getYearCreation() == null)
+		{
+			result = result + "The Year of Creation is null ";
+			return result;
+		}
+		if (movie.getReleaseDate() == null)
+		{
+			result = result + "The Release Date is null ";
+			return result;
+		}
+		if (price == null)
+		{
+			result = result + "The Price is null ";
+			return result;
+		}
+		if (movie.getNameStudio() == null)
+		{
+			result = result + "The Title is null ";
+			return result;
+		}
+		if (movie.getNameDirector() == null)
+		{
+			result = result + "The Title is null ";
+			return result;
+		}
+		if (movie.getDescription() == null)
+		{
+			result = result + "The Title is null ";
+			return result;
+		}
+		if (movie.getNameMainActor() == null)
+		{
+			result = result + "The Title is null ";
+			return result;
+		}
 		if (movie.getTitle().length() > 60)
 			result = result + "The Title is too long ";
 		if (movie.getTitle().length() < 2)

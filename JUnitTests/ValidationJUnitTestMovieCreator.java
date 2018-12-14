@@ -33,6 +33,14 @@ class ValidationJUnitTestMovieCreator {
 		if (!result.equals(""))
 			fail(result);
 	}
+	
+	@Test
+	public void testElementCanBeCheckedForNull() {
+		movie.setTitle(null);
+		String result = validation.checkMovie(movie, price);
+		if (!result.equals("The Title is null "))
+			fail(result);
+	}
 
 	@Test
 	public void testElementCanCheckIfTitleIsTooBig() throws Exception {

@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "ProjectFilePath": "d:\\via\\sep3\\SEP3\\CustomerSide\\Tier2WebApi\\Tier2WebApi.csproj",
-=======
   "ProjectFilePath": "c:\\Users\\Claudiu\\Desktop\\Programming\\SEP3\\CustomerSide\\Tier2WebApi\\Tier2WebApi.csproj",
->>>>>>> e110e37274e4004821f9f9b9a7be67239f128002
   "TargetFramework": "netcoreapp2.1",
   "TagHelpers": [],
   "Configuration": {
