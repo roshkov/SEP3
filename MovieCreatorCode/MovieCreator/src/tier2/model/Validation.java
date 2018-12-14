@@ -53,7 +53,7 @@ public class Validation {
 		if (movie.getDescription().length() < 2)
 			result = result + "The Title is too short";
 		if (dateIsValid(movie.getReleaseDate()))
-			result = result + "Please enter the date in this exact format: [DD/MM/YYYY]";
+			result = result + "Please enter the date in this exact format: [DD/MM/YYYY] ";
 		try {
 			Double.parseDouble(price);
 		} catch (Exception e) {
@@ -67,7 +67,7 @@ public class Validation {
 		return result;
 	}
 
-	public static boolean dateIsValid(String value) {
+	public boolean dateIsValid(String value) {
 		try {
 			new SimpleDateFormat("dd/mm/yyyy").parse(value);
 			return false;

@@ -30,8 +30,6 @@ public class Tier1MovieManagerController {
 			// Write into stream : outputStream.writeUTF(new String("text to send"));
 			outputStream = new DataOutputStream(serverSocket.getOutputStream());
 
-			Gson gson = new Gson();
-
 		} catch (IOException e) {
 
 			e.printStackTrace();
